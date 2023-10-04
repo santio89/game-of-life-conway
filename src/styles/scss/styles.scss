@@ -1,0 +1,132 @@
+:root {
+  --font-primary: monospace, 'Courier New', Courier;
+  --main-color: crimson;
+  --main-black: rgb(20, 20, 20);
+  --main-white: rgb(240, 240, 240);
+  --main-gray: rgb(100, 100, 100);
+  --main-container-size: 1500px
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* INICIO SCROLLBAR */
+  scrollbar-width: thin;
+  scrollbar-color: var(--main-purple) var(--main-black);
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* track */
+  ::-webkit-scrollbar-track {
+    background: var(--main-black)
+  }
+
+  /* handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--main-purple);
+  }
+
+  /* FIN SCROLLBAR */
+
+  ::selection {
+    color: var(--main-purple-variation);
+    background: var(--main-purple);
+  }
+}
+
+body,
+#root,
+.root-theme {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  font-family: var(--font-primary);
+  line-height: 1.4;
+  background: var(--main-black);
+  color: var(--main-white)
+}
+
+.mainContainer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  display: flex;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+  z-index: 1;
+  max-width: var(--main-container-size);
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    button {
+      background: none;
+      outline: none;
+      border: none;
+      color: var(--main-gray);
+      font: inherit;
+      font-weight: bold;
+      font-size: 2em;
+      cursor: pointer;
+
+      &.active {
+        color: var(--main-color)
+      }
+    }
+  }
+}
+
+.game-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 20px);
+  grid-auto-rows: 20px;
+  place-content: center;
+  place-items: center;
+  gap: 8px;
+  user-select: none;
+
+  &__cell {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: transparent;
+    outline: 1px solid var(--main-gray);
+    transition: 1000ms;
+
+    &--active {
+      background: var(--main-color);
+      outline: 1px solid color-mix(in srgb, var(--main-color), black)
+    }
+  }
+}
