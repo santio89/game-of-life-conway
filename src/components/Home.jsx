@@ -7,19 +7,30 @@ import Cell from "./Cell";
 export default function Home() {
     const [cells, setCells] = useState(null)
     const [cellsFilled, setCellsFilled] = useState(false)
-    const [cols, setCols] = useState(10);
+    const [cols, setCols] = useState(5);
     const [rows, setRows] = useState(5)
     const [cellSize, setCellSize] = useState(80)
     const [genInterval, setGenInterval] = useState(null)
     const [playing, setPlaying] = useState(false)
 
+    const toggleActive = (index) => {
+        const cellsCopy = [...cells]
+        
+
+        if (cellsCopy[index].active === true) cellsCopy[index].active = false
+        if (cellsCopy[index].active === false) cellsCopy[index].active = true
+        setCells(cellsCopy)
+    }
+
     const calcGen = () => {
+        console.log(cells)
         const cellsCopy = [...cells]
 
         const getNeighbors = (i) => {
             const size = cols * rows;
             let neighbors = 0;
             /* neighbors can potentially be -1, +1, -cols, -cols-1, -cols+1, +cols, +cols-1, +cols-1 */
+                  /*   console.log(i + JSON.stringify(cellsCopy[i]) + " neighbors " + neighbors) */
 
             /* first row, -cols not neighbor */
             if (i < cols) {
@@ -29,18 +40,12 @@ export default function Home() {
                     if (cellsCopy[i + cols].active) neighbors++
                     if (cellsCopy[i + cols + 1].active) neighbors++
                     /* +1, +cols, +cols+1 */
-                }
-
-                /* last column, +1 not neighbor */
-                else if ((i + 1) % cols === 0) {
+                } else if ((i + 1) % cols === 0) {
                     if (cellsCopy[i - 1].active) neighbors++
                     if (cellsCopy[i + cols].active) neighbors++
                     if (cellsCopy[i + cols - 1].active) neighbors++
                     /* -1, +cols, +cols-1 */
-                }
-
-                /* middle columns */
-                else {
+                } else {
                     if (cellsCopy[i - 1].active) neighbors++
                     if (cellsCopy[i + 1].active) neighbors++
                     if (cellsCopy[i + cols].active) neighbors++
@@ -60,20 +65,14 @@ export default function Home() {
                     if (cellsCopy[i - cols].active) neighbors++
                     if (cellsCopy[i - cols + 1].active) neighbors++
                     /* +1, +cols, +cols+1, -cols, -cols+1 */
-                }
-
-                /* last column, +1 not neighbor */
-                else if ((i + 1) % cols === 0) {
+                } else if ((i + 1) % cols === 0) {
                     if (cellsCopy[i - 1].active) neighbors++
                     if (cellsCopy[i + cols].active) neighbors++
                     if (cellsCopy[i + cols - 1].active) neighbors++
                     if (cellsCopy[i - cols].active) neighbors++
                     if (cellsCopy[i - cols - 1].active) neighbors++
                     /* -1, +cols, +cols-1, -cols, -cols-1 */
-                }
-
-                /* middle columns */
-                else {
+                } else {
                     if (cellsCopy[i - 1].active) neighbors++
                     if (cellsCopy[i + 1].active) neighbors++
                     if (cellsCopy[i + cols].active) neighbors++
@@ -94,18 +93,12 @@ export default function Home() {
                     if (cellsCopy[i - cols].active) neighbors++
                     if (cellsCopy[i - cols + 1].active) neighbors++
                     /* +1, -cols, -cols+1 */
-                }
-
-                /* last column, +1 not neighbor */
-                else if ((i + 1) % cols === 0) {
+                } else if ((i + 1) % cols === 0) {
                     if (cellsCopy[i - 1].active) neighbors++
                     if (cellsCopy[i - cols].active) neighbors++
                     if (cellsCopy[i - cols - 1].active) neighbors++
                     /* -1, -cols, -cols-1 */
-                }
-
-                /* middle columns */
-                else {
+                } else {
                     if (cellsCopy[i - 1].active) neighbors++
                     if (cellsCopy[i + 1].active) neighbors++
                     if (cellsCopy[i - cols].active) neighbors++
@@ -115,7 +108,6 @@ export default function Home() {
                 }
             }
 
-            /* console.log(i + JSON.stringify(cellsCopy[i]) + " neighbors " + neighbors) */
 
             return neighbors
         }
@@ -130,10 +122,12 @@ export default function Home() {
             } */
 
             if (cell.active) {
+                console.log(i + "a" + neighbors)
                 if (neighbors < 2) cell.active = false //underpopulation 
                 if (neighbors === 2 || neighbors === 3) cell.active = true //survives 
                 if (neighbors > 3) cell.active = false //overpopulation
             } else {
+                console.log(i + "b")
                 if (neighbors === 3) cell.active = true //reproduction
             }
 
@@ -183,7 +177,7 @@ export default function Home() {
             </div>
             <div className="game-grid" style={{ gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`, gridAutoRows: `${cellSize}px` }}>
                 {cellsFilled && cells?.map((cell, index) => {
-                    return <Cell key={cell.id} index={index} cells={cells} setCells={setCells} />
+                    return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} />
                 })}
             </div>
         </div>
