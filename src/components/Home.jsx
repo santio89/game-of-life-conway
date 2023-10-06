@@ -24,12 +24,11 @@ export default function Home() {
 
     const calcGen = () => {
         const cellsCopy = [...cells]
-        console.log(cellsCopy)
+        /* console.log(cellsCopy) */
         const getNeighbors = (i) => {
             const size = cols * rows;
             let neighbors = 0;
             /* neighbors can potentially be -1, +1, -cols, -cols-1, -cols+1, +cols, +cols-1, +cols-1 */
-                  /*   console.log(i + JSON.stringify(cellsCopy[i]) + " neighbors " + neighbors) */
 
             /* first row, -cols not neighbor */
             if (i < cols) {
@@ -48,7 +47,7 @@ export default function Home() {
                     if (cellsCopy[i - 1].active) neighbors++
 
                     if (cellsCopy[i + 1].active) neighbors++
-                    
+
                     if (cellsCopy[i + cols].active) neighbors++
 
                     if (cellsCopy[i + cols + 1].active) neighbors++
@@ -113,36 +112,44 @@ export default function Home() {
 
             return neighbors
         }
-        
+
         const newCells = cellsCopy.map((cell, i) => {
             const neighbors = getNeighbors(i)
 
             if (cell.active) {
-                console.log(i + "a" + neighbors)
-                if (neighbors < 2) cell.active = false //underpopulation 
-                if (neighbors === 2 || neighbors === 3) cell.active = true //survives 
-                if (neighbors > 3) cell.active = false //overpopulation
+                if (neighbors < 2) return { ...cell, active: false } //underpopulation 
+                if (neighbors === 2 || neighbors === 3) return { ...cell, active: true } //survives 
+                if (neighbors > 3) return { ...cell, active: false } //overpopulation
             } else {
-                console.log(i + "b")
-                if (neighbors === 3) cell.active = true //reproduction
+                if (neighbors === 3) return { ...cell, active: true } //reproduction
+                else return { ...cell, active: false } //inactivity
             }
 
-
-            return cell
+            return { ...cell } //default
         })
 
         setCells(newCells)
     }
 
     const initGame = () => {
-        setGenInterval(setInterval(calcGen, 1000))
         setPlaying(true)
     }
 
     const stopGame = () => {
-        clearInterval(genInterval)
         setPlaying(false)
     }
+
+    useEffect(() => {
+        /* using timeout instead of interval so it iterates over the updated state */
+        let timeout;
+        if (playing) {
+            timeout = setTimeout(calcGen, 1000)
+        } else {
+            clearTimeout(timeout)
+        }
+
+        return () => clearTimeout(timeout)
+    }, [playing, cells])
 
     useEffect(() => {
         const fillArray = () => {
