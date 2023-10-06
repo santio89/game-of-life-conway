@@ -116,7 +116,7 @@ export default function Home() {
         
         const newCells = cellsCopy.map((cell, i) => {
             const neighbors = getNeighbors(i)
-            
+
             if (cell.active) {
                 console.log(i + "a" + neighbors)
                 if (neighbors < 2) cell.active = false //underpopulation 
@@ -153,8 +153,6 @@ export default function Home() {
                     array.push({
                         id: uuidv4(),
                         active: false,
-                        /* row: j,
-                        col: i, */
                     })
                 }
             }
