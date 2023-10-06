@@ -8,8 +8,8 @@ export default function Home() {
     const [cells, setCells] = useState(null)
     const [cellsFilled, setCellsFilled] = useState(false)
     const [cellSize, setCellSize] = useState(80)
-    const [cols, setCols] = useState(Math.floor((window.innerWidth - 120) / cellSize))
-    const [rows, setRows] = useState(Math.floor((window.innerHeight - 120) / cellSize))
+    const [cols, setCols] = useState(Math.floor((window.innerWidth) / cellSize))
+    const [rows, setRows] = useState(Math.floor((window.innerHeight - 60) / cellSize))
     const [playing, setPlaying] = useState(false)
 
     const toggleActive = (index) => {
@@ -23,6 +23,31 @@ export default function Home() {
         cellsCopy[index] = modCell()
 
         setCells(cellsCopy)
+    }
+
+    const calcCellColor = () => {
+        const genRandom = () => Math.floor(Math.random() * (255 - 0 + 1) + 0);
+        const cellColor = "rgb(" + genRandom() + ", " + genRandom() + ", " + genRandom() + ")"
+
+        document.documentElement.style.setProperty('--main-color', cellColor);
+    }
+
+    const calcRandomGen = () => {
+        let array = []
+
+        for (let i = 1; i <= cols; i++) {
+            for (let j = 1; j <= rows; j++) {
+                const isActive = Math.round(Math.random());
+
+                array.push({
+                    id: uuidv4(),
+                    active: isActive === 1 ? true : false,
+                    row: j,
+                    col: i
+                })
+            }
+        }
+        setCells(array)
     }
 
     const calcGen = () => {
@@ -156,13 +181,15 @@ export default function Home() {
 
     useEffect(() => {
         const fillArray = () => {
-            const array = []
+            let array = []
 
             for (let i = 1; i <= cols; i++) {
                 for (let j = 1; j <= rows; j++) {
                     array.push({
                         id: uuidv4(),
                         active: false,
+                        row: j,
+                        col: i
                     })
                 }
             }
@@ -182,8 +209,31 @@ export default function Home() {
     return (
         <div className="home">
             <div className="home__buttons">
-                <button className={`${playing && "active"}`} onClick={() => initGame()}>PLAY</button>
-                <button className={`${!playing && "active"}`} onClick={() => stopGame()}>PAUSE</button>
+                <div className="home__buttons__box">
+                    <button className={`${playing && "active"}`} onClick={() => initGame()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" className="bi bi-play-fill" viewBox="0 0 16 16">
+                            <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                        </svg>
+                    </button>
+                    <button className={`${!playing && "active"}`} onClick={() => stopGame()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" className="bi bi-pause-fill" viewBox="0 0 16 16">
+                            <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
+                        </svg>
+                    </button>
+                </div>
+                <div className="home__buttons__box">
+                    <button onClick={() => calcCellColor()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-rainbow" viewBox="0 0 16 16">
+                            <path d="M8 4.5a7 7 0 0 0-7 7 .5.5 0 0 1-1 0 8 8 0 1 1 16 0 .5.5 0 0 1-1 0 7 7 0 0 0-7-7zm0 2a5 5 0 0 0-5 5 .5.5 0 0 1-1 0 6 6 0 1 1 12 0 .5.5 0 0 1-1 0 5 5 0 0 0-5-5zm0 2a3 3 0 0 0-3 3 .5.5 0 0 1-1 0 4 4 0 1 1 8 0 .5.5 0 0 1-1 0 3 3 0 0 0-3-3zm0 2a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 4 0 .5.5 0 0 1-1 0 1 1 0 0 0-1-1z" />
+                        </svg>
+                    </button>
+                    <button onClick={() => calcRandomGen()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                            <path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                        </svg>
+                    </button>
+                </div>
             </div>
             <div className="game-grid" style={{ gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`, gridAutoRows: `${cellSize}px` }}>
                 {cellsFilled && cells?.map((cell, index) => {
