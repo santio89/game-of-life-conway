@@ -16,7 +16,6 @@ export default function Home() {
         const cellsCopy = [...cells]
 
         const modCell = () => {
-            console.log(cellsCopy[index])
             if (cellsCopy[index].active === true) return { ...cellsCopy[index], active: false }
             if (cellsCopy[index].active === false) return { ...cellsCopy[index], active: true }
         }
