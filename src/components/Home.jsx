@@ -7,12 +7,11 @@ import Cell from "./Cell";
 export default function Home() {
     const [cells, setCells] = useState(null)
     const [cellsFilled, setCellsFilled] = useState(false)
-    const [cols, setCols] = useState(5);
-    const [rows, setRows] = useState(5)
+    const [cols, setCols] = useState(Math.floor((window.innerWidth - 120) / 80))
+    const [rows, setRows] = useState(Math.floor((window.innerHeight - 120) / 80))
     const [cellSize, setCellSize] = useState(80)
-    const [genInterval, setGenInterval] = useState(null)
     const [playing, setPlaying] = useState(false)
-
+ 
     const toggleActive = (index) => {
         const cellsCopy = [...cells]
 
