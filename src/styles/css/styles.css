@@ -114,7 +114,7 @@ header {
   border-radius: 8px;
   background: transparent;
   outline: 1px solid var(--main-gray);
-  transition: 1000ms;
+  transition: 1000ms ease-out;
 }
 .game-grid__cell--active {
   background: var(--main-color);

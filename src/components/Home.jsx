@@ -15,17 +15,16 @@ export default function Home() {
 
     const toggleActive = (index) => {
         const cellsCopy = [...cells]
-        
 
         if (cellsCopy[index].active === true) cellsCopy[index].active = false
         if (cellsCopy[index].active === false) cellsCopy[index].active = true
-        setCells(cellsCopy)
+
+        setCells([...cellsCopy])
     }
 
     const calcGen = () => {
-        console.log(cells)
         const cellsCopy = [...cells]
-
+        console.log(cellsCopy)
         const getNeighbors = (i) => {
             const size = cols * rows;
             let neighbors = 0;
@@ -47,8 +46,11 @@ export default function Home() {
                     /* -1, +cols, +cols-1 */
                 } else {
                     if (cellsCopy[i - 1].active) neighbors++
+
                     if (cellsCopy[i + 1].active) neighbors++
+                    
                     if (cellsCopy[i + cols].active) neighbors++
+
                     if (cellsCopy[i + cols + 1].active) neighbors++
                     if (cellsCopy[i + cols - 1].active) neighbors++
                     /* -1, +1, +cols, +cols+1, +cols-1 */
@@ -111,16 +113,10 @@ export default function Home() {
 
             return neighbors
         }
-
+        
         const newCells = cellsCopy.map((cell, i) => {
             const neighbors = getNeighbors(i)
-            /* const rand = Math.floor(Math.random() * (2) + 1)
-            if (rand === 1) {
-                cell.active = true
-            } else {
-                cell.active = false
-            } */
-
+            
             if (cell.active) {
                 console.log(i + "a" + neighbors)
                 if (neighbors < 2) cell.active = false //underpopulation 
