@@ -7,23 +7,28 @@ import Cell from "./Cell";
 export default function Home() {
     const [cells, setCells] = useState(null)
     const [cellsFilled, setCellsFilled] = useState(false)
-    const [cols, setCols] = useState(Math.floor((window.innerWidth - 120) / 80))
-    const [rows, setRows] = useState(Math.floor((window.innerHeight - 120) / 80))
     const [cellSize, setCellSize] = useState(80)
+    const [cols, setCols] = useState(Math.floor((window.innerWidth - 120) / cellSize))
+    const [rows, setRows] = useState(Math.floor((window.innerHeight - 120) / cellSize))
     const [playing, setPlaying] = useState(false)
- 
+
     const toggleActive = (index) => {
         const cellsCopy = [...cells]
 
-        if (cellsCopy[index].active === true) cellsCopy[index].active = false
-        if (cellsCopy[index].active === false) cellsCopy[index].active = true
+        const modCell = () => {
+            console.log(cellsCopy[index])
+            if (cellsCopy[index].active === true) return { ...cellsCopy[index], active: false }
+            if (cellsCopy[index].active === false) return { ...cellsCopy[index], active: true }
+        }
 
-        setCells([...cellsCopy])
+        cellsCopy[index] = modCell()
+
+        setCells(cellsCopy)
     }
 
     const calcGen = () => {
         const cellsCopy = [...cells]
-        /* console.log(cellsCopy) */
+
         const getNeighbors = (i) => {
             const size = cols * rows;
             let neighbors = 0;
@@ -167,6 +172,12 @@ export default function Home() {
         }
 
         fillArray()
+
+        /* window.addEventListener("resize", ()=>{
+            setCols(Math.floor((window.innerWidth - 120) / 80))
+            setRows(Math.floor((window.innerHeight - 120) / 80))
+            fillArray()
+        }) */
     }, [])
 
     return (
