@@ -18,6 +18,7 @@ export default function Home({ rootTheme }) {
     const [cols, setCols] = useState(Math.floor((window.innerWidth) / cellSize))
     const [rows, setRows] = useState(Math.floor((window.innerHeight - 48) / cellSize))
     const [playing, setPlaying] = useState(false)
+    const [cellFillMode, setCellFillMode] = useState(false)
 
     const toggleDarkTheme = () => {
         darkTheme ? dispatch(setThemeReducer(false)) : dispatch(setThemeReducer(true))
@@ -42,6 +43,18 @@ export default function Home({ rootTheme }) {
         cellsCopy[index] = modCell()
 
         setCells(cellsCopy)
+    }
+
+    const cellFillStart = () => {
+        setCellFillMode(true)
+    }
+    const cellFillEnd = () => {
+        setCellFillMode(false)
+    }
+    const cellFillMove = (index) => {
+        if (cellFillMode) {
+            toggleActive(index)
+        }
     }
 
     const updateCellColor = () => {
@@ -270,9 +283,9 @@ export default function Home({ rootTheme }) {
                     </button>
                 </div>
             </div>
-            <div className="game-grid" style={{ gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`, gridAutoRows: `${cellSize}px` }}>
+            <div className="game-grid" style={{ gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`, gridAutoRows: `${cellSize}px` }} onMouseDown={cellFillStart} onMouseUp={cellFillEnd}>
                 {cellsFilled && cells?.map((cell, index) => {
-                    return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} />
+                    return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} />
                 })}
             </div>
         </div>

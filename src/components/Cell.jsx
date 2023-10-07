@@ -1,7 +1,7 @@
-export default function Cell({ index, active, toggleActive }) {
+export default function Cell({ index, active, toggleActive, cellFillMove }) {
 
   return (
-    <div onClick={() => toggleActive(index)} className={`game-grid__cell ${active && "game-grid__cell--active"}`}>
+    <div className={`game-grid__cell ${active && "game-grid__cell--active"}`} onMouseDown={() => toggleActive(index)} onMouseEnter={() => cellFillMove(index)}  >
       &nbsp;
     </div>
   )
