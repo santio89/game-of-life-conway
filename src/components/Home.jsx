@@ -7,7 +7,7 @@ import Cell from "./Cell";
 export default function Home() {
     const [cells, setCells] = useState(null)
     const [cellsFilled, setCellsFilled] = useState(false)
-    const [cellSize, setCellSize] = useState(80)
+    const [cellSize, setCellSize] = useState(40)
     const [cols, setCols] = useState(Math.floor((window.innerWidth) / cellSize))
     const [rows, setRows] = useState(Math.floor((window.innerHeight - 60) / cellSize))
     const [playing, setPlaying] = useState(false)
