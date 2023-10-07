@@ -155,7 +155,6 @@ export default function Home({ rootTheme }) {
                 }
             }
 
-
             return neighbors
         }
 
