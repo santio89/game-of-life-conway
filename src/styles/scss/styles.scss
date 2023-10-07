@@ -1,6 +1,6 @@
 :root {
   --font-primary: monospace, 'Courier New', Courier;
-  --main-color: crimson;
+  --main-color: rgb(70, 171, 226);
   --main-black: rgb(20, 20, 20);
   --main-white: rgb(240, 240, 240);
   --main-gray: rgb(100, 100, 100);
@@ -18,28 +18,30 @@
 html {
   /* INICIO SCROLLBAR */
   scrollbar-width: thin;
-  scrollbar-color: var(--main-purple) var(--main-black);
+  scrollbar-color: var(--main-color) var(--main-gray);
 
   /* width */
   ::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
   }
 
   /* track */
   ::-webkit-scrollbar-track {
-    background: var(--main-black)
+    background: var(--main-gray)
   }
 
   /* handle */
   ::-webkit-scrollbar-thumb {
-    background: var(--main-purple);
+    background: var(--main-color);
   }
 
   /* FIN SCROLLBAR */
 
   ::selection {
-    color: var(--main-purple-variation);
-    background: var(--main-purple);
+    color: color-mix(in srgb, var(--main-color), black);
+    ;
+    background: var(--main-color);
   }
 }
 
@@ -57,7 +59,6 @@ body,
   line-height: 1.4;
   background: var(--main-black);
   color: var(--main-white);
-  caret-color: crimson;
 }
 
 .light-theme {
@@ -73,8 +74,28 @@ body,
   align-items: center;
 }
 
-header {
+.mainHeader {
   display: flex;
+  font-size: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: color-mix(in srgb, var(--main-color), black);
+  color: rgb(240, 240, 240);
+  width: 100%;
+  height: 16px;
+  transition: 500ms;
+
+  &__site {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: inherit;
+    font: inherit;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
 }
 
 .home {
@@ -141,6 +162,7 @@ header {
 }
 
 .game-grid {
+  flex: 1;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 20px);

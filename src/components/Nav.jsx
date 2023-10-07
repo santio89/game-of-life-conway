@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 export default function Nav() {
 
   return (
-    <header className='main__header'>
+    <header className='mainHeader'>
       <nav>
-        <Link className="main__header__site" to={"/"}><h1>game-of-life|HTML-CSS-JS</h1></Link>
+        <Link className="mainHeader__site" to={"/"}><h1>Game of Life | Cellular Automaton</h1></Link>
       </nav>
     </header>
   )

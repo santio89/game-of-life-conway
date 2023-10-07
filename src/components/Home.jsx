@@ -11,9 +11,9 @@ export default function Home({ rootTheme }) {
     const autoColors = useSelector(state => state.theme.autoColors)
     const [cells, setCells] = useState(null)
     const [cellsFilled, setCellsFilled] = useState(false)
-    const [cellSize, setCellSize] = useState(60)
+    const [cellSize, setCellSize] = useState(48)
     const [cols, setCols] = useState(Math.floor((window.innerWidth) / cellSize))
-    const [rows, setRows] = useState(Math.floor((window.innerHeight - 60) / cellSize))
+    const [rows, setRows] = useState(Math.floor((window.innerHeight - 76) / cellSize))
     const [playing, setPlaying] = useState(false)
 
     const toggleDarkTheme = () => {
