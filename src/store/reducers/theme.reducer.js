@@ -1,6 +1,6 @@
 const initialState = {
-    darkTheme: true,
-    autoColors: false,
+    darkTheme: false,
+    autoColors: true,
 }
 
 const ThemeReducer = (state = initialState, action) => {
