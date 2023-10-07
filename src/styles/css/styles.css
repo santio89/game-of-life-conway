@@ -216,13 +216,35 @@ body,
   padding: 1rem;
   border: 2px solid var(--main-color);
 }
+.modal__buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: var(--main-gray);
+}
+.modal__lang {
+  font: inherit;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--main-gray);
+  transition: color 500ms ease-out, scale 125ms ease-out;
+}
+.modal__lang.active {
+  color: var(--main-color);
+}
+.modal__lang:hover, .modal__lang:focus-visible {
+  color: var(--main-color);
+  transition-duration: 125ms;
+}
 .modal__close {
   font: inherit;
   color: rgb(240, 240, 240);
   outline: none;
   border: 1px solid transparent;
   background-color: var(--main-color);
-  align-self: end;
   padding: 0.5rem;
   color: color-mix(in srgb, var(--main-color), black);
   cursor: pointer;
