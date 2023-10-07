@@ -18,7 +18,7 @@
 html {
   /* INICIO SCROLLBAR */
   scrollbar-width: thin;
-  scrollbar-color: var(--main-color) var(--main-gray);
+  scrollbar-color: color-mix(in srgb, var(--main-color), black) var(--main-gray);
   /* width */
   /* track */
   /* handle */
@@ -32,7 +32,7 @@ html ::-webkit-scrollbar-track {
   background: var(--main-gray);
 }
 html ::-webkit-scrollbar-thumb {
-  background: var(--main-color);
+  background: color-mix(in srgb, var(--main-color), black);
 }
 html ::selection {
   color: color-mix(in srgb, var(--main-color), black);
