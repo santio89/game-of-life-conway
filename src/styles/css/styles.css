@@ -53,6 +53,7 @@ body,
   line-height: 1.4;
   background: var(--main-black);
   color: var(--main-white);
+  transition: background-color 500ms ease-out;
 }
 
 .light-theme {
@@ -134,7 +135,7 @@ body,
   font-weight: bold;
   font-size: 2em;
   cursor: pointer;
-  transition: color 500ms ease-out, filter 500ms, scale 125ms;
+  transition: color 500ms ease-out, filter 500ms ease-out, scale 125ms ease-out;
 }
 .home__buttons button:hover, .home__buttons button.active {
   color: color-mix(in srgb, var(--main-color), white);

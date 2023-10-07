@@ -4,7 +4,6 @@ import Nav from "./components/Nav";
 import NotFound from "./components/NotFound";
 import './styles/css/styles.css'
 import { useRef } from "react";
-import { Toaster } from 'sonner'
 
 function App() {
   const rootTheme = useRef()
@@ -21,7 +20,6 @@ function App() {
   return (
     <>
       <div ref={rootTheme} className={`root-theme`}>
-        <Toaster />
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
