@@ -11,7 +11,7 @@ function App() {
 
   const Layout = () => (
     <>
-      <Nav />
+      {/* <Nav /> */}
       <div className="mainContainer">
         <Outlet />
       </div>

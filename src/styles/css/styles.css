@@ -1,10 +1,10 @@
 :root {
   --font-primary: monospace, "Courier New", Courier;
   --main-color: rgb(70, 171, 226);
-  --main-black: rgb(20, 20, 20);
+  --main-black: rgb(30, 30, 30);
   --main-white: rgb(240, 240, 240);
-  --main-gray: rgb(100, 100, 100);
-  --main-container-size: 1500px;
+  --main-gray: rgb(180, 180, 180);
+  --main-container-size: 1200px;
 }
 
 *,
@@ -78,7 +78,7 @@ body,
   color: rgb(240, 240, 240);
   width: 100%;
   height: 16px;
-  transition: 500ms;
+  transition: 500ms ease-out;
 }
 .mainHeader__site {
   display: flex;
@@ -86,6 +86,7 @@ body,
   align-items: center;
   color: inherit;
   font: inherit;
+  font-size: 0.5rem;
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
@@ -99,18 +100,21 @@ body,
   width: 100%;
   flex: 1;
   z-index: 1;
-  max-width: var(--main-container-size);
 }
 .home__buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 16px;
-  height: 44px;
+  height: 48px;
   width: 100%;
-  max-width: 800px;
+  background-color: color-mix(in srgb, var(--main-color), black);
+  color: rgb(240, 240, 240);
   position: relative;
+  padding-inline: 2rem;
+  transition: 500ms ease-out;
+  z-index: 1;
+  /* max-width: var(--main-container-size); */
 }
 .home__buttons__box {
   display: flex;
@@ -130,20 +134,20 @@ body,
   font-weight: bold;
   font-size: 2em;
   cursor: pointer;
-  transition: color 500ms;
+  transition: color 500ms ease-out, filter 500ms, scale 125ms;
 }
 .home__buttons button:hover, .home__buttons button.active {
-  color: var(--main-color);
+  color: color-mix(in srgb, var(--main-color), white);
   filter: drop-shadow(0 0 2px var(--main-color));
 }
 .home__buttons button:focus-visible {
-  outline: 1px dotted var(--main-color);
-  color: var(--main-color);
+  outline: 1px dotted color-mix(in srgb, var(--main-color), white);
+  color: color-mix(in srgb, var(--main-color), white);
   filter: drop-shadow(0 0 2px var(--main-color));
 }
 .home__buttons button:active {
   scale: 0.9;
-  color: var(--main-color);
+  color: color-mix(in srgb, var(--main-color), white);
   filter: drop-shadow(0 0 2px var(--main-color));
 }
 

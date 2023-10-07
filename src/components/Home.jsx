@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setThemeReducer, setColorsReducer } from "../store/actions/theme.action";
 import { v4 as uuidv4 } from 'uuid';
 import Cell from "./Cell";
+import { Link } from "react-router-dom";
 
 
 export default function Home({ rootTheme }) {
@@ -13,7 +14,7 @@ export default function Home({ rootTheme }) {
     const [cellsFilled, setCellsFilled] = useState(false)
     const [cellSize, setCellSize] = useState(48)
     const [cols, setCols] = useState(Math.floor((window.innerWidth) / cellSize))
-    const [rows, setRows] = useState(Math.floor((window.innerHeight - 76) / cellSize))
+    const [rows, setRows] = useState(Math.floor((window.innerHeight - 48) / cellSize))
     const [playing, setPlaying] = useState(false)
 
     const toggleDarkTheme = () => {
@@ -220,6 +221,11 @@ export default function Home({ rootTheme }) {
         <div className="home">
             <div className="home__buttons">
                 <div className="home__buttons__box">
+                    <nav>
+                        <Link className="mainHeader__site" to={"/"}><h1>Game of Life | Cellular Automaton</h1></Link>
+                    </nav>
+                </div>
+                <div className="home__buttons__box">
                     <button title="Play" className={`${playing && "active"}`} onClick={() => initGame()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" className="bi bi-play-fill" viewBox="0 0 16 16">
                             <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
@@ -230,8 +236,6 @@ export default function Home({ rootTheme }) {
                             <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
                         </svg>
                     </button>
-                </div>
-                <div className="home__buttons__box">
                     <button title="Auto Colors" className={`${autoColors && "active"}`} onClick={() => toggleAutoColors()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-rainbow" viewBox="0 0 16 16">
                             <path d="M8 4.5a7 7 0 0 0-7 7 .5.5 0 0 1-1 0 8 8 0 1 1 16 0 .5.5 0 0 1-1 0 7 7 0 0 0-7-7zm0 2a5 5 0 0 0-5 5 .5.5 0 0 1-1 0 6 6 0 1 1 12 0 .5.5 0 0 1-1 0 5 5 0 0 0-5-5zm0 2a3 3 0 0 0-3 3 .5.5 0 0 1-1 0 4 4 0 1 1 8 0 .5.5 0 0 1-1 0 3 3 0 0 0-3-3zm0 2a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 4 0 .5.5 0 0 1-1 0 1 1 0 0 0-1-1z" />
@@ -258,3 +262,4 @@ export default function Home({ rootTheme }) {
         </div>
     )
 }
+                    
