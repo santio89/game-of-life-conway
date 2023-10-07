@@ -78,6 +78,8 @@ export default function Home({ rootTheme }) {
                     if (cellsCopy[i + cols].active) neighbors++
                     if (cellsCopy[i + cols + 1].active) neighbors++
                     /* +1, +cols, +cols+1 */
+
+                    /* last column, +1 not neighbor */
                 } else if ((i + 1) % cols === 0) {
                     if (cellsCopy[i - 1].active) neighbors++
                     if (cellsCopy[i + cols].active) neighbors++
@@ -106,6 +108,8 @@ export default function Home({ rootTheme }) {
                     if (cellsCopy[i - cols].active) neighbors++
                     if (cellsCopy[i - cols + 1].active) neighbors++
                     /* +1, +cols, +cols+1, -cols, -cols+1 */
+
+                    /* last column, +1 not neighbor */
                 } else if ((i + 1) % cols === 0) {
                     if (cellsCopy[i - 1].active) neighbors++
                     if (cellsCopy[i + cols].active) neighbors++
@@ -134,6 +138,8 @@ export default function Home({ rootTheme }) {
                     if (cellsCopy[i - cols].active) neighbors++
                     if (cellsCopy[i - cols + 1].active) neighbors++
                     /* +1, -cols, -cols+1 */
+
+                    /* last column, +1 not neighbor */
                 } else if ((i + 1) % cols === 0) {
                     if (cellsCopy[i - 1].active) neighbors++
                     if (cellsCopy[i - cols].active) neighbors++
