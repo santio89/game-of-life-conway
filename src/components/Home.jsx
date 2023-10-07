@@ -48,11 +48,11 @@ export default function Home({ rootTheme }) {
 
         for (let i = 1; i <= cols; i++) {
             for (let j = 1; j <= rows; j++) {
-                const isActive = Math.round(Math.random());
+                const isActive = Math.round(Math.random() * 2);
 
                 array.push({
                     id: uuidv4(),
-                    active: isActive === 1 ? true : false,
+                    active: isActive === 0 ? true : false,
                     row: j,
                     col: i
                 })
@@ -164,7 +164,7 @@ export default function Home({ rootTheme }) {
                 else return { ...cell, active: false } //inactivity
             }
 
-            return { ...cell } //default
+            return { ...cell } //fallback
         })
 
         autoColors && updateCellColor()
