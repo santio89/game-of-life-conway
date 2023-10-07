@@ -176,7 +176,7 @@ export default function Home() {
         /* using timeout instead of interval so it iterates over the updated state */
         let timeout = null;
         if (playing) {
-            timeout = setTimeout(calcGen, 1000)
+            timeout = setTimeout(calcGen, 1500)
         } else {
             clearTimeout(timeout)
         }
