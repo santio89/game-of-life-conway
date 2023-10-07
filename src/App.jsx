@@ -4,16 +4,14 @@ import Nav from "./components/Nav";
 import NotFound from "./components/NotFound";
 import './styles/css/styles.css'
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
 import { Toaster } from 'sonner'
 
 function App() {
-  const dispatch = useDispatch();
-  const rootTheme = useRef();
+  const rootTheme = useRef()
 
   const Layout = () => (
     <>
-      {/* <Nav rootTheme={rootTheme} /> */}
+      {/* <Nav /> */}
       <div className="mainContainer">
         <Outlet />
       </div>
@@ -27,7 +25,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home rootTheme={rootTheme} />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

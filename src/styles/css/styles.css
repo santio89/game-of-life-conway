@@ -4,10 +4,12 @@
   --main-black: rgb(20, 20, 20);
   --main-white: rgb(240, 240, 240);
   --main-gray: rgb(100, 100, 100);
-  --main-container-size: 1500px ;
+  --main-container-size: 1500px;
 }
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -51,6 +53,11 @@ body,
   background: var(--main-black);
   color: var(--main-white);
   caret-color: crimson;
+}
+
+.light-theme {
+  --main-black: rgb(220, 220, 220);
+  --main-white: rgb(40, 40, 40);
 }
 
 .mainContainer {
