@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { setThemeReducer, setColorsReducer } from "../store/actions/theme.action";
+import { setModal } from "../store/actions/modal.action";
 import { v4 as uuidv4 } from 'uuid';
 import Cell from "./Cell";
 import { Link } from "react-router-dom";
@@ -10,6 +11,7 @@ export default function Home({ rootTheme }) {
     const dispatch = useDispatch()
     const darkTheme = useSelector(state => state.theme.darkTheme)
     const autoColors = useSelector(state => state.theme.autoColors)
+    const modalActive = useSelector(state => state.modal.active)
     const [cells, setCells] = useState(null)
     const [cellsFilled, setCellsFilled] = useState(false)
     const [cellSize, setCellSize] = useState(48)
@@ -23,6 +25,10 @@ export default function Home({ rootTheme }) {
 
     const toggleAutoColors = () => {
         autoColors ? dispatch(setColorsReducer(false)) : dispatch(setColorsReducer(true))
+    }
+
+    const toggleModal = () => {
+        modalActive ? dispatch(setModal(false)) : dispatch(setModal(true))
     }
 
     const toggleActive = (index) => {
@@ -229,6 +235,11 @@ export default function Home({ rootTheme }) {
                     <nav>
                         <Link className="mainHeader__site" to={"/"}><h1>Game of Life | Cellular Automaton</h1></Link>
                     </nav>
+                    <button title="Info" className={`${modalActive && "active"}`} onClick={() => toggleModal()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                        </svg>
+                    </button>
                 </div>
                 <div className="home__buttons__box">
                     <button title="Play" className={`${playing && "active"}`} onClick={() => initGame()}>
@@ -267,4 +278,3 @@ export default function Home({ rootTheme }) {
         </div>
     )
 }
-                    

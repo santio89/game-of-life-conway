@@ -57,8 +57,8 @@ body,
 }
 
 .light-theme {
-  --main-black: rgb(220, 220, 220);
-  --main-white: rgb(40, 40, 40);
+  --main-black: rgb(240, 240, 240);
+  --main-white: rgb(30, 30, 30);
 }
 
 .mainContainer {
@@ -141,16 +141,19 @@ body,
 .home__buttons button:hover, .home__buttons button.active {
   color: color-mix(in srgb, var(--main-color), white);
   filter: drop-shadow(0 0 2px var(--main-color));
+  transition-duration: 125ms;
 }
 .home__buttons button:focus-visible {
   outline: 1px dotted color-mix(in srgb, var(--main-color), white);
   color: color-mix(in srgb, var(--main-color), white);
   filter: drop-shadow(0 0 2px var(--main-color));
+  transition-duration: 125ms;
 }
 .home__buttons button:active {
   scale: 0.9;
   color: color-mix(in srgb, var(--main-color), white);
   filter: drop-shadow(0 0 2px var(--main-color));
+  transition-duration: 125ms;
 }
 
 .game-grid {
@@ -182,5 +185,66 @@ body,
   filter: grayscale(0);
   box-shadow: 0 0 4px 0 var(--main-color);
 }
+
+/* modal */
+.modalWrapper {
+  z-index: 9;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 100%, 600px);
+  border: none;
+  outline: none;
+  background-color: color-mix(in srgb, var(--main-color), black);
+  color: rgb(240, 240, 240);
+  font-size: 1rem;
+  transition: background-color 500ms;
+}
+.modalWrapper::backdrop {
+  background-color: dimgray;
+  opacity: 0.5;
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid var(--main-color);
+}
+.modal__close {
+  font: inherit;
+  color: rgb(240, 240, 240);
+  outline: none;
+  border: 1px solid transparent;
+  background-color: var(--main-color);
+  align-self: end;
+  padding: 0.5rem;
+  color: color-mix(in srgb, var(--main-color), black);
+  cursor: pointer;
+  transition: color 500ms ease-out, background-color 500ms ease-out, border-color 500ms ease-out, scale 125ms ease-out;
+}
+.modal__close:hover {
+  color: rgb(240, 240, 240);
+  border-color: rgb(240, 240, 240);
+  transition-duration: 125ms;
+}
+.modal__close:focus-visible {
+  border-color: rgb(240, 240, 240);
+  color: rgb(240, 240, 240);
+  transition-duration: 125ms;
+}
+.modal__close:active {
+  scale: 0.9;
+  color: rgb(240, 240, 240);
+  border-color: rgb(240, 240, 240);
+  transition-duration: 125ms;
+}
+
+/* end modal */
 
 /*# sourceMappingURL=styles.css.map */

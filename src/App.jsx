@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
+import Modal from "./components/Modal";
 import NotFound from "./components/NotFound";
 import './styles/css/styles.css'
 import { useRef } from "react";
@@ -20,6 +21,7 @@ function App() {
   return (
     <>
       <div ref={rootTheme} className={`root-theme`}>
+        <Modal />
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
