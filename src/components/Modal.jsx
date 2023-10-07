@@ -18,16 +18,38 @@ export default function Modal() {
         }
 
         const closeModalEsc = (e) => {
-            /* dialog modal closes itself on esc->update state */
-            e.key === "Escape" && dispatch(setModal(false))
+            if (e.key === "Escape") {
+                e.preventDefault()
+                try {
+                    document.startViewTransition(() => {
+                        modal.current.close()
+                    });
+                } catch {
+                    modal.current.close()
+                }
+            }
         }
 
         if (modalActive) {
             document.addEventListener("click", closeModalClick)
             document.addEventListener("keydown", closeModalEsc)
-        }
 
-        modalActive ? modal.current.showModal() : modal.current.close()
+            try {
+                document.startViewTransition(() => {
+                    modal.current.showModal()
+                });
+            } catch {
+                modal.current.showModal()
+            }
+        } else {
+            try {
+                document.startViewTransition(() => {
+                    modal.current.close()
+                });
+            } catch {
+                modal.current.close()
+            }
+        }
 
         return () => {
             document.removeEventListener("click", closeModalClick);
