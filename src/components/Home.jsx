@@ -13,8 +13,8 @@ export default function Home({ rootTheme }) {
     const modalActive = useSelector(state => state.modal.active)
     const [cells, setCells] = useState(null)
     const [cellsFilled, setCellsFilled] = useState(false)
-    const [speedRange, setSpeedRange] = useState(1500)
-    const [sizeRange, setSizeRange] = useState(48)
+    const [speedRange, setSpeedRange] = useState(1000)
+    const [sizeRange, setSizeRange] = useState(60)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [windowHeight, setWindowHeight] = useState(window.innerHeight)
     const [cols, setCols] = useState(Math.floor((window.innerWidth - 4) / sizeRange))
@@ -262,7 +262,7 @@ export default function Home({ rootTheme }) {
         /* using timeout instead of interval so it iterates over the updated state */
         let timeout = null;
         if (playing) {
-            timeout = setTimeout(calcGen, Math.abs(speedRange - 3000))
+            timeout = setTimeout(calcGen, Math.abs(speedRange - 2000))
         } else {
             clearTimeout(timeout)
         }
@@ -330,12 +330,12 @@ export default function Home({ rootTheme }) {
                                 </div>
                                 <div className="speedRange" title="Generation speed">
                                     <label htmlFor="speedRange">Speed</label>
-                                    <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="3000" />
+                                    <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="2000" />
                                 </div>
                                 <div className="clearBtns">
                                     <button title="Reset settings" onClick={() => {
-                                        setSpeedRange(1500);
-                                        setSizeRange(48)
+                                        setSpeedRange(1000);
+                                        setSizeRange(60)
                                     }}>Reset</button>
                                     <button title="Clear cells" onClick={() => {
                                         fillArray()
