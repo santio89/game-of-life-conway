@@ -56,7 +56,7 @@ body,
   background: var(--main-black);
   color: var(--main-white);
   transition: background-color 250ms ease-out;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .light-theme {
