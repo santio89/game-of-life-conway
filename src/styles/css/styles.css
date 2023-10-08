@@ -108,42 +108,49 @@ body,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.125rem, 0.125rem + 2vw, 1rem);
   height: 48px;
   width: 100%;
   background-color: color-mix(in srgb, var(--main-color), black);
   color: rgb(240, 240, 240);
   position: relative;
-  padding-inline: 2rem;
+  padding-inline: clamp(0.5rem, 0.5rem + 2vw, 2rem);
   transition: 500ms ease-out;
   z-index: 1;
+  position: relative;
   /* max-width: var(--main-container-size); */
+}
+.home__buttons__settings {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  position: relative;
+}
+.home__buttons__settings__range {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  flex-direction: column;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  translate: -50% 0;
+  background-color: color-mix(in srgb, var(--main-color), black);
+  padding: 0.25rem;
+  border-top: none;
+  pointer-events: none;
+  transition: 500ms ease-out;
+}
+.home__buttons__settings__range.active {
+  pointer-events: auto;
 }
 .home__buttons__box {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.125rem, 0.125rem + 2vw, 1rem);
 }
-.home__buttons__box__range {
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  flex-direction: column;
-}
-.home__buttons .speedRange, .home__buttons .sizeRange {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: color-mix(in srgb, var(--main-color), white);
-  gap: 0.5rem;
-}
-.home__buttons .speedRange input, .home__buttons .sizeRange input {
-  max-width: 60px;
-  accent-color: color-mix(in srgb, var(--main-color), white);
-  cursor: pointer;
-}
-.home__buttons button {
+.home__buttons__box button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,23 +163,39 @@ body,
   font-size: 2em;
   cursor: pointer;
   transition: color 500ms ease-out, filter 500ms ease-out, scale 125ms ease-out;
+  aspect-ratio: 1;
+  width: 32px;
 }
-.home__buttons button:hover, .home__buttons button.active {
+.home__buttons__box button:hover, .home__buttons__box button.active {
   color: color-mix(in srgb, var(--main-color), white);
   filter: drop-shadow(0 0 2px var(--main-color));
   transition-duration: 125ms;
 }
-.home__buttons button:focus-visible {
+.home__buttons__box button:focus-visible {
   outline: 1px dotted color-mix(in srgb, var(--main-color), white);
   color: color-mix(in srgb, var(--main-color), white);
   filter: drop-shadow(0 0 2px var(--main-color));
   transition-duration: 125ms;
 }
-.home__buttons button:active {
+.home__buttons__box button:active {
   scale: 0.9;
   color: color-mix(in srgb, var(--main-color), white);
   filter: drop-shadow(0 0 2px var(--main-color));
   transition-duration: 125ms;
+}
+.home__buttons .speedRange,
+.home__buttons .sizeRange {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: color-mix(in srgb, var(--main-color), white);
+  gap: 0.5rem;
+}
+.home__buttons .speedRange input,
+.home__buttons .sizeRange input {
+  max-width: 60px;
+  accent-color: color-mix(in srgb, var(--main-color), white);
+  cursor: pointer;
 }
 
 .game-grid {

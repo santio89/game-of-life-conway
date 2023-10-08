@@ -115,32 +115,92 @@ body,
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    gap: clamp(.125rem, .125rem + 2vw, 1rem);
     height: 48px;
     width: 100%;
     background-color: color-mix(in srgb, var(--main-color), black);
     color: rgb(240, 240, 240);
     position: relative;
-    padding-inline: 2rem;
+    padding-inline: clamp(.5rem, .5rem + 2vw, 2rem);
     transition: 500ms ease-out;
     z-index: 1;
+    position: relative;
     /* max-width: var(--main-container-size); */
+
+    &__settings {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      position: relative;
+
+      &__range {
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        flex-direction: column;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        translate: -50% 0;
+        background-color: color-mix(in srgb, var(--main-color), black);
+        padding: .25rem;
+        border-top: none;
+        pointer-events: none;
+        transition: 500ms ease-out;
+
+        &.active {
+          pointer-events: auto;
+        }
+      }
+    }
 
     &__box {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 1rem;
+      gap: clamp(.125rem, .125rem + 2vw, 1rem);
 
-      &__range{
+      button {
         display: flex;
         justify-content: center;
-        align-items: end;
-        flex-direction: column;
+        align-items: center;
+        background: none;
+        outline: none;
+        border: none;
+        color: var(--main-gray);
+        font: inherit;
+        font-weight: bold;
+        font-size: 2em;
+        cursor: pointer;
+        transition: color 500ms ease-out, filter 500ms ease-out, scale 125ms ease-out;
+        aspect-ratio: 1;
+        width: 32px;
+
+        &:hover,
+        &.active {
+          color: color-mix(in srgb, var(--main-color), white);
+          filter: drop-shadow(0 0 2px var(--main-color));
+          transition-duration: 125ms;
+        }
+
+        &:focus-visible {
+          outline: 1px dotted color-mix(in srgb, var(--main-color), white);
+          color: color-mix(in srgb, var(--main-color), white);
+          filter: drop-shadow(0 0 2px var(--main-color));
+          transition-duration: 125ms;
+        }
+
+        &:active {
+          scale: .9;
+          color: color-mix(in srgb, var(--main-color), white);
+          filter: drop-shadow(0 0 2px var(--main-color));
+          transition-duration: 125ms;
+        }
       }
     }
 
-    .speedRange, .sizeRange {
+    .speedRange,
+    .sizeRange {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -151,42 +211,6 @@ body,
         max-width: 60px;
         accent-color: color-mix(in srgb, var(--main-color), white);
         cursor: pointer;
-      }
-    }
-
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: none;
-      outline: none;
-      border: none;
-      color: var(--main-gray);
-      font: inherit;
-      font-weight: bold;
-      font-size: 2em;
-      cursor: pointer;
-      transition: color 500ms ease-out, filter 500ms ease-out, scale 125ms ease-out;
-
-      &:hover,
-      &.active {
-        color: color-mix(in srgb, var(--main-color), white);
-        filter: drop-shadow(0 0 2px var(--main-color));
-        transition-duration: 125ms;
-      }
-
-      &:focus-visible {
-        outline: 1px dotted color-mix(in srgb, var(--main-color), white);
-        color: color-mix(in srgb, var(--main-color), white);
-        filter: drop-shadow(0 0 2px var(--main-color));
-        transition-duration: 125ms;
-      }
-
-      &:active {
-        scale: .9;
-        color: color-mix(in srgb, var(--main-color), white);
-        filter: drop-shadow(0 0 2px var(--main-color));
-        transition-duration: 125ms;
       }
     }
   }
