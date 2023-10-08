@@ -15,8 +15,10 @@ export default function Home({ rootTheme }) {
     const [cellsFilled, setCellsFilled] = useState(false)
     const [speedRange, setSpeedRange] = useState(1500)
     const [sizeRange, setSizeRange] = useState(48)
-    const [cols, setCols] = useState(Math.floor((window.innerWidth) / sizeRange))
-    const [rows, setRows] = useState(Math.floor((window.innerHeight - sizeRange) / sizeRange))
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight)
+    const [cols, setCols] = useState(Math.floor((windowWidth) / sizeRange))
+    const [rows, setRows] = useState(Math.floor((windowHeight - sizeRange) / sizeRange))
     const [playing, setPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
     const [settingsOpen, setSettingsOpen] = useState(false)
@@ -253,9 +255,9 @@ export default function Home({ rootTheme }) {
     }, [playing, cells])
 
     useEffect(() => {
-        setCols(Math.floor((window.innerWidth) / sizeRange))
-        setRows(Math.floor((window.innerHeight - sizeRange) / sizeRange))
-    }, [sizeRange])
+        setCols(Math.floor((windowWidth) / sizeRange))
+        setRows(Math.floor((windowHeight - sizeRange) / sizeRange))
+    }, [sizeRange, windowWidth, windowHeight])
 
     useEffect(() => {
         cells && reFillArray()
@@ -263,6 +265,14 @@ export default function Home({ rootTheme }) {
 
     useEffect(() => {
         fillArray()
+        const adjustGrid = (e) => {
+            setWindowWidth(window.innerWidth)
+            setWindowHeight(window.innerHeight)
+        }
+
+        window.addEventListener("resize", adjustGrid)
+
+        return () => window.removeEventListener("resize", adjustGrid)
     }, [])
 
     return (
