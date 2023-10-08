@@ -1,10 +1,6 @@
 :root {
   --font-primary: monospace, "Courier New", Courier;
   --main-color: rgb(70, 171, 226);
-  /* fallbacks */
-  --main-color-dark: var(--main-color);
-  --main-color-light: var(--main-color);
-  /* end fallbacks */
   --main-color-dark: color-mix(in srgb, var(--main-color), black);
   --main-color-light: color-mix(in srgb, var(--main-color), white);
   --main-black: rgb(30, 30, 30);
@@ -246,6 +242,7 @@ body,
   min-width: 300px;
   border: none;
   outline: none;
+  background-color: var(--main-color);
   background-color: var(--main-color-dark);
   color: rgb(240, 240, 240);
   font-size: 1rem;
