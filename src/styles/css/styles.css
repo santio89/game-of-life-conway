@@ -258,7 +258,6 @@ body,
   gap: 1rem;
   padding: 1rem;
   border: 2px solid var(--main-color);
-  background-color: color-mix(in srgb, var(--main-color), black);
 }
 .modal__buttonWrapper {
   display: flex;
