@@ -164,8 +164,6 @@ body,
   font-size: 2em;
   cursor: pointer;
   transition: color 250ms ease-out, filter 250ms ease-out, scale 125ms ease-out;
-  aspect-ratio: 1;
-  width: 32px;
 }
 .home__buttons__box button:hover, .home__buttons__box button.active {
   color: var(--main-color-light);
@@ -197,6 +195,15 @@ body,
   max-width: 60px;
   accent-color: var(--main-color-light);
   cursor: pointer;
+}
+.home__buttons .clearBtns {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  width: 90%;
+}
+.home__buttons .clearBtns button {
+  font: inherit;
 }
 
 .game-grid {

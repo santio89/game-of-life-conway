@@ -279,6 +279,15 @@ export default function Home({ rootTheme }) {
                                     <label htmlFor="speedRange">Speed</label>
                                     <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="3000" />
                                 </div>
+                                <div className="clearBtns" title="Speed: speed between generations">
+                                    <button title="Reset settings" onClick={() => {
+                                        setSpeedRange(1500);
+                                        setSizeRange(48)
+                                    }}>Reset</button>
+                                    <button title="Clear cells" onClick={() => {
+                                        fillArray()
+                                    }}>Clear</button>
+                                </div>
                             </div>
                         }
 

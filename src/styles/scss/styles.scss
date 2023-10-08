@@ -174,8 +174,6 @@ body,
         font-size: 2em;
         cursor: pointer;
         transition: color 250ms ease-out, filter 250ms ease-out, scale 125ms ease-out;
-        aspect-ratio: 1;
-        width: 32px;
 
         &:hover,
         &.active {
@@ -212,6 +210,17 @@ body,
         max-width: 60px;
         accent-color: var(--main-color-light);
         cursor: pointer;
+      }
+    }
+
+    .clearBtns {
+      display: flex;
+      justify-content: space-between;
+      align-self: center;
+      width: 90%;
+
+      button {
+        font: inherit;
       }
     }
   }
