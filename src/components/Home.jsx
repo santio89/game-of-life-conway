@@ -17,8 +17,8 @@ export default function Home({ rootTheme }) {
     const [sizeRange, setSizeRange] = useState(48)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [windowHeight, setWindowHeight] = useState(window.innerHeight)
-    const [cols, setCols] = useState(Math.floor((window.innerWidth) / sizeRange))
-    const [rows, setRows] = useState(Math.floor((window.innerHeight - sizeRange) / sizeRange))
+    const [cols, setCols] = useState(Math.floor((window.innerWidth - 4) / sizeRange))
+    const [rows, setRows] = useState(Math.floor((window.innerHeight - 48 - 4) / sizeRange))
     const [playing, setPlaying] = useState(false)
     const [wasPlaying, setWasPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
@@ -93,7 +93,7 @@ export default function Home({ rootTheme }) {
         const size = cols * rows
         let array = [...cells]
 
-        if (size > array.length) {
+        /* if (size > array.length) {
             for (let i = 1; i <= size - array.length; i++) {
                 array.push({
                     id: uuidv4(),
@@ -104,7 +104,21 @@ export default function Home({ rootTheme }) {
             const diff = array.length - size;
             array.splice(array.length - diff,
                 diff);
+        } */
+
+
+        /* hacky method for dynamic resize */
+        for (let i = 1; i <= size; i++) {
+            array.push({
+                id: uuidv4(),
+                active: false,
+            })
         }
+
+        const diff = array.length - size;
+        array.splice(array.length - diff,
+            diff);
+
 
         setCells(array)
         setCellsFilled(true)
@@ -257,8 +271,8 @@ export default function Home({ rootTheme }) {
     }, [playing, cells])
 
     useEffect(() => {
-        setCols(Math.floor((window.innerWidth) / sizeRange))
-        setRows(Math.floor((window.innerHeight - sizeRange) / sizeRange))
+        setCols(Math.floor((window.innerWidth - 4) / sizeRange))
+        setRows(Math.floor((window.innerHeight - 48 - 4) / sizeRange))
     }, [sizeRange, windowWidth, windowHeight])
 
     useEffect(() => {
