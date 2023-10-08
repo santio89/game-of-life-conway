@@ -257,6 +257,14 @@ export default function Home({ rootTheme }) {
                     </button>
                 </div>
                 <div className="home__buttons__box">
+                    <div className="sizeRange" title="Size: cell size. Modifying this value will reset the simulation">
+                        <label htmlFor="sizeRange">Size</label>
+                        <input onChange={(e) => setSizeRange(e.target.value)} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
+                    </div>
+                    <div className="speedRange" title="Speed: speed between generations">
+                        <label htmlFor="speedRange">Speed</label>
+                        <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="3000" />
+                    </div>
                     <button title="Play" className={`${playing && "active"}`} onClick={() => initGame()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" className="bi bi-play-fill" viewBox="0 0 16 16">
                             <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
@@ -267,14 +275,6 @@ export default function Home({ rootTheme }) {
                             <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
                         </svg>
                     </button>
-                    <div className="speedRange" title="Speed: speed between generations">
-                        <label htmlFor="speedRange">Speed</label>
-                        <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="3000" />
-                    </div>
-                    <div className="sizeRange" title="Size: cell size. Modifying this value will reset the simulation">
-                        <label htmlFor="sizeRange">Size</label>
-                        <input onChange={(e) => setSizeRange(e.target.value)} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
-                    </div>
                     <button title="Auto Colors" className={`${autoColors && "active"}`} onClick={() => toggleAutoColors()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-rainbow" viewBox="0 0 16 16">
                             <path d="M8 4.5a7 7 0 0 0-7 7 .5.5 0 0 1-1 0 8 8 0 1 1 16 0 .5.5 0 0 1-1 0 7 7 0 0 0-7-7zm0 2a5 5 0 0 0-5 5 .5.5 0 0 1-1 0 6 6 0 1 1 12 0 .5.5 0 0 1-1 0 5 5 0 0 0-5-5zm0 2a3 3 0 0 0-3 3 .5.5 0 0 1-1 0 4 4 0 1 1 8 0 .5.5 0 0 1-1 0 3 3 0 0 0-3-3zm0 2a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 4 0 .5.5 0 0 1-1 0 1 1 0 0 0-1-1z" />
