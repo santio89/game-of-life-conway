@@ -124,6 +124,7 @@ body,
     gap: clamp(.125rem, .125rem + 2vw, 1rem);
     height: 48px;
     width: 100%;
+    background-color: var(--main-color);
     background-color: var(--main-color-dark);
     color: rgb(240, 240, 240);
     position: relative;
