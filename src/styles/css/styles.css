@@ -236,6 +236,7 @@ body,
   left: 50%;
   transform: translate(-50%, -50%);
   width: clamp(300px, 100%, 600px);
+  min-width: 300px;
   border: none;
   outline: none;
   background-color: color-mix(in srgb, var(--main-color), black);
