@@ -267,7 +267,7 @@ export default function Home({ rootTheme }) {
 
     useEffect(() => {
         fillArray()
-        const adjustGrid = (e) => {
+        const adjustGrid = () => {
             setWindowWidth(window.innerWidth)
             setWindowHeight(window.innerHeight)
         }
