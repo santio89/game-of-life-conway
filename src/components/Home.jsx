@@ -359,7 +359,7 @@ export default function Home({ rootTheme }) {
                     </button>
                 </div>
             </div>
-            <div className="game-grid" style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px` }} onMouseDown={cellFillStart} onMouseUp={cellFillEnd}>
+            <div className="game-grid" style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px` }} onMouseDown={cellFillStart} onMouseUp={cellFillEnd}>
                 {cellsFilled && cells?.map((cell, index) => {
                     return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} />
                 })}
