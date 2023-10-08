@@ -29,6 +29,14 @@ export default function Home({ rootTheme }) {
         modalActive ? dispatch(setModal(false)) : dispatch(setModal(true))
     }
 
+    const startGame = () => {
+        setPlaying(true)
+    }
+
+    const stopGame = () => {
+        setPlaying(false)
+    }
+
     const toggleActive = (index) => {
         const cellsCopy = [...cells]
 
@@ -43,9 +51,11 @@ export default function Home({ rootTheme }) {
     }
 
     const cellFillStart = () => {
+        stopGame()
         setCellFillMode(true)
     }
     const cellFillEnd = () => {
+        startGame()
         setCellFillMode(false)
     }
     const cellFillMove = (index) => {
@@ -226,14 +236,6 @@ export default function Home({ rootTheme }) {
         setCells(newCells)
     }
 
-    const initGame = () => {
-        setPlaying(true)
-    }
-
-    const stopGame = () => {
-        setPlaying(false)
-    }
-
     useEffect(() => {
         rootTheme.current.classList.toggle("light-theme", !darkTheme)
     }, [darkTheme])
@@ -277,7 +279,7 @@ export default function Home({ rootTheme }) {
                     </button>
                 </div>
                 <div className="home__buttons__box">
-                    <button title="Play" className={`${playing && "active"}`} onClick={() => initGame()}>
+                    <button title="Play" className={`${playing && "active"}`} onClick={() => startGame()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-play-fill" viewBox="0 0 16 16">
                             <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                         </svg>
