@@ -14,9 +14,10 @@ export default function Home({ rootTheme }) {
     const modalActive = useSelector(state => state.modal.active)
     const [cells, setCells] = useState(null)
     const [cellsFilled, setCellsFilled] = useState(false)
-    const [cellSize, setCellSize] = useState(48)
-    const [cols, setCols] = useState(Math.floor((window.innerWidth) / cellSize))
-    const [rows, setRows] = useState(Math.floor((window.innerHeight - 48) / cellSize))
+    const [speedRange, setSpeedRange] = useState(1500)
+    const [sizeRange, setSizeRange] = useState(48)
+    const [cols, setCols] = useState(Math.floor((window.innerWidth) / sizeRange))
+    const [rows, setRows] = useState(Math.floor((window.innerHeight - sizeRange) / sizeRange))
     const [playing, setPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
 
@@ -63,6 +64,21 @@ export default function Home({ rootTheme }) {
         document.documentElement.style.setProperty('--main-color', cellColor);
     }
 
+    const fillArray = () => {
+        let array = []
+
+        for (let i = 1; i <= cols; i++) {
+            for (let j = 1; j <= rows; j++) {
+                array.push({
+                    id: uuidv4(),
+                    active: false,
+                })
+            }
+        }
+        setCells(array)
+        setCellsFilled(true)
+    }
+
     const calcRandomGen = () => {
         let array = []
 
@@ -73,8 +89,6 @@ export default function Home({ rootTheme }) {
                 array.push({
                     id: uuidv4(),
                     active: isActive === 0 ? true : false,
-                    row: j,
-                    col: i
                 })
             }
         }
@@ -212,7 +226,7 @@ export default function Home({ rootTheme }) {
         /* using timeout instead of interval so it iterates over the updated state */
         let timeout = null;
         if (playing) {
-            timeout = setTimeout(calcGen, 1500)
+            timeout = setTimeout(calcGen, Math.abs(speedRange - 3000))
         } else {
             clearTimeout(timeout)
         }
@@ -221,25 +235,13 @@ export default function Home({ rootTheme }) {
     }, [playing, cells])
 
     useEffect(() => {
-        const fillArray = () => {
-            let array = []
+        setCols(Math.floor((window.innerWidth) / sizeRange))
+        setRows(Math.floor((window.innerHeight - sizeRange) / sizeRange))
+    }, [sizeRange])
 
-            for (let i = 1; i <= cols; i++) {
-                for (let j = 1; j <= rows; j++) {
-                    array.push({
-                        id: uuidv4(),
-                        active: false,
-                        row: j,
-                        col: i
-                    })
-                }
-            }
-            setCells(array)
-            setCellsFilled(true)
-        }
-
+    useEffect(() => {
         fillArray()
-    }, [])
+    }, [cols, rows])
 
     return (
         <div className="home">
@@ -265,6 +267,14 @@ export default function Home({ rootTheme }) {
                             <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
                         </svg>
                     </button>
+                    <div className="speedRange" title="Speed: speed between generations">
+                        <label htmlFor="speedRange">Speed</label>
+                        <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="3000" />
+                    </div>
+                    <div className="sizeRange" title="Size: cell size. Modifying this value will reset the simulation">
+                        <label htmlFor="sizeRange">Size</label>
+                        <input onChange={(e) => setSizeRange(e.target.value)} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
+                    </div>
                     <button title="Auto Colors" className={`${autoColors && "active"}`} onClick={() => toggleAutoColors()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-rainbow" viewBox="0 0 16 16">
                             <path d="M8 4.5a7 7 0 0 0-7 7 .5.5 0 0 1-1 0 8 8 0 1 1 16 0 .5.5 0 0 1-1 0 7 7 0 0 0-7-7zm0 2a5 5 0 0 0-5 5 .5.5 0 0 1-1 0 6 6 0 1 1 12 0 .5.5 0 0 1-1 0 5 5 0 0 0-5-5zm0 2a3 3 0 0 0-3 3 .5.5 0 0 1-1 0 4 4 0 1 1 8 0 .5.5 0 0 1-1 0 3 3 0 0 0-3-3zm0 2a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 4 0 .5.5 0 0 1-1 0 1 1 0 0 0-1-1z" />
@@ -283,7 +293,7 @@ export default function Home({ rootTheme }) {
                     </button>
                 </div>
             </div>
-            <div className="game-grid" style={{ gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`, gridAutoRows: `${cellSize}px` }} onMouseDown={cellFillStart} onMouseUp={cellFillEnd}>
+            <div className="game-grid" style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px` }} onMouseDown={cellFillStart} onMouseUp={cellFillEnd}>
                 {cellsFilled && cells?.map((cell, index) => {
                     return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} />
                 })}

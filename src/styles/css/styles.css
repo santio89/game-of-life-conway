@@ -54,6 +54,7 @@ body,
   background: var(--main-black);
   color: var(--main-white);
   transition: background-color 500ms ease-out;
+  overflow: hidden;
 }
 
 .light-theme {
@@ -123,6 +124,18 @@ body,
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+.home__buttons .speedRange, .home__buttons .sizeRange {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: color-mix(in srgb, var(--main-color), white);
+}
+.home__buttons .speedRange input, .home__buttons .sizeRange input {
+  max-width: 60px;
+  accent-color: color-mix(in srgb, var(--main-color), white);
+  cursor: pointer;
 }
 .home__buttons button {
   display: flex;
