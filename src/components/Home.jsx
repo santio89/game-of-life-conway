@@ -75,6 +75,27 @@ export default function Home({ rootTheme }) {
         setCellsFilled(true)
     }
 
+    const reFillArray = () => {
+        const size = cols * rows
+        let array = [...cells]
+
+        if (size > array.length) {
+            for (let i = 1; i <= size - array.length; i++) {
+                array.push({
+                    id: uuidv4(),
+                    active: false,
+                })
+            }
+        } else {
+            const diff = array.length - size;
+            array.splice(array.length - diff,
+                diff);
+        }
+
+        setCells(array)
+        setCellsFilled(true)
+    }
+
     const calcRandomGen = () => {
         let array = []
 
@@ -103,26 +124,26 @@ export default function Home({ rootTheme }) {
             if (i < cols) {
                 /* first column, -1 not neighbor */
                 if (i % cols === 0) {
-                    if (cellsCopy[i + 1].active) neighbors++
-                    if (cellsCopy[i + cols].active) neighbors++
-                    if (cellsCopy[i + cols + 1].active) neighbors++
+                    if (cellsCopy[i + 1]?.active) neighbors++
+                    if (cellsCopy[i + cols]?.active) neighbors++
+                    if (cellsCopy[i + cols + 1]?.active) neighbors++
                     /* +1, +cols, +cols+1 */
 
                     /* last column, +1 not neighbor */
                 } else if ((i + 1) % cols === 0) {
-                    if (cellsCopy[i - 1].active) neighbors++
-                    if (cellsCopy[i + cols].active) neighbors++
-                    if (cellsCopy[i + cols - 1].active) neighbors++
+                    if (cellsCopy[i - 1]?.active) neighbors++
+                    if (cellsCopy[i + cols]?.active) neighbors++
+                    if (cellsCopy[i + cols - 1]?.active) neighbors++
                     /* -1, +cols, +cols-1 */
                 } else {
-                    if (cellsCopy[i - 1].active) neighbors++
+                    if (cellsCopy[i - 1]?.active) neighbors++
 
-                    if (cellsCopy[i + 1].active) neighbors++
+                    if (cellsCopy[i + 1]?.active) neighbors++
 
-                    if (cellsCopy[i + cols].active) neighbors++
+                    if (cellsCopy[i + cols]?.active) neighbors++
 
-                    if (cellsCopy[i + cols + 1].active) neighbors++
-                    if (cellsCopy[i + cols - 1].active) neighbors++
+                    if (cellsCopy[i + cols + 1]?.active) neighbors++
+                    if (cellsCopy[i + cols - 1]?.active) neighbors++
                     /* -1, +1, +cols, +cols+1, +cols-1 */
                 }
             }
@@ -131,30 +152,30 @@ export default function Home({ rootTheme }) {
             if (i >= cols && i < (size - cols)) {
                 /* first column, -1 not neighbor */
                 if (i % cols === 0) {
-                    if (cellsCopy[i + 1].active) neighbors++
-                    if (cellsCopy[i + cols].active) neighbors++
-                    if (cellsCopy[i + cols + 1].active) neighbors++
-                    if (cellsCopy[i - cols].active) neighbors++
-                    if (cellsCopy[i - cols + 1].active) neighbors++
+                    if (cellsCopy[i + 1]?.active) neighbors++
+                    if (cellsCopy[i + cols]?.active) neighbors++
+                    if (cellsCopy[i + cols + 1]?.active) neighbors++
+                    if (cellsCopy[i - cols]?.active) neighbors++
+                    if (cellsCopy[i - cols + 1]?.active) neighbors++
                     /* +1, +cols, +cols+1, -cols, -cols+1 */
 
                     /* last column, +1 not neighbor */
                 } else if ((i + 1) % cols === 0) {
-                    if (cellsCopy[i - 1].active) neighbors++
-                    if (cellsCopy[i + cols].active) neighbors++
-                    if (cellsCopy[i + cols - 1].active) neighbors++
-                    if (cellsCopy[i - cols].active) neighbors++
-                    if (cellsCopy[i - cols - 1].active) neighbors++
+                    if (cellsCopy[i - 1]?.active) neighbors++
+                    if (cellsCopy[i + cols]?.active) neighbors++
+                    if (cellsCopy[i + cols - 1]?.active) neighbors++
+                    if (cellsCopy[i - cols]?.active) neighbors++
+                    if (cellsCopy[i - cols - 1]?.active) neighbors++
                     /* -1, +cols, +cols-1, -cols, -cols-1 */
                 } else {
-                    if (cellsCopy[i - 1].active) neighbors++
-                    if (cellsCopy[i + 1].active) neighbors++
-                    if (cellsCopy[i + cols].active) neighbors++
-                    if (cellsCopy[i + cols + 1].active) neighbors++
-                    if (cellsCopy[i + cols - 1].active) neighbors++
-                    if (cellsCopy[i - cols].active) neighbors++
-                    if (cellsCopy[i - cols + 1].active) neighbors++
-                    if (cellsCopy[i - cols - 1].active) neighbors++
+                    if (cellsCopy[i - 1]?.active) neighbors++
+                    if (cellsCopy[i + 1]?.active) neighbors++
+                    if (cellsCopy[i + cols]?.active) neighbors++
+                    if (cellsCopy[i + cols + 1]?.active) neighbors++
+                    if (cellsCopy[i + cols - 1]?.active) neighbors++
+                    if (cellsCopy[i - cols]?.active) neighbors++
+                    if (cellsCopy[i - cols + 1]?.active) neighbors++
+                    if (cellsCopy[i - cols - 1]?.active) neighbors++
                     /* -1, +1, +cols, +cols+1, +cols-1, -cols, -cols+1, -cols-1 */
                 }
             }
@@ -163,23 +184,23 @@ export default function Home({ rootTheme }) {
             if (i >= (size - cols)) {
                 /* first column, -1 not neighbor */
                 if (i % cols === 0) {
-                    if (cellsCopy[i + 1].active) neighbors++
-                    if (cellsCopy[i - cols].active) neighbors++
-                    if (cellsCopy[i - cols + 1].active) neighbors++
+                    if (cellsCopy[i + 1]?.active) neighbors++
+                    if (cellsCopy[i - cols]?.active) neighbors++
+                    if (cellsCopy[i - cols + 1]?.active) neighbors++
                     /* +1, -cols, -cols+1 */
 
                     /* last column, +1 not neighbor */
                 } else if ((i + 1) % cols === 0) {
-                    if (cellsCopy[i - 1].active) neighbors++
-                    if (cellsCopy[i - cols].active) neighbors++
-                    if (cellsCopy[i - cols - 1].active) neighbors++
+                    if (cellsCopy[i - 1]?.active) neighbors++
+                    if (cellsCopy[i - cols]?.active) neighbors++
+                    if (cellsCopy[i - cols - 1]?.active) neighbors++
                     /* -1, -cols, -cols-1 */
                 } else {
-                    if (cellsCopy[i - 1].active) neighbors++
-                    if (cellsCopy[i + 1].active) neighbors++
-                    if (cellsCopy[i - cols].active) neighbors++
-                    if (cellsCopy[i - cols + 1].active) neighbors++
-                    if (cellsCopy[i - cols - 1].active) neighbors++
+                    if (cellsCopy[i - 1]?.active) neighbors++
+                    if (cellsCopy[i + 1]?.active) neighbors++
+                    if (cellsCopy[i - cols]?.active) neighbors++
+                    if (cellsCopy[i - cols + 1]?.active) neighbors++
+                    if (cellsCopy[i - cols - 1]?.active) neighbors++
                     /* -1, +1, -cols, -cols+1, -cols-1 */
                 }
             }
@@ -235,8 +256,12 @@ export default function Home({ rootTheme }) {
     }, [sizeRange])
 
     useEffect(() => {
-        fillArray()
+        cells && reFillArray()
     }, [cols, rows])
+
+    useEffect(() => {
+        fillArray()
+    }, [])
 
     return (
         <div className="home">
@@ -271,15 +296,15 @@ export default function Home({ rootTheme }) {
                         {
                             settingsOpen &&
                             <div className={`home__buttons__settings__range ${settingsOpen && "active"}`}>
-                                <div className="sizeRange" title="Size: cell size. Modifying this value will reset the simulation">
+                                <div className="sizeRange" title="Cell size">
                                     <label htmlFor="sizeRange">Size</label>
                                     <input onChange={(e) => setSizeRange(e.target.value)} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
                                 </div>
-                                <div className="speedRange" title="Speed: speed between generations">
+                                <div className="speedRange" title="Generation speed">
                                     <label htmlFor="speedRange">Speed</label>
                                     <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="3000" />
                                 </div>
-                                <div className="clearBtns" title="Speed: speed between generations">
+                                <div className="clearBtns">
                                     <button title="Reset settings" onClick={() => {
                                         setSpeedRange(1500);
                                         setSizeRange(48)
