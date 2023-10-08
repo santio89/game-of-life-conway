@@ -20,6 +20,7 @@ export default function Home({ rootTheme }) {
     const [cols, setCols] = useState(Math.floor((windowWidth) / sizeRange))
     const [rows, setRows] = useState(Math.floor((windowHeight - sizeRange) / sizeRange))
     const [playing, setPlaying] = useState(false)
+    const [wasPlaying, setWasPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
     const [settingsOpen, setSettingsOpen] = useState(false)
 
@@ -53,11 +54,12 @@ export default function Home({ rootTheme }) {
     }
 
     const cellFillStart = () => {
+        playing ? setWasPlaying(true) : setWasPlaying(false)
         stopGame()
         setCellFillMode(true)
     }
     const cellFillEnd = () => {
-        startGame()
+        wasPlaying && startGame()
         setCellFillMode(false)
     }
     const cellFillMove = (index) => {
