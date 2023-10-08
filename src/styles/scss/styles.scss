@@ -231,6 +231,7 @@ body,
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 20px);
+  grid-template-rows: repeat(4, 20px);
   grid-auto-rows: 20px;
   place-content: center;
   place-items: center;
