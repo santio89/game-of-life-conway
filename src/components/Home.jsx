@@ -17,8 +17,8 @@ export default function Home({ rootTheme }) {
     const [sizeRange, setSizeRange] = useState(48)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [windowHeight, setWindowHeight] = useState(window.innerHeight)
-    const [cols, setCols] = useState(Math.floor((windowWidth) / sizeRange))
-    const [rows, setRows] = useState(Math.floor((windowHeight - sizeRange) / sizeRange))
+    const [cols, setCols] = useState(Math.floor((window.innerWidth) / sizeRange))
+    const [rows, setRows] = useState(Math.floor((window.innerHeight - sizeRange) / sizeRange))
     const [playing, setPlaying] = useState(false)
     const [wasPlaying, setWasPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
@@ -257,8 +257,8 @@ export default function Home({ rootTheme }) {
     }, [playing, cells])
 
     useEffect(() => {
-        setCols(Math.floor((windowWidth) / sizeRange))
-        setRows(Math.floor((windowHeight - sizeRange) / sizeRange))
+        setCols(Math.floor((window.innerWidth) / sizeRange))
+        setRows(Math.floor((window.innerHeight - sizeRange) / sizeRange))
     }, [sizeRange, windowWidth, windowHeight])
 
     useEffect(() => {
