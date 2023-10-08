@@ -257,13 +257,15 @@ export default function Home({ rootTheme }) {
                     </button>
                 </div>
                 <div className="home__buttons__box">
-                    <div className="sizeRange" title="Size: cell size. Modifying this value will reset the simulation">
-                        <label htmlFor="sizeRange">Size</label>
-                        <input onChange={(e) => setSizeRange(e.target.value)} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
-                    </div>
-                    <div className="speedRange" title="Speed: speed between generations">
-                        <label htmlFor="speedRange">Speed</label>
-                        <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="3000" />
+                    <div className="home__buttons__box__range">
+                        <div className="sizeRange" title="Size: cell size. Modifying this value will reset the simulation">
+                            <label htmlFor="sizeRange">Size</label>
+                            <input onChange={(e) => setSizeRange(e.target.value)} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
+                        </div>
+                        <div className="speedRange" title="Speed: speed between generations">
+                            <label htmlFor="speedRange">Speed</label>
+                            <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="3000" />
+                        </div>
                     </div>
                     <button title="Play" className={`${playing && "active"}`} onClick={() => initGame()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" className="bi bi-play-fill" viewBox="0 0 16 16">

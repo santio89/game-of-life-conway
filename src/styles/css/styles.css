@@ -125,12 +125,18 @@ body,
   align-items: center;
   gap: 1rem;
 }
+.home__buttons__box__range {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  flex-direction: column;
+}
 .home__buttons .speedRange, .home__buttons .sizeRange {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   color: color-mix(in srgb, var(--main-color), white);
+  gap: 0.5rem;
 }
 .home__buttons .speedRange input, .home__buttons .sizeRange input {
   max-width: 60px;

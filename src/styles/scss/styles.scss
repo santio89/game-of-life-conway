@@ -131,14 +131,21 @@ body,
       justify-content: center;
       align-items: center;
       gap: 1rem;
+
+      &__range{
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        flex-direction: column;
+      }
     }
 
     .speedRange, .sizeRange {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       color: color-mix(in srgb, var(--main-color), white);
+      gap: .5rem;
 
       input {
         max-width: 60px;
