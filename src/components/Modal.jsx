@@ -11,7 +11,6 @@ export default function Modal() {
 
     useEffect(() => {
         const closeModalClick = (e) => {
-            console.log(e.target)
             if (e.target === modal.current) {
                 modal.current.close()
                 dispatch(setModal(false))
