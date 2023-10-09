@@ -234,7 +234,7 @@ body,
 }
 .game-grid.bound {
   outline: 1px solid var(--main-color-dark);
-  box-shadow: 0 0 32px var(--main-color-dark);
+  box-shadow: 0 0 2rem -1rem var(--main-color-dark);
 }
 .game-grid__cell {
   width: 100%;
