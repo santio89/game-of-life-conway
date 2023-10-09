@@ -115,7 +115,7 @@ export default function Home({ rootTheme }) {
 
 
         /* hacky method for dynamic resize */
-        for (let i = 1; i <= size; i++) {
+        for (let i = 1; i <= size * 2; i++) {
             array.push({
                 id: uuidv4(),
                 active: false,
