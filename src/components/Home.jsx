@@ -113,7 +113,6 @@ export default function Home({ rootTheme }) {
                 diff);
         } */
 
-
         /* hacky method for dynamic resize */
         for (let i = 1; i <= size * 2; i++) {
             array.push({
