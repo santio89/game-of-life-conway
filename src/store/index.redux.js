@@ -1,13 +1,21 @@
 import { legacy_createStore as createStore, combineReducers, applyMiddleware } from "redux";
-import ThemeReducer from './reducers/theme.reducer'
-import ModalReducer from "./reducers/modal.reducer";
 import thunk from "redux-thunk";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import ThemeReducer from './reducers/theme.reducer'
+import ModalReducer from "./reducers/modal.reducer";
+import GameReducer from "./reducers/game.reducer";
+import undoable from 'redux-undo';
 
 const RootReducer = combineReducers({
     theme: ThemeReducer,
-    modal: ModalReducer
+    modal: ModalReducer,
+    /* performance drops if using redux for cells
+        game: undoable(GameReducer, {
+        limit: false,
+        undoType: "CELLS_UNDO",
+        clearHistoryType: "CELLS_CLEAR_HISTORY"
+    }), */
 })
 
 const persistConfig = {
