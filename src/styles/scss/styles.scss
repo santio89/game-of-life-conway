@@ -125,9 +125,9 @@ body,
     position: relative;
     padding-inline: clamp(.5rem, .5rem + 2vw, 2rem);
     transition: 250ms ease-out;
-    z-index: 1;
+    z-index: 2;
     position: relative;
-    box-shadow: 0 -1rem 2rem var(--main-color);
+    box-shadow: 0 -1rem 2rem 0 var(--main-color-dark);
 
     &__settings {
       display: flex;
@@ -149,6 +149,7 @@ body,
         border-top: none;
         pointer-events: none;
         transition: 250ms ease-out;
+        box-shadow: 0 0 2rem -1rem var(--main-color-dark);
 
         &.active {
           pointer-events: auto;
