@@ -269,7 +269,8 @@ body,
   background-color: var(--main-color-dark);
   color: rgb(240, 240, 240);
   font-size: 1rem;
-  transition: background-color 250ms;
+  transition: background-color 250ms ease-out, box-shadow 250ms ease-out;
+  box-shadow: 0 0 4rem -1rem var(--main-color-dark);
 }
 .modalWrapper::backdrop {
   background-color: dimgray;
