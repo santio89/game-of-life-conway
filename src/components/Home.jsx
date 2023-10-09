@@ -12,10 +12,15 @@ export default function Home({ rootTheme }) {
     const dispatch = useDispatch()
     const darkTheme = useSelector(state => state.theme.darkTheme)
     const modalActive = useSelector(state => state.modal.active)
-    const cells = useSelector(state => state.game.present.cells)
     const [cellsFilled, setCellsFilled] = useState(false)
-    const [speedRange, setSpeedRange] = useState(1000)
+    const cells = useSelector(state => state.game.present.cells)
+
+    /*     const size = useSelector(state => state.game.present.size)
+        const speed = useSelector(state => state.game.present.speed)
+        const bound = useSelector(state => state.game.present.bound) */
+
     const [sizeRange, setSizeRange] = useState(60)
+    const [speedRange, setSpeedRange] = useState(1000)
     const [boundRange, setBoundRange] = useState(100)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth * (boundRange / 100))
     const [windowHeight, setWindowHeight] = useState(window.innerHeight * (boundRange / 100))
@@ -43,8 +48,8 @@ export default function Home({ rootTheme }) {
     }
 
     const resetSettings = () => {
-        setSpeedRange(1000);
-        setSizeRange(60);
+        setSpeedRange(1000)
+        setSizeRange(60)
         setBoundRange(100)
     }
 
@@ -94,7 +99,7 @@ export default function Home({ rootTheme }) {
             }
         }
         dispatch(setCells(array))
-        dispatch({type: "CELLS_CLEAR_HISTORY"})
+        dispatch({ type: "GAME_CLEAR_HISTORY" })
         setCellsFilled(true)
     }
 
@@ -279,10 +284,24 @@ export default function Home({ rootTheme }) {
         return () => clearTimeout(timeout)
     }, [playing, cells])
 
+    /*     useEffect(() => {
+            setSizeRange(size)
+        }, [size])
+        useEffect(() => {
+            setSpeedRange(speed)
+        }, [speed])
+        useEffect(() => {
+            setBoundRange(bound)
+        }, [bound]) */
+
     useEffect(() => {
         setCols(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
         setRows(Math.floor((window.innerHeight * (boundRange / 100) - 48 - 4) / sizeRange))
     }, [sizeRange, windowWidth, windowHeight, boundRange])
+
+    useEffect(() => {
+        dispatch({ type: "GAME_CLEAR_HISTORY" })
+    }, [sizeRange, speedRange, boundRange])
 
     useEffect(() => {
         cells && reFillArray()
@@ -346,8 +365,8 @@ export default function Home({ rootTheme }) {
                                     <input onChange={(e) => setBoundRange(e.target.value)} value={boundRange} id="boundRange" type="range" min="40" max="100" />
                                 </div>
                                 <div className="genBtns">
-                                    <button title="Previous generation" onClick={() => {
-                                        dispatch({ type: "CELLS_UNDO" })
+                                    <button title="Previous generation (modifying settings resets history)" onClick={() => {
+                                        dispatch({ type: "GAME_UNDO" })
                                     }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
                                             <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />

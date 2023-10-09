@@ -12,8 +12,8 @@ const RootReducer = combineReducers({
     modal: ModalReducer,
     game: undoable(GameReducer, {
         limit: false,
-        undoType: "CELLS_UNDO",
-        clearHistoryType: "CELLS_CLEAR_HISTORY"
+        undoType: "GAME_UNDO",
+        clearHistoryType: "GAME_CLEAR_HISTORY"
     }),
 })
 

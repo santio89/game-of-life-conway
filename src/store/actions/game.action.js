@@ -8,7 +8,7 @@ export const setCells = (cells) => {
   }
 }
 
-export const setSize = (size) => {
+/* export const setSize = (size) => {
 
   return async dispatch => {
     dispatch({
@@ -36,3 +36,16 @@ export const setSpeed = (speed) => {
     })
   }
 }
+
+export const setAll = (cells, size, bound, speed) =>{
+ 
+  return async dispatch => {
+    dispatch({
+      type: "SET_ALL",
+      cells,
+      size,
+      bound,
+      speed
+    })
+  }
+} */
