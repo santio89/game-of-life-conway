@@ -37,9 +37,11 @@ export default function Modal() {
             try {
                 document.startViewTransition(() => {
                     modal.current.showModal()
+                    modal.current.scrollTop = 0;
                 });
             } catch {
                 modal.current.showModal()
+                modal.current.scrollTop = 0;
             }
         } else {
             try {

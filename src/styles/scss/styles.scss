@@ -1,12 +1,17 @@
 :root {
   --font-primary: monospace, 'Courier New', Courier;
-  --main-color: rgb(70, 171, 226);
-  --main-color-dark: color-mix(in srgb, var(--main-color), black);
-  --main-color-light: color-mix(in srgb, var(--main-color), white);
   --main-black: rgb(30, 30, 30);
   --main-white: rgb(240, 240, 240);
   --main-gray: rgb(180, 180, 180);
+  --main-color: rgb(70, 171, 226);
+  --main-color-dark: var(--main-black);
+  --main-color-light: var(--main-white);
   --main-container-size: 1200px;
+
+  @supports (background: color-mix(in srgb, white, black)) {
+    --main-color-dark: color-mix(in srgb, var(--main-color), black);
+    --main-color-light: color-mix(in srgb, var(--main-color), white);
+  }
 }
 
 *,
