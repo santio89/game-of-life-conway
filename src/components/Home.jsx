@@ -114,17 +114,18 @@ export default function Home({ rootTheme }) {
         } */
 
         /* hacky method for dynamic resize */
-        for (let i = 1; i <= size * 2; i++) {
+        for (let i = 1; i <= size; i++) {
             array.push({
                 id: uuidv4(),
                 active: false,
             })
         }
 
-        const diff = array.length - size;
-        array.splice(array.length - diff,
-            diff);
-
+        if (array.length > size) {
+            const diff = array.length - size;
+            array.splice(array.length - diff,
+                diff);
+        }
 
         setCells(array)
         setCellsFilled(true)
