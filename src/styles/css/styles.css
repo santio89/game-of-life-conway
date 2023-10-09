@@ -120,6 +120,7 @@ body,
   transition: 250ms ease-out;
   z-index: 1;
   position: relative;
+  box-shadow: 0 -1rem 2rem var(--main-color);
 }
 .home__buttons__settings {
   display: flex;
