@@ -10,12 +10,11 @@ import undoable from 'redux-undo';
 const RootReducer = combineReducers({
     theme: ThemeReducer,
     modal: ModalReducer,
-    /* performance drops if using redux for cells
-        game: undoable(GameReducer, {
+    game: undoable(GameReducer, {
         limit: false,
         undoType: "CELLS_UNDO",
         clearHistoryType: "CELLS_CLEAR_HISTORY"
-    }), */
+    }),
 })
 
 const persistConfig = {

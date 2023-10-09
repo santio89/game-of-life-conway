@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { setThemeReducer } from "../store/actions/theme.action";
 import { setModal } from "../store/actions/modal.action";
+import { setCells } from "../store/actions/game.action";
 import { v4 as uuidv4 } from 'uuid';
 import Cell from "./Cell";
 import { Link } from "react-router-dom";
@@ -11,7 +12,7 @@ export default function Home({ rootTheme }) {
     const dispatch = useDispatch()
     const darkTheme = useSelector(state => state.theme.darkTheme)
     const modalActive = useSelector(state => state.modal.active)
-    const [cells, setCells] = useState(null)
+    const cells = useSelector(state => state.game.present.cells)
     const [cellsFilled, setCellsFilled] = useState(false)
     const [speedRange, setSpeedRange] = useState(1000)
     const [sizeRange, setSizeRange] = useState(60)
@@ -57,7 +58,7 @@ export default function Home({ rootTheme }) {
 
         cellsCopy[index] = modCell()
 
-        setCells(cellsCopy)
+        dispatch(setCells(cellsCopy))
     }
 
     const cellFillStart = () => {
@@ -92,7 +93,8 @@ export default function Home({ rootTheme }) {
                 })
             }
         }
-        setCells(array)
+        dispatch(setCells(array))
+        dispatch({type: "CELLS_CLEAR_HISTORY"})
         setCellsFilled(true)
     }
 
@@ -127,7 +129,7 @@ export default function Home({ rootTheme }) {
                 diff);
         }
 
-        setCells(array)
+        dispatch(setCells(array))
         setCellsFilled(true)
     }
 
@@ -144,7 +146,7 @@ export default function Home({ rootTheme }) {
                 })
             }
         }
-        setCells(array)
+        dispatch(setCells(array))
     }
 
     const calcGen = () => {
@@ -258,7 +260,7 @@ export default function Home({ rootTheme }) {
             return { ...cell } //fallback
         })
 
-        setCells(newCells)
+        dispatch(setCells(newCells))
     }
 
     useEffect(() => {
@@ -344,11 +346,13 @@ export default function Home({ rootTheme }) {
                                     <input onChange={(e) => setBoundRange(e.target.value)} value={boundRange} id="boundRange" type="range" min="40" max="100" />
                                 </div>
                                 <div className="genBtns">
-                                    {/* <button title="Previous generation" onClick={resetSettings}>
+                                    <button title="Previous generation" onClick={() => {
+                                        dispatch({ type: "CELLS_UNDO" })
+                                    }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
                                             <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                                         </svg>
-                                    </button> */}
+                                    </button>
                                     <button title="Next generation" onClick={calcGen}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
                                             <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
