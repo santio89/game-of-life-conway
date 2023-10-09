@@ -14,11 +14,6 @@ export default function Home({ rootTheme }) {
     const modalActive = useSelector(state => state.modal.active)
     const [cellsFilled, setCellsFilled] = useState(false)
     const cells = useSelector(state => state.game.present.cells)
-
-    /*     const size = useSelector(state => state.game.present.size)
-        const speed = useSelector(state => state.game.present.speed)
-        const bound = useSelector(state => state.game.present.bound) */
-
     const [sizeRange, setSizeRange] = useState(60)
     const [speedRange, setSpeedRange] = useState(1000)
     const [boundRange, setBoundRange] = useState(100)
@@ -106,19 +101,6 @@ export default function Home({ rootTheme }) {
     const reFillArray = () => {
         const size = cols * rows
         let array = [...cells]
-
-        /* if (size > array.length) {
-            for (let i = 1; i <= size - array.length; i++) {
-                array.push({
-                    id: uuidv4(),
-                    active: false,
-                })
-            }
-        } else {
-            const diff = array.length - size;
-            array.splice(array.length - diff,
-                diff);
-        } */
 
         /* hacky method for dynamic resize */
         for (let i = 1; i <= size; i++) {
