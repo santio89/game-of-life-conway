@@ -15,10 +15,11 @@ export default function Home({ rootTheme }) {
     const [cellsFilled, setCellsFilled] = useState(false)
     const [speedRange, setSpeedRange] = useState(1000)
     const [sizeRange, setSizeRange] = useState(60)
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-    const [windowHeight, setWindowHeight] = useState(window.innerHeight)
-    const [cols, setCols] = useState(Math.floor((window.innerWidth - 4) / sizeRange))
-    const [rows, setRows] = useState(Math.floor((window.innerHeight - 48 - 4) / sizeRange))
+    const [boundRange, setBoundRange] = useState(100)
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth * (boundRange / 100))
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight * (boundRange / 100))
+    const [cols, setCols] = useState(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
+    const [rows, setRows] = useState(Math.floor((window.innerHeight * (boundRange / 100) - 48 - 4) / sizeRange))
     const [playing, setPlaying] = useState(false)
     const [wasPlaying, setWasPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
@@ -38,6 +39,12 @@ export default function Home({ rootTheme }) {
 
     const stopGame = () => {
         setPlaying(false)
+    }
+
+    const resetSettings = () => {
+        setSpeedRange(1000);
+        setSizeRange(60);
+        setBoundRange(100)
     }
 
     const toggleActive = (index) => {
@@ -271,9 +278,9 @@ export default function Home({ rootTheme }) {
     }, [playing, cells])
 
     useEffect(() => {
-        setCols(Math.floor((window.innerWidth - 4) / sizeRange))
-        setRows(Math.floor((window.innerHeight - 48 - 4) / sizeRange))
-    }, [sizeRange, windowWidth, windowHeight])
+        setCols(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
+        setRows(Math.floor((window.innerHeight * (boundRange / 100) - 48 - 4) / sizeRange))
+    }, [sizeRange, windowWidth, windowHeight, boundRange])
 
     useEffect(() => {
         cells && reFillArray()
@@ -282,8 +289,8 @@ export default function Home({ rootTheme }) {
     useEffect(() => {
         fillArray()
         const adjustGrid = () => {
-            setWindowWidth(window.innerWidth)
-            setWindowHeight(window.innerHeight)
+            setWindowWidth(window.innerWidth * (boundRange / 100))
+            setWindowHeight(window.innerHeight * (boundRange / 100))
         }
 
         window.addEventListener("resize", adjustGrid)
@@ -332,11 +339,12 @@ export default function Home({ rootTheme }) {
                                     <label htmlFor="speedRange">Speed</label>
                                     <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="2000" />
                                 </div>
+                                <div className="boundRange" title="Universe bound">
+                                    <label htmlFor="boundRange">Bound</label>
+                                    <input onChange={(e) => setBoundRange(e.target.value)} value={boundRange} id="boundRange" type="range" min="40" max="100" />
+                                </div>
                                 <div className="clearBtns">
-                                    <button title="Reset settings" onClick={() => {
-                                        setSpeedRange(1000);
-                                        setSizeRange(60)
-                                    }}>Reset</button>
+                                    <button title="Reset settings" onClick={resetSettings}>Reset</button>
                                     <button title="Clear cells" onClick={() => {
                                         fillArray()
                                     }}>Clear</button>
@@ -373,11 +381,14 @@ export default function Home({ rootTheme }) {
                     </button>
                 </div>
             </div>
-            <div className="game-grid" style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px` }} onMouseDown={cellFillStart} onMouseUp={cellFillEnd}>
-                {cellsFilled && cells?.map((cell, index) => {
-                    return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} />
-                })}
+            <div className="game-grid-wrapper">
+                <div className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px` }} onMouseDown={cellFillStart} onMouseUp={cellFillEnd}>
+                    {cellsFilled && cells?.map((cell, index) => {
+                        return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} />
+                    })}
+                </div>
             </div>
+
         </div>
     )
 }
