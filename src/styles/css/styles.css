@@ -206,14 +206,20 @@ body,
   accent-color: var(--main-color-light);
   cursor: pointer;
 }
-.home__buttons .clearBtns {
+.home__buttons .clearBtns,
+.home__buttons .genBtns {
   display: flex;
   justify-content: space-between;
   align-self: center;
   width: 90%;
 }
-.home__buttons .clearBtns button {
+.home__buttons .clearBtns button,
+.home__buttons .genBtns button {
   font: inherit;
+}
+.home__buttons .genBtns {
+  justify-content: center;
+  gap: 1rem;
 }
 
 .game-grid-wrapper {
