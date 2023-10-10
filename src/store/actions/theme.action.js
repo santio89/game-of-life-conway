@@ -7,3 +7,13 @@ export const setThemeReducer = (darkTheme) => {
         })
     }
 }
+
+export const setColorReducer = (colorTheme) => {
+
+    return async dispatch => {
+        dispatch({
+            type: "SET_COLOR",
+            colorTheme
+        })
+    }
+}

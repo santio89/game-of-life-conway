@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { setThemeReducer } from "../store/actions/theme.action";
+import { setThemeReducer, setColorReducer } from "../store/actions/theme.action";
 import { setModal } from "../store/actions/modal.action";
 import { setCells } from "../store/actions/game.action";
 import { v4 as uuidv4 } from 'uuid';
@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 export default function Home({ rootTheme }) {
     const dispatch = useDispatch()
     const darkTheme = useSelector(state => state.theme.darkTheme)
+    const colorTheme = useSelector(state => state.theme.colorTheme)
     const modalActive = useSelector(state => state.modal.active)
     const [cellsFilled, setCellsFilled] = useState(false)
     const cells = useSelector(state => state.game.present.cells)
@@ -79,7 +80,7 @@ export default function Home({ rootTheme }) {
     const updateCellColor = () => {
         const genRandom = () => Math.floor(Math.random() * (255 - 0 + 1) + 0);
         const cellColor = "rgb(" + genRandom() + ", " + genRandom() + ", " + genRandom() + ")"
-        document.documentElement.style.setProperty('--main-color', cellColor);
+        dispatch(setColorReducer(cellColor))
     }
 
     const fillArray = () => {
@@ -254,6 +255,10 @@ export default function Home({ rootTheme }) {
     useEffect(() => {
         rootTheme.current.classList.toggle("light-theme", !darkTheme)
     }, [darkTheme])
+
+    useEffect(() => {
+        colorTheme && document.documentElement.style.setProperty('--main-color', colorTheme);
+    }, [colorTheme])
 
     useEffect(() => {
         /* using timeout instead of interval so it iterates over the updated state */

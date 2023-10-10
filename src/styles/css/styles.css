@@ -387,5 +387,43 @@ body,
 }
 
 /* end modal */
+/* notFound */
+.notFound {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notFound__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+.notFound__inner p {
+  text-align: center;
+  text-wrap: balance;
+}
+.notFound__inner a {
+  font: inherit;
+  text-transform: uppercase;
+  color: inherit;
+  text-decoration: none;
+  background-color: var(--main-color);
+  padding: 0.5em;
+  transition: 250ms scale ease-out;
+}
+.notFound__inner a:hover, .notFound__inner a:focus-visible {
+  outline: 2px solid var(--main-color-dark);
+}
+.notFound__inner a:active {
+  outline: 2px solid var(--main-color-dark);
+  transition: 250ms ease-out;
+  scale: 0.9;
+}
+
+/* end notFound */
 
 /*# sourceMappingURL=styles.css.map */
