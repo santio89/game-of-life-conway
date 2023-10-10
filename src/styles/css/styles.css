@@ -127,22 +127,28 @@ body,
   z-index: 2;
   position: relative;
   box-shadow: 0 -1rem 2rem 0 var(--main-color-dark);
+  position: relative;
 }
 .home__buttons__settings {
   display: flex;
   justify-content: center;
   align-items: end;
-  position: relative;
 }
-.home__buttons__settings__range {
+.home__buttons__settings__theme {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.home__buttons__settings__opts {
   display: flex;
   justify-content: center;
   align-items: end;
   flex-direction: column;
   position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  translate: -50% 0;
+  top: calc(100% - 1px);
+  right: 0;
   background-color: var(--main-color-dark);
   padding: 0.25rem;
   border-top: none;
@@ -150,7 +156,7 @@ body,
   transition: 250ms ease-out;
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
 }
-.home__buttons__settings__range.active {
+.home__buttons__settings__opts.active {
   pointer-events: auto;
 }
 .home__buttons__box {
@@ -218,6 +224,8 @@ body,
   font: inherit;
 }
 .home__buttons .genBtns {
+  aspect-ratio: 1;
+  width: 24px;
   justify-content: center;
   gap: 1rem;
 }
