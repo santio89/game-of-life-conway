@@ -233,7 +233,7 @@ body,
       }
     }
 
-    .genBtns{
+    .genBtns {
       justify-content: center;
       gap: 1rem
     }
@@ -323,6 +323,11 @@ body,
   gap: 1rem;
   padding: 1rem;
   border: 2px solid var(--main-color);
+
+  svg {
+    filter: drop-shadow(0 0 2px var(--main-color));
+    align-self: start;
+  }
 
   &__buttonWrapper {
     display: flex;

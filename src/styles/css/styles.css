@@ -301,6 +301,10 @@ body,
   padding: 1rem;
   border: 2px solid var(--main-color);
 }
+.modal svg {
+  filter: drop-shadow(0 0 2px var(--main-color));
+  align-self: start;
+}
 .modal__buttonWrapper {
   display: flex;
   justify-content: space-between;
