@@ -12,7 +12,6 @@ export default function Modal() {
     useEffect(() => {
         const closeModalClick = (e) => {
             if (e.target === modal.current) {
-                modal.current.close()
                 dispatch(setModal(false))
             }
         }
@@ -20,13 +19,7 @@ export default function Modal() {
         const closeModalEsc = (e) => {
             if (e.key === "Escape") {
                 e.preventDefault()
-                try {
-                    document.startViewTransition(() => {
-                        modal.current.close()
-                    });
-                } catch {
-                    modal.current.close()
-                }
+                dispatch(setModal(false))
             }
         }
 
