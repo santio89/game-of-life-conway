@@ -283,7 +283,7 @@ export default function Home({ rootTheme }) {
 
     useEffect(() => {
         dispatch({ type: "GAME_CLEAR_HISTORY" })
-    }, [sizeRange, speedRange, boundRange])
+    }, [sizeRange, boundRange])
 
     useEffect(() => {
         cells && reFillArray()
@@ -334,7 +334,11 @@ export default function Home({ rootTheme }) {
                         {
                             settingsOpen &&
                             <div className={`home__buttons__settings__range ${settingsOpen && "active"}`}>
-                                <div className="sizeRange" title="Cell size">
+                                <div className="boundRange" title="Universe bound (modifying this setting resets history)">
+                                    <label htmlFor="boundRange">Bound</label>
+                                    <input onChange={(e) => setBoundRange(e.target.value)} value={boundRange} id="boundRange" type="range" min="40" max="100" />
+                                </div>
+                                <div className="sizeRange" title="Cell size (modifying this setting resets history)">
                                     <label htmlFor="sizeRange">Size</label>
                                     <input onChange={(e) => setSizeRange(e.target.value)} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
                                 </div>
@@ -342,12 +346,8 @@ export default function Home({ rootTheme }) {
                                     <label htmlFor="speedRange">Speed</label>
                                     <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="2000" />
                                 </div>
-                                <div className="boundRange" title="Universe bound">
-                                    <label htmlFor="boundRange">Bound</label>
-                                    <input onChange={(e) => setBoundRange(e.target.value)} value={boundRange} id="boundRange" type="range" min="40" max="100" />
-                                </div>
                                 <div className="genBtns">
-                                    <button title="Previous generation (modifying settings resets history)" onClick={() => {
+                                    <button title="Previous generation" onClick={() => {
                                         dispatch({ type: "GAME_UNDO" })
                                     }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
