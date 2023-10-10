@@ -272,16 +272,6 @@ export default function Home({ rootTheme }) {
         return () => clearTimeout(timeout)
     }, [playing, cells])
 
-    /*     useEffect(() => {
-            setSizeRange(size)
-        }, [size])
-        useEffect(() => {
-            setSpeedRange(speed)
-        }, [speed])
-        useEffect(() => {
-            setBoundRange(bound)
-        }, [bound]) */
-
     useEffect(() => {
         setCols(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
         setRows(Math.floor((window.innerHeight * (boundRange / 100) - 48 - 4) / sizeRange))
@@ -376,7 +366,7 @@ export default function Home({ rootTheme }) {
                                 </div>
                                 <div className="speedRange" title="Generation speed">
                                     <label htmlFor="speedRange">Speed</label>
-                                    <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="2000" />
+                                    <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="1999" />
                                 </div>
                                 <div className="genBtns">
                                     <button title="Previous generation" onClick={() => {
