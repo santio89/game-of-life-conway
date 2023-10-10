@@ -83,16 +83,16 @@ export default function Home({ rootTheme }) {
     }
 
     const fillArray = () => {
+        const size = cols * rows
         let array = []
 
-        for (let i = 1; i <= cols; i++) {
-            for (let j = 1; j <= rows; j++) {
-                array.push({
-                    id: uuidv4(),
-                    active: false,
-                })
-            }
+        for (let i = 1; i <= size; i++) {
+            array.push({
+                id: uuidv4(),
+                active: false,
+            })
         }
+        
         dispatch(setCells(array))
         dispatch({ type: "GAME_CLEAR_HISTORY" })
         setCellsFilled(true)
