@@ -265,8 +265,13 @@ body,
   overflow: hidden;
 
   &.bound {
-    outline: 1px solid var(--main-color-dark);
-    box-shadow: 0 0 2rem -1rem var(--main-color-dark)
+    outline: 1px solid var(--main-white);
+    box-shadow: 0 0 2rem -1rem var(--main-white);
+
+    @supports (background: color-mix(in srgb, white, black)) {
+      outline: 1px solid var(--main-color-dark);
+      box-shadow: 0 0 2rem -1rem var(--main-color-dark)
+    }
   }
 
   &__cell {
