@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import ThemeReducer from './reducers/theme.reducer'
 import ModalReducer from "./reducers/modal.reducer";
 import GameReducer from "./reducers/game.reducer";
+import GameSettingsReducer from "./reducers/gameSettings.reducer";
 import undoable from 'redux-undo';
 
 const RootReducer = combineReducers({
@@ -15,12 +16,13 @@ const RootReducer = combineReducers({
         undoType: "GAME_UNDO",
         clearHistoryType: "GAME_CLEAR_HISTORY"
     }),
+    gameSettings: GameSettingsReducer
 })
 
 const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ["theme"],
+    whitelist: ["theme", "gameSettings"],
     timeout: 0,
 }
 

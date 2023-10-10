@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { setThemeReducer, setColorReducer } from "../store/actions/theme.action";
 import { setModal } from "../store/actions/modal.action";
+import { setBound, setSize, setSpeed } from "../store/actions/gameSettings.action";
 import { setCells } from "../store/actions/game.action";
 import { v4 as uuidv4 } from 'uuid';
 import Cell from "./Cell";
@@ -15,9 +16,11 @@ export default function Home({ rootTheme }) {
     const modalActive = useSelector(state => state.modal.active)
     const [cellsFilled, setCellsFilled] = useState(false)
     const cells = useSelector(state => state.game.present.cells)
-    const [sizeRange, setSizeRange] = useState(60)
-    const [speedRange, setSpeedRange] = useState(1000)
-    const [boundRange, setBoundRange] = useState(100)
+
+    const boundRange = useSelector(state => state.gameSettings.bound)
+    const sizeRange = useSelector(state => state.gameSettings.size)
+    const speedRange = useSelector(state => state.gameSettings.speed)
+
     const [windowWidth, setWindowWidth] = useState(window.innerWidth * (boundRange / 100))
     const [windowHeight, setWindowHeight] = useState(window.innerHeight * (boundRange / 100))
     const [cols, setCols] = useState(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
@@ -44,9 +47,9 @@ export default function Home({ rootTheme }) {
     }
 
     const resetSettings = () => {
-        setSpeedRange(1000)
-        setSizeRange(60)
-        setBoundRange(100)
+        dispatch(setSpeed(1000))
+        dispatch(setSize(60))
+        dispatch(setBound(100))
     }
 
     const toggleActive = (index) => {
@@ -358,15 +361,15 @@ export default function Home({ rootTheme }) {
                                 </div>
                                 <div className="boundRange" title="Universe bound (modifying this value resets history)">
                                     <label htmlFor="boundRange">Bound</label>
-                                    <input onChange={(e) => setBoundRange(e.target.value)} value={boundRange} id="boundRange" type="range" min="40" max="100" />
+                                    <input onChange={(e) => dispatch(setBound(e.target.value))} value={boundRange} id="boundRange" type="range" min="40" max="100" />
                                 </div>
                                 <div className="sizeRange" title="Cell size (modifying this value resets history)">
                                     <label htmlFor="sizeRange">Size</label>
-                                    <input onChange={(e) => setSizeRange(e.target.value)} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
+                                    <input onChange={(e) => dispatch(setSize(e.target.value))} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
                                 </div>
                                 <div className="speedRange" title="Generation speed">
                                     <label htmlFor="speedRange">Speed</label>
-                                    <input onChange={(e) => setSpeedRange(e.target.value)} value={speedRange} id="speedRange" type="range" min="0" max="1999" />
+                                    <input onChange={(e) => dispatch(setSpeed(e.target.value))} value={speedRange} id="speedRange" type="range" min="0" max="1999" />
                                 </div>
                                 <div className="genBtns">
                                     <button title="Previous generation" onClick={() => {

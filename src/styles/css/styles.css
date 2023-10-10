@@ -102,6 +102,9 @@ body,
   text-decoration: none;
   text-transform: uppercase;
 }
+.mainHeader__site:focus-visible {
+  outline: 1px dotted var(--main-color-light);
+}
 
 .home {
   display: flex;
