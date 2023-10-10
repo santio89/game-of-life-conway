@@ -21,8 +21,8 @@ function App() {
   return (
     <>
       <div ref={rootTheme} className={`root-theme`}>
-        <Modal />
         <BrowserRouter>
+          <Modal />
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Home rootTheme={rootTheme} />} />
