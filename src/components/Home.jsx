@@ -117,6 +117,7 @@ export default function Home({ rootTheme }) {
         }
 
         dispatch(setCells(array))
+        dispatch({ type: "GAME_CLEAR_HISTORY" })
         setCellsFilled(true)
     }
 
@@ -282,12 +283,12 @@ export default function Home({ rootTheme }) {
     }, [sizeRange, windowWidth, windowHeight, boundRange])
 
     useEffect(() => {
-        dispatch({ type: "GAME_CLEAR_HISTORY" })
-    }, [sizeRange, boundRange])
-
-    useEffect(() => {
         cells && reFillArray()
     }, [cols, rows])
+
+    useEffect(() => {
+        dispatch({ type: "GAME_CLEAR_HISTORY" })
+    }, [sizeRange, boundRange])
 
     useEffect(() => {
         fillArray()
