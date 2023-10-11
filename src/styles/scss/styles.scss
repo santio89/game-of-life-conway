@@ -260,32 +260,6 @@ body,
   align-items: center;
 }
 
-.game-grid-cellSample {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border: 1px solid var(--main-color-dark);
-  transition: background-color 250ms ease-out, opacity 250ms ease-out, filter 250ms ease-out;
-  opacity: 0;
-  filter: grayscale(1);
-  position: fixed;
-  inset: 0;
-  top: 48px;
-  margin: auto;
-  pointer-events: none;
-  z-index: 1;
-
-  &--active {
-    background: var(--main-color);
-    opacity: 1;
-    filter: grayscale(0);
-    box-shadow: 0 0 4px 0 var(--main-color);
-  }
-}
-
 .game-grid {
   flex: 1;
   width: 100%;
