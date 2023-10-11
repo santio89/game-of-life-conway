@@ -370,7 +370,7 @@ export default function Home({ rootTheme }) {
                                         dispatch(setBound(e.target.value));
                                         setUniverseSample(true);
                                         fillArray()
-                                    }} onMouseUp={() => { setUniverseSample(false) }} value={boundRange} id="boundRange" type="range" min="40" max="100" />
+                                    }} onPointerUp={() => { setUniverseSample(false) }} value={boundRange} id="boundRange" type="range" min="40" max="100" />
                                 </div>
                                 <div className="sizeRange" title="Cell size (modifying this value resets history)">
                                     <label htmlFor="sizeRange">Size</label>
@@ -379,7 +379,7 @@ export default function Home({ rootTheme }) {
                                         setCellSample(true);
                                         fillArray()
                                     }}
-                                        onMouseUp={() => { setCellSample(false) }} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
+                                        onPointerUp={() => { setCellSample(false) }} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
                                 </div>
                                 <div className="speedRange" title="Generation speed">
                                     <label htmlFor="speedRange">Speed</label>
@@ -411,7 +411,7 @@ export default function Home({ rootTheme }) {
             </div>
             <div className="game-grid-wrapper">
                 {cellSample && <div className={`game-grid-cellSample game-grid-cellSample--active`} style={{ width: `${sizeRange}px`, height: `${sizeRange}px` }}>&nbsp;</div>}
-                <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px`, width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`, height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}` }} onMouseDown={cellFillStart} onMouseUp={cellFillEnd}>
+                <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px`, width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`, height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}` }} onPointerDown={cellFillStart} onPointerUp={cellFillEnd}>
                     {cellsFilled && cells?.map((cell, index) => {
                         return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} universeSample={universeSample} />
                     })}
