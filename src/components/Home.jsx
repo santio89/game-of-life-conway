@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { setThemeReducer, setColorReducer } from "../store/actions/theme.action";
+import { setThemeReducer, setColorReducer, setGridReducer } from "../store/actions/theme.action";
 import { setModal } from "../store/actions/modal.action";
 import { setBound, setSize, setSpeed } from "../store/actions/gameSettings.action";
 import { setCells } from "../store/actions/game.action";
@@ -11,11 +11,13 @@ import { Link } from "react-router-dom";
 
 export default function Home({ rootTheme }) {
     const dispatch = useDispatch()
-    const darkTheme = useSelector(state => state.theme.darkTheme)
-    const colorTheme = useSelector(state => state.theme.colorTheme)
     const modalActive = useSelector(state => state.modal.active)
     const [cellsFilled, setCellsFilled] = useState(false)
     const cells = useSelector(state => state.game.present.cells)
+
+    const darkTheme = useSelector(state => state.theme.darkTheme)
+    const colorTheme = useSelector(state => state.theme.colorTheme)
+    const gridMode = useSelector(state => state.theme.gridMode)
 
     const boundRange = useSelector(state => state.gameSettings.bound)
     const sizeRange = useSelector(state => state.gameSettings.size)
@@ -29,8 +31,6 @@ export default function Home({ rootTheme }) {
     const [wasPlaying, setWasPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
     const [settingsOpen, setSettingsOpen] = useState(false)
-    const [cellSample, setCellSample] = useState(false)
-    const [universeSample, setUniverseSample] = useState(false)
 
     const toggleDarkTheme = () => {
         darkTheme ? dispatch(setThemeReducer(false)) : dispatch(setThemeReducer(true))
@@ -349,7 +349,8 @@ export default function Home({ rootTheme }) {
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-rainbow" viewBox="0 0 16 16">
                                             <path d="M8 4.5a7 7 0 0 0-7 7 .5.5 0 0 1-1 0 8 8 0 1 1 16 0 .5.5 0 0 1-1 0 7 7 0 0 0-7-7zm0 2a5 5 0 0 0-5 5 .5.5 0 0 1-1 0 6 6 0 1 1 12 0 .5.5 0 0 1-1 0 5 5 0 0 0-5-5zm0 2a3 3 0 0 0-3 3 .5.5 0 0 1-1 0 4 4 0 1 1 8 0 .5.5 0 0 1-1 0 3 3 0 0 0-3-3zm0 2a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 4 0 .5.5 0 0 1-1 0 1 1 0 0 0-1-1z" />
                                         </svg>
-                                    </button> {
+                                    </button>
+                                    {
                                         darkTheme ?
                                             <button title="Light Theme" onClick={() => toggleDarkTheme()}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="bi bi-brightness-high-fill" viewBox="0 0 16 16">
@@ -368,24 +369,29 @@ export default function Home({ rootTheme }) {
                                     <label htmlFor="boundRange">Bound</label>
                                     <input onChange={(e) => {
                                         dispatch(setBound(e.target.value));
-                                        setUniverseSample(true);
                                         fillArray()
-                                    }} onPointerUp={() => { setUniverseSample(false) }} value={boundRange} id="boundRange" type="range" min="40" max="100" />
+                                    }} value={boundRange} id="boundRange" type="range" min="40" max="100" />
                                 </div>
                                 <div className="sizeRange" title="Cell size (modifying this value resets history)">
                                     <label htmlFor="sizeRange">Size</label>
                                     <input onChange={(e) => {
                                         dispatch(setSize(e.target.value));
-                                        setUniverseSample(true);
                                         fillArray()
-                                    }}
-                                        onPointerUp={() => { setUniverseSample(false) }} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
+                                    }} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
                                 </div>
                                 <div className="speedRange" title="Generation speed">
                                     <label htmlFor="speedRange">Speed</label>
                                     <input onChange={(e) => dispatch(setSpeed(e.target.value))} value={speedRange} id="speedRange" type="range" min="0" max="1984" /* |1984-2000|=16ms(60fps) */ />
                                 </div>
                                 <div className="genBtns">
+                                    {
+                                        <button title="Toggle grid" onClick={() => { gridMode ? dispatch(setGridReducer(false)) : dispatch(setGridReducer(true)) }} className={`${gridMode && "active"}`}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-grid-3x3" viewBox="0 0 16 16">
+                                                <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13zM1.5 1a.5.5 0 0 0-.5.5V5h4V1H1.5zM5 6H1v4h4V6zm1 4h4V6H6v4zm-1 1H1v3.5a.5.5 0 0 0 .5.5H5v-4zm1 0v4h4v-4H6zm5 0v4h3.5a.5.5 0 0 0 .5-.5V11h-4zm0-1h4V6h-4v4zm0-5h4V1.5a.5.5 0 0 0-.5-.5H11v4zm-1 0V1H6v4h4z" />
+                                            </svg>
+                                        </button>
+                                    }
+
                                     <button title="Previous generation" onClick={() => {
                                         dispatch({ type: "GAME_UNDO" })
                                     }}>
@@ -412,7 +418,7 @@ export default function Home({ rootTheme }) {
             <div className="game-grid-wrapper">
                 <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px`, width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`, height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}` }} onPointerDown={cellFillStart} onPointerUp={cellFillEnd}>
                     {cellsFilled && cells?.map((cell, index) => {
-                        return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} universeSample={universeSample} />
+                        return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} gridMode={gridMode} />
                     })}
                 </div>
             </div>

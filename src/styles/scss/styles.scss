@@ -229,6 +229,10 @@ body,
         max-width: 60px;
         accent-color: var(--main-color-light);
         cursor: pointer;
+
+        &:focus-visible {
+          outline: 1px dotted var(--main-color)
+        }
       }
     }
 
@@ -306,7 +310,7 @@ body,
       box-shadow: 0 0 4px 0 var(--main-color);
     }
 
-    &.universeSample {
+    &.gridMode {
       opacity: .1;
       filter: grayscale(0);
       box-shadow: 0 0 2px 0 var(--main-color);

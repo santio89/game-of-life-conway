@@ -215,6 +215,11 @@ body,
   accent-color: var(--main-color-light);
   cursor: pointer;
 }
+.home__buttons .speedRange input:focus-visible,
+.home__buttons .sizeRange input:focus-visible,
+.home__buttons .boundRange input:focus-visible {
+  outline: 1px dotted var(--main-color);
+}
 .home__buttons .clearBtns,
 .home__buttons .genBtns {
   display: flex;
@@ -285,7 +290,7 @@ body,
   filter: grayscale(0);
   box-shadow: 0 0 4px 0 var(--main-color);
 }
-.game-grid__cell.universeSample {
+.game-grid__cell.gridMode {
   opacity: 0.1;
   filter: grayscale(0);
   box-shadow: 0 0 2px 0 var(--main-color);

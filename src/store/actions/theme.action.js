@@ -17,3 +17,13 @@ export const setColorReducer = (colorTheme) => {
         })
     }
 }
+
+export const setGridReducer = (gridMode) => {
+
+    return async dispatch => {
+        dispatch({
+            type: "SET_GRID",
+            gridMode
+        })
+    }
+}

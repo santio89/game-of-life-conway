@@ -1,6 +1,7 @@
 const initialState = {
     darkTheme: true,
-    colorTheme: "rgb(70, 171, 226)"
+    colorTheme: "rgb(70, 171, 226)",
+    gridMode: false
 }
 
 const ThemeReducer = (state = initialState, action) => {
@@ -9,6 +10,8 @@ const ThemeReducer = (state = initialState, action) => {
             return { ...state, darkTheme: action.darkTheme }
         case 'SET_COLOR':
             return { ...state, colorTheme: action.colorTheme }
+        case 'SET_GRID':
+            return { ...state, gridMode: action.gridMode }
         default:
             return state
     }
