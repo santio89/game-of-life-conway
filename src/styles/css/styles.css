@@ -327,6 +327,7 @@ body,
 }
 .modal__header svg {
   filter: drop-shadow(0 0 2px var(--main-color));
+  color: var(--main-color-light);
 }
 .modal__lang {
   font: inherit;
