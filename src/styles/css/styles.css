@@ -238,6 +238,32 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.game-grid-cellSample {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--main-color-dark);
+  transition: background-color 250ms ease-out, opacity 250ms ease-out, filter 250ms ease-out;
+  opacity: 0;
+  filter: grayscale(1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+  z-index: 1;
+}
+.game-grid-cellSample--active {
+  background: var(--main-color);
+  opacity: 1;
+  filter: grayscale(0);
+  box-shadow: 0 0 4px 0 var(--main-color);
 }
 
 .game-grid {
@@ -259,12 +285,12 @@ body,
 }
 .game-grid.bound {
   outline: 1px solid var(--main-white);
-  box-shadow: 0 0 2rem -1rem var(--main-white);
+  box-shadow: 0 0 2rem -1rem var(--main-white), 0 0 1rem -0.5rem var(--main-white) inset;
 }
 @supports (background: color-mix(in srgb, white, black)) {
   .game-grid.bound {
     outline: 1px solid var(--main-color-dark);
-    box-shadow: 0 0 2rem -1rem var(--main-color-dark);
+    box-shadow: 0 0 2rem -1rem var(--main-color-dark), 0 0 1rem -0.5rem var(--main-color-dark) inset;
   }
 }
 .game-grid__cell {
@@ -275,7 +301,7 @@ body,
   align-items: center;
   background: transparent;
   border: 1px solid var(--main-color-dark);
-  transition: 250ms ease-out;
+  transition: background-color 250ms ease-out, opacity 250ms ease-out, filter 250ms ease-out, border-color 250ms ease-out, box-shadow 250ms ease-out;
   opacity: 0;
   filter: grayscale(1);
 }
@@ -284,6 +310,11 @@ body,
   opacity: 1;
   filter: grayscale(0);
   box-shadow: 0 0 4px 0 var(--main-color);
+}
+.game-grid__cell.universeSample {
+  opacity: 0.1;
+  filter: grayscale(0);
+  box-shadow: 0 0 2px 0 var(--main-color);
 }
 
 /* modal */

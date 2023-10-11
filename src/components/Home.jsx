@@ -29,6 +29,8 @@ export default function Home({ rootTheme }) {
     const [wasPlaying, setWasPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
     const [settingsOpen, setSettingsOpen] = useState(false)
+    const [cellSample, setCellSample] = useState(false)
+    const [universeSample, setUniverseSample] = useState(false)
 
     const toggleDarkTheme = () => {
         darkTheme ? dispatch(setThemeReducer(false)) : dispatch(setThemeReducer(true))
@@ -87,6 +89,8 @@ export default function Home({ rootTheme }) {
     }
 
     const fillArray = () => {
+        if (cellsFilled && !cells.some(cell => cell.active)) return
+
         const size = cols * rows
         let array = []
 
@@ -362,11 +366,20 @@ export default function Home({ rootTheme }) {
                                 </div>
                                 <div className="boundRange" title="Universe bound (modifying this value resets history)">
                                     <label htmlFor="boundRange">Bound</label>
-                                    <input onChange={(e) => dispatch(setBound(e.target.value))} value={boundRange} id="boundRange" type="range" min="40" max="100" />
+                                    <input onChange={(e) => {
+                                        dispatch(setBound(e.target.value));
+                                        setUniverseSample(true);
+                                        fillArray()
+                                    }} onMouseUp={() => { setUniverseSample(false) }} value={boundRange} id="boundRange" type="range" min="40" max="100" />
                                 </div>
                                 <div className="sizeRange" title="Cell size (modifying this value resets history)">
                                     <label htmlFor="sizeRange">Size</label>
-                                    <input onChange={(e) => dispatch(setSize(e.target.value))} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
+                                    <input onChange={(e) => {
+                                        dispatch(setSize(e.target.value));
+                                        setCellSample(true);
+                                        fillArray()
+                                    }}
+                                        onMouseUp={() => { setCellSample(false) }} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
                                 </div>
                                 <div className="speedRange" title="Generation speed">
                                     <label htmlFor="speedRange">Speed</label>
@@ -397,9 +410,10 @@ export default function Home({ rootTheme }) {
                 </div>
             </div>
             <div className="game-grid-wrapper">
-                <div className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px`, width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`, height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}` }} onMouseDown={cellFillStart} onMouseUp={cellFillEnd}>
+                {cellSample && <div className={`game-grid-cellSample game-grid-cellSample--active`} style={{ width: `${sizeRange}px`, height: `${sizeRange}px` }}>&nbsp;</div>}
+                <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px`, width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`, height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}` }} onMouseDown={cellFillStart} onMouseUp={cellFillEnd}>
                     {cellsFilled && cells?.map((cell, index) => {
-                        return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} />
+                        return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} universeSample={universeSample} />
                     })}
                 </div>
             </div>
