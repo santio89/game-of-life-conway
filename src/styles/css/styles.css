@@ -61,7 +61,7 @@ body,
   line-height: 1.4;
   color: var(--main-white);
   background: var(--main-black);
-  transition: background-color 250ms ease-out;
+  transition: background-color 125ms ease;
   overflow: hidden;
 }
 
@@ -88,7 +88,7 @@ body,
   color: rgb(240, 240, 240);
   width: 100%;
   height: 16px;
-  transition: 250ms ease-out;
+  transition: 125ms ease;
 }
 .mainHeader__site {
   display: flex;
@@ -126,7 +126,7 @@ body,
   color: rgb(240, 240, 240);
   position: relative;
   padding-inline: clamp(0.5rem, 0.5rem + 2vw, 2rem);
-  transition: 250ms ease-out;
+  transition: 125ms ease;
   z-index: 2;
   position: relative;
   box-shadow: 0 -1rem 2rem 0 var(--main-color-dark);
@@ -156,7 +156,7 @@ body,
   padding: 0.25rem;
   border-top: none;
   pointer-events: none;
-  transition: 250ms ease-out;
+  transition: 125ms ease;
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
 }
 .home__buttons__settings__opts.active {
@@ -180,24 +180,21 @@ body,
   font-weight: bold;
   font-size: 2em;
   cursor: pointer;
-  transition: color 250ms ease-out, filter 250ms ease-out, scale 125ms ease-out;
+  transition: color 125ms ease, filter 125ms ease, scale 125ms ease;
 }
 .home__buttons__box button:hover, .home__buttons__box button.active {
   color: var(--main-color-light);
   filter: drop-shadow(0 0 2px var(--main-color));
-  transition-duration: 125ms;
 }
 .home__buttons__box button:focus-visible {
   outline: 1px dotted var(--main-color-light);
   color: var(--main-color-light);
   filter: drop-shadow(0 0 2px var(--main-color));
-  transition-duration: 125ms;
 }
 .home__buttons__box button:active {
   scale: 0.9;
   color: var(--main-color-light);
   filter: drop-shadow(0 0 2px var(--main-color));
-  transition-duration: 125ms;
 }
 .home__buttons .speedRange,
 .home__buttons .sizeRange,
@@ -259,7 +256,7 @@ body,
   user-select: none;
   cursor: crosshair;
   outline: 1px solid transparent;
-  transition: box-shadow 250ms ease-out, outline-color 250ms ease-out;
+  transition: box-shadow 125ms ease, outline-color 125ms ease;
   overflow: hidden;
 }
 .game-grid.bound {
@@ -280,7 +277,7 @@ body,
   align-items: center;
   background: transparent;
   border: 1px solid var(--main-color-dark);
-  transition: background-color 250ms ease-out, opacity 250ms ease-out, filter 250ms ease-out, border-color 250ms ease-out, box-shadow 250ms ease-out;
+  transition: background-color 125ms ease, opacity 125ms ease, filter 125ms ease, border-color 125ms ease, box-shadow 125ms ease;
   opacity: 0;
   filter: grayscale(1);
 }
@@ -310,7 +307,7 @@ body,
   background-color: var(--main-color-dark);
   color: rgb(240, 240, 240);
   font-size: 1rem;
-  transition: background-color 250ms ease-out, box-shadow 250ms ease-out;
+  transition: background-color 125ms ease, box-shadow 125ms ease;
   box-shadow: 0 0 4rem -1rem var(--main-color-dark);
 }
 .modalWrapper::backdrop {
@@ -346,14 +343,13 @@ body,
   background: none;
   cursor: pointer;
   color: var(--main-gray);
-  transition: color 250ms ease-out, scale 125ms ease-out;
+  transition: color 125ms ease, scale 125ms ease;
 }
 .modal__lang.active {
   color: var(--main-color);
 }
 .modal__lang:hover, .modal__lang:focus-visible {
   color: var(--main-color);
-  transition-duration: 125ms;
 }
 .modal__body {
   display: flex;
@@ -384,23 +380,20 @@ body,
   padding: 0.5rem;
   color: var(--main-color-dark);
   cursor: pointer;
-  transition: color 250ms ease-out, background-color 250ms ease-out, border-color 250ms ease-out, scale 125ms ease-out;
+  transition: color 125ms ease, background-color 125ms ease, border-color 125ms ease, scale 125ms ease;
 }
 .modal__close:hover {
   color: rgb(240, 240, 240);
   border-color: rgb(240, 240, 240);
-  transition-duration: 125ms;
 }
 .modal__close:focus-visible {
   border-color: rgb(240, 240, 240);
   color: rgb(240, 240, 240);
-  transition-duration: 125ms;
 }
 .modal__close:active {
   scale: 0.9;
   color: rgb(240, 240, 240);
   border-color: rgb(240, 240, 240);
-  transition-duration: 125ms;
 }
 
 /* end modal */
@@ -430,14 +423,14 @@ body,
   text-decoration: none;
   background-color: var(--main-color);
   padding: 0.5em;
-  transition: 250ms scale ease-out;
+  transition: 125ms scale ease;
 }
 .notFound__inner a:hover, .notFound__inner a:focus-visible {
   outline: 2px solid var(--main-color-dark);
 }
 .notFound__inner a:active {
   outline: 2px solid var(--main-color-dark);
-  transition: 250ms ease-out;
+  transition: 125ms ease;
   scale: 0.9;
 }
 

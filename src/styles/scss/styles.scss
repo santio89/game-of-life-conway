@@ -66,7 +66,7 @@ body,
   line-height: 1.4;
   color: var(--main-white);
   background: var(--main-black);
-  transition: background-color 250ms ease-out;
+  transition: background-color 125ms ease;
   overflow: hidden;
 }
 
@@ -93,7 +93,7 @@ body,
   color: rgb(240, 240, 240);
   width: 100%;
   height: 16px;
-  transition: 250ms ease-out;
+  transition: 125ms ease;
 
   &__site {
     display: flex;
@@ -133,7 +133,7 @@ body,
     color: rgb(240, 240, 240);
     position: relative;
     padding-inline: clamp(.5rem, .5rem + 2vw, 2rem);
-    transition: 250ms ease-out;
+    transition: 125ms ease;
     z-index: 2;
     position: relative;
     box-shadow: 0 -1rem 2rem 0 var(--main-color-dark);
@@ -164,7 +164,7 @@ body,
         padding: .25rem;
         border-top: none;
         pointer-events: none;
-        transition: 250ms ease-out;
+        transition: 125ms ease;
         box-shadow: 0 0 2rem -1rem var(--main-color-dark);
 
         &.active {
@@ -191,27 +191,24 @@ body,
         font-weight: bold;
         font-size: 2em;
         cursor: pointer;
-        transition: color 250ms ease-out, filter 250ms ease-out, scale 125ms ease-out;
+        transition: color 125ms ease, filter 125ms ease, scale 125ms ease;
 
         &:hover,
         &.active {
           color: var(--main-color-light);
           filter: drop-shadow(0 0 2px var(--main-color));
-          transition-duration: 125ms;
         }
 
         &:focus-visible {
           outline: 1px dotted var(--main-color-light);
           color: var(--main-color-light);
           filter: drop-shadow(0 0 2px var(--main-color));
-          transition-duration: 125ms;
         }
 
         &:active {
           scale: .9;
           color: var(--main-color-light);
           filter: drop-shadow(0 0 2px var(--main-color));
-          transition-duration: 125ms;
         }
       }
     }
@@ -278,7 +275,7 @@ body,
   user-select: none;
   cursor: crosshair;
   outline: 1px solid transparent;
-  transition: box-shadow 250ms ease-out, outline-color 250ms ease-out;
+  transition: box-shadow 125ms ease, outline-color 125ms ease;
   overflow: hidden;
 
   &.bound {
@@ -299,7 +296,7 @@ body,
     align-items: center;
     background: transparent;
     border: 1px solid var(--main-color-dark);
-    transition: background-color 250ms ease-out, opacity 250ms ease-out, filter 250ms ease-out, border-color 250ms ease-out, box-shadow 250ms ease-out;
+    transition: background-color 125ms ease, opacity 125ms ease, filter 125ms ease, border-color 125ms ease, box-shadow 125ms ease;
     opacity: 0;
     filter: grayscale(1);
 
@@ -333,7 +330,7 @@ body,
   background-color: var(--main-color-dark);
   color: rgb(240, 240, 240);
   font-size: 1rem;
-  transition: background-color 250ms ease-out, box-shadow 250ms ease-out;
+  transition: background-color 125ms ease, box-shadow 125ms ease;
   box-shadow: 0 0 4rem -1rem var(--main-color-dark);
 
   &::backdrop {
@@ -372,7 +369,7 @@ body,
     background: none;
     cursor: pointer;
     color: var(--main-gray);
-    transition: color 250ms ease-out, scale 125ms ease-out;
+    transition: color 125ms ease, scale 125ms ease;
 
     &.active {
       color: var(--main-color);
@@ -381,7 +378,6 @@ body,
     &:hover,
     &:focus-visible {
       color: var(--main-color);
-      transition-duration: 125ms;
     }
   }
 
@@ -419,25 +415,22 @@ body,
     padding: .5rem;
     color: var(--main-color-dark);
     cursor: pointer;
-    transition: color 250ms ease-out, background-color 250ms ease-out, border-color 250ms ease-out, scale 125ms ease-out;
+    transition: color 125ms ease, background-color 125ms ease, border-color 125ms ease, scale 125ms ease;
 
     &:hover {
       color: rgb(240, 240, 240);
       border-color: rgb(240, 240, 240);
-      transition-duration: 125ms;
     }
 
     &:focus-visible {
       border-color: rgb(240, 240, 240);
       color: rgb(240, 240, 240);
-      transition-duration: 125ms;
     }
 
     &:active {
       scale: .9;
       color: rgb(240, 240, 240);
       border-color: rgb(240, 240, 240);
-      transition-duration: 125ms;
     }
   }
 }
@@ -471,7 +464,7 @@ body,
       text-decoration: none;
       background-color: var(--main-color);
       padding: .5em;
-      transition: 250ms scale ease-out;
+      transition: 125ms scale ease;
 
       &:hover,
       &:focus-visible {
@@ -480,7 +473,7 @@ body,
 
       &:active {
         outline: 2px solid var(--main-color-dark);
-        transition: 250ms ease-out;
+        transition: 125ms ease;
         scale: .9;
       }
     }
