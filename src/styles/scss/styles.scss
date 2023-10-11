@@ -385,6 +385,10 @@ body,
     a {
       color: var(--main-color);
       text-decoration: none;
+
+      &:focus-visible {
+        outline: 1px dotted var(--main-color)
+      }
     }
   }
 
