@@ -303,17 +303,17 @@ body,
     opacity: 0;
     filter: grayscale(1);
 
+    &--gridMode {
+      opacity: .1;
+      filter: grayscale(0);
+      box-shadow: 0 0 2px 0 var(--main-color);
+    }
+
     &--active {
       background: var(--main-color);
       opacity: 1;
       filter: grayscale(0);
       box-shadow: 0 0 4px 0 var(--main-color);
-    }
-
-    &.gridMode {
-      opacity: .1;
-      filter: grayscale(0);
-      box-shadow: 0 0 2px 0 var(--main-color);
     }
   }
 }
