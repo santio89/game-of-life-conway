@@ -383,7 +383,7 @@ export default function Home({ rootTheme }) {
                                 </div>
                                 <div className="speedRange" title="Generation speed">
                                     <label htmlFor="speedRange">Speed</label>
-                                    <input onChange={(e) => dispatch(setSpeed(e.target.value))} value={speedRange} id="speedRange" type="range" min="0" max="1999" />
+                                    <input onChange={(e) => dispatch(setSpeed(e.target.value))} value={speedRange} id="speedRange" type="range" min="0" max="1984" /* |1984-2000|=16ms(60fps) */ />
                                 </div>
                                 <div className="genBtns">
                                     <button title="Previous generation" onClick={() => {
