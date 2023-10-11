@@ -406,7 +406,7 @@ export default function Home({ rootTheme }) {
                                     </button>
                                 </div>
                                 <div className="clearBtns">
-                                    <button title="Reset settings" onClick={resetSettings}>Reset</button>
+                                    <button title="Reset settings (bound/size/speed)" onClick={resetSettings}>Reset</button>
                                     <button title="Clear cells" onClick={fillArray}>Clear</button>
                                 </div>
                             </div>
