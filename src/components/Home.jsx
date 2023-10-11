@@ -143,6 +143,7 @@ export default function Home({ rootTheme }) {
 
     const calcGen = () => {
         const cellsCopy = [...cells]
+        if (!cellsCopy.some(cell => cell.active)) return
 
         const getNeighbors = (i) => {
             const size = cols * rows;
