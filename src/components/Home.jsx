@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { setThemeReducer, setColorReducer, setGridReducer } from "../store/actions/theme.action";
 import { setModal } from "../store/actions/modal.action";
@@ -31,6 +31,8 @@ export default function Home({ rootTheme }) {
     const [wasPlaying, setWasPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
     const [settingsOpen, setSettingsOpen] = useState(false)
+
+    const lastTouch = useRef(null)
 
     const toggleDarkTheme = () => {
         darkTheme ? dispatch(setThemeReducer(false)) : dispatch(setThemeReducer(true))
@@ -65,6 +67,7 @@ export default function Home({ rootTheme }) {
         cellsCopy[index] = modCell()
 
         dispatch(setCells(cellsCopy))
+        lastTouch.current = index;
     }
 
     const cellFillStart = () => {
@@ -416,9 +419,16 @@ export default function Home({ rootTheme }) {
                 </div>
             </div>
             <div className="game-grid-wrapper">
-                <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px`, width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`, height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}` }} onPointerDown={cellFillStart} onPointerUp={cellFillEnd}>
+                <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px`, width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`, height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}` }} onPointerDown={cellFillStart} onPointerUp={cellFillEnd} onTouchMove={(e) => {
+                    const touch = e.touches[0];
+                    const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+                    if (cell) {
+                        if (lastTouch.current == cell.dataset.index) return
+                        toggleActive(cell.dataset.index)
+                    }
+                }}>
                     {cellsFilled && cells?.map((cell, index) => {
-                        return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} gridMode={gridMode} />
+                        return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} gridMode={gridMode} lastTouch={lastTouch} />
                     })}
                 </div>
             </div>
