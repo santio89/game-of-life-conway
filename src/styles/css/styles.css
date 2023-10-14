@@ -284,7 +284,6 @@ body,
 .game-grid__cell--gridMode {
   opacity: 0.1;
   filter: grayscale(0);
-  box-shadow: 0 0 2px 0 var(--main-color);
 }
 .game-grid__cell--active {
   background: var(--main-color);

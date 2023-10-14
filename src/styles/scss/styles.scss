@@ -303,7 +303,6 @@ body,
     &--gridMode {
       opacity: .1;
       filter: grayscale(0);
-      box-shadow: 0 0 2px 0 var(--main-color);
     }
 
     &--active {
