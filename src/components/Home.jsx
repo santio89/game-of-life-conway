@@ -43,7 +43,7 @@ export default function Home({ rootTheme }) {
     }
 
     const startGame = () => {
-        setPlaying(true) 
+        setPlaying(true)
     }
 
     const stopGame = () => {
@@ -133,17 +133,16 @@ export default function Home({ rootTheme }) {
     }
 
     const calcRandomGen = () => {
+        const size = cols * rows
         let array = []
 
-        for (let i = 1; i <= cols; i++) {
-            for (let j = 1; j <= rows; j++) {
-                const isActive = Math.round(Math.random() * 2);
+        for (let i = 1; i <= size; i++) {
+            const isActive = Math.round(Math.random() * 2);
 
-                array.push({
-                    id: uuidv4(),
-                    active: isActive === 0 ? true : false,
-                })
-            }
+            array.push({
+                id: uuidv4(),
+                active: isActive === 0 ? true : false,
+            })
         }
         dispatch(setCells(array))
     }
