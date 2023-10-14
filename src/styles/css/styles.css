@@ -277,18 +277,15 @@ body,
   align-items: center;
   background: transparent;
   border: 1px solid var(--main-color-dark);
-  transition: background-color 125ms ease, opacity 125ms ease, filter 125ms ease, border-color 125ms ease, box-shadow 125ms ease;
+  transition: background-color 125ms ease, opacity 125ms ease, border-color 125ms ease, box-shadow 125ms ease;
   opacity: 0;
-  filter: grayscale(1);
 }
 .game-grid__cell--gridMode {
   opacity: 0.1;
-  filter: grayscale(0);
 }
 .game-grid__cell--active {
   background: var(--main-color);
   opacity: 1;
-  filter: grayscale(0);
   box-shadow: 0 0 4px 0 var(--main-color);
 }
 
