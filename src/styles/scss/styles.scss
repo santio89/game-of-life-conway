@@ -304,8 +304,8 @@ body,
     }
 
     &--active {
-      background: var(--main-color);
       opacity: 1;
+      background: var(--main-color);
       box-shadow: 0 0 4px 0 var(--main-color);
     }
   }
