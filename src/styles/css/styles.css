@@ -68,7 +68,6 @@ body,
 .light-theme {
   --main-black: rgb(240, 240, 240);
   --main-white: rgb(30, 30, 30);
-  --main-gray: rgb(140,140,140) ;
 }
 
 .mainContainer {
@@ -277,7 +276,7 @@ body,
   justify-content: center;
   align-items: center;
   background: transparent;
-  border: 1px dashed var(--main-gray);
+  border: 1px solid var(--main-color);
   transition: background-color 125ms ease, opacity 125ms ease, border-color 125ms ease, box-shadow 125ms ease;
   opacity: 0;
 }
