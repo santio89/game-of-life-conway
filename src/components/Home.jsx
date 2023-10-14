@@ -43,7 +43,7 @@ export default function Home({ rootTheme }) {
     }
 
     const startGame = () => {
-        setPlaying(true)
+        setPlaying(true) 
     }
 
     const stopGame = () => {
@@ -419,7 +419,7 @@ export default function Home({ rootTheme }) {
                 </div>
             </div>
             <div className="game-grid-wrapper">
-                <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px`, width: `${boundRange != 100 ? (cols * sizeRange) + "px" : "100%"}`, height: `${boundRange != 100 ? (rows * sizeRange) + "px" : "100%"}` }} onPointerDown={cellFillStart} onPointerUp={cellFillEnd} onTouchMove={(e) => {
+                <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px`, width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`, height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}` }} onPointerDown={cellFillStart} onPointerUp={cellFillEnd} onTouchMove={(e) => {
                     const touch = e.touches[0];
                     const cell = document.elementFromPoint(touch.clientX, touch.clientY);
                     if (cell) {
