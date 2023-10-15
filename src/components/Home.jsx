@@ -113,7 +113,6 @@ export default function Home({ rootTheme }) {
         const size = cols * rows
         let array = [...cells]
 
-        /* hacky method for dynamic resize */
         for (let i = 1; i <= size; i++) {
             array.push({
                 id: uuidv4(),
