@@ -65,9 +65,12 @@ body,
   font-family: var(--font-primary);
   line-height: 1.4;
   color: var(--main-white);
-  background: var(--main-black);
-  transition: background-color 125ms ease;
   overflow: hidden;
+}
+
+.root-theme {
+  background: var(--main-black);
+  /*  transition: background-color 125ms ease; */
 }
 
 .light-theme {
@@ -296,12 +299,12 @@ body,
     align-items: center;
     background: transparent;
     border: 1px solid transparent;
-    transition: background-color 125ms ease, opacity 125ms ease, border-color 125ms ease, box-shadow 125ms ease;
     opacity: 0;
+    /*   transition: background-color 125ms ease, opacity 125ms ease, border-color 125ms, box-shadow 125ms ease; */
 
     &--gridMode {
-      border-color: var(--main-color);
       opacity: .1;
+      border-color: var(--main-color);
     }
 
     &--active {
