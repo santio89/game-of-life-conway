@@ -285,8 +285,8 @@ body,
 }
 .game-grid__cell--active {
   opacity: 1;
-  background: var(--main-color);
-  border: 1px solid var(--main-color-dark);
+  background-color: var(--main-color);
+  border-color: var(--main-color-dark);
   box-shadow: 0 0 4px 0 var(--main-color);
 }
 
