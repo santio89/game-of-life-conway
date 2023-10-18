@@ -295,11 +295,12 @@ body,
     justify-content: center;
     align-items: center;
     background: transparent;
-    border: 1px solid var(--main-color);
+    border: 1px solid transparent;
     transition: background-color 125ms ease, opacity 125ms ease, border-color 125ms ease, box-shadow 125ms ease;
     opacity: 0;
 
     &--gridMode {
+      border-color: var(--main-color);
       opacity: .1;
     }
 
