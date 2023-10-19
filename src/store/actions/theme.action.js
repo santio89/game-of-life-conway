@@ -27,3 +27,13 @@ export const setGridReducer = (gridMode) => {
         })
     }
 }
+
+export const setInfoReducer = (gameInfo) => {
+
+    return async dispatch => {
+        dispatch({
+            type: "SET_INFO",
+            gameInfo
+        })
+    }
+}

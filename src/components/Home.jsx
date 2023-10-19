@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 export default function Home({ rootTheme }) {
     const dispatch = useDispatch()
+    const gameInfo = useSelector(state => state.theme.gameInfo)
     const modalActive = useSelector(state => state.modal.active)
     const [cellsFilled, setCellsFilled] = useState(false)
     const cells = useSelector(state => state.game.present.cells)
@@ -296,6 +297,9 @@ export default function Home({ rootTheme }) {
         }
 
         window.addEventListener("resize", adjustGrid)
+
+        /* game info check */
+        gameInfo && dispatch(setModal(true))
 
         return () => window.removeEventListener("resize", adjustGrid)
     }, [])

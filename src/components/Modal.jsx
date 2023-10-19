@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { setModal } from '../store/actions/modal.action';
+import { setInfoReducer } from '../store/actions/theme.action';
 import { Link } from 'react-router-dom';
 
 export default function Modal() {
-    const modalActive = useSelector(state => state.modal.active)
     const dispatch = useDispatch()
+    const modalActive = useSelector(state => state.modal.active)
+    const gameInfo = useSelector(state => state.theme.gameInfo)
     const modal = useRef()
     const [textLang, setTextLang] = useState("eng")
 
@@ -38,6 +40,8 @@ export default function Modal() {
                 modal.current.scrollTop = 0;
             }
         } else {
+            gameInfo && dispatch(setInfoReducer(false))
+
             try {
                 document.startViewTransition(() => {
                     modal.current.close()
