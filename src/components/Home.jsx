@@ -91,7 +91,7 @@ export default function Home({ rootTheme }) {
         dispatch(setColorReducer(cellColor))
     }
 
-    const fillArray = () => {
+    const fillArray = useCallback(() => {
         if (cellsFilled && !cells.some(cell => cell.active)) return
 
         const size = cols * rows
@@ -107,9 +107,9 @@ export default function Home({ rootTheme }) {
         dispatch(setCells(array))
         dispatch({ type: "GAME_CLEAR_HISTORY" })
         setCellsFilled(true)
-    }
+    }, [cellsFilled, cells, cols, rows, dispatch])
 
-    const reFillArray = () => {
+    const reFillArray = useCallback(() => {
         const size = cols * rows
         let array = [...cells]
 
@@ -128,10 +128,9 @@ export default function Home({ rootTheme }) {
 
         dispatch(setCells(array))
         dispatch({ type: "GAME_CLEAR_HISTORY" })
-        setCellsFilled(true)
-    }
+    }, [cells, cols, rows, dispatch])
 
-    const calcRandomGen = () => {
+    const calcRandomGen = useCallback(() => {
         const size = cols * rows
         let array = []
 
@@ -142,7 +141,7 @@ export default function Home({ rootTheme }) {
             })
         }
         dispatch(setCells(array))
-    }
+    }, [cols, rows, dispatch])
 
     const calcGen = useCallback(() => {
         const cellsCopy = [...cells]
