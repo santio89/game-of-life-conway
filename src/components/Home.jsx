@@ -285,6 +285,7 @@ export default function Home({ rootTheme }) {
     }, [cols, rows])
 
     useEffect(() => {
+        fillArray()
         dispatch({ type: "GAME_CLEAR_HISTORY" })
     }, [sizeRange, boundRange])
 
@@ -364,14 +365,12 @@ export default function Home({ rootTheme }) {
                                     <label htmlFor="boundRange">Bound</label>
                                     <input onChange={(e) => {
                                         dispatch(setBound(e.target.value));
-                                        fillArray()
                                     }} value={boundRange} id="boundRange" type="range" min="40" max="100" />
                                 </div>
                                 <div className="sizeRange" title="Cell size (modifying this value resets history)">
                                     <label htmlFor="sizeRange">Size</label>
                                     <input onChange={(e) => {
                                         dispatch(setSize(e.target.value));
-                                        fillArray()
                                     }} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
                                 </div>
                                 <div className="speedRange" title="Generation speed">
