@@ -172,11 +172,8 @@ export default function Home({ rootTheme }) {
                     /* -1, +cols, +cols-1 */
                 } else {
                     if (cellsCopy[i - 1]?.active) neighbors++
-
                     if (cellsCopy[i + 1]?.active) neighbors++
-
                     if (cellsCopy[i + cols]?.active) neighbors++
-
                     if (cellsCopy[i + cols + 1]?.active) neighbors++
                     if (cellsCopy[i + cols - 1]?.active) neighbors++
                     /* -1, +1, +cols, +cols+1, +cols-1 */
