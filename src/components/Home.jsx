@@ -153,31 +153,7 @@ export default function Home({ rootTheme }) {
             let neighbors = 0;
             /* neighbors can potentially be -1, +1, -cols, -cols-1, -cols+1, +cols, +cols-1, +cols-1 */
 
-            if (i < cols) {
-                /* first row, -cols not neighbor */
-
-                /* first column, -1 not neighbor */
-                if (i % cols === 0) {
-                    if (cellsCopy[i + 1]?.active) neighbors++
-                    if (cellsCopy[i + cols]?.active) neighbors++
-                    if (cellsCopy[i + cols + 1]?.active) neighbors++
-                    /* +1, +cols, +cols+1 */
-
-                    /* last column, +1 not neighbor */
-                } else if ((i + 1) % cols === 0) {
-                    if (cellsCopy[i - 1]?.active) neighbors++
-                    if (cellsCopy[i + cols]?.active) neighbors++
-                    if (cellsCopy[i + cols - 1]?.active) neighbors++
-                    /* -1, +cols, +cols-1 */
-                } else {
-                    if (cellsCopy[i - 1]?.active) neighbors++
-                    if (cellsCopy[i + 1]?.active) neighbors++
-                    if (cellsCopy[i + cols]?.active) neighbors++
-                    if (cellsCopy[i + cols + 1]?.active) neighbors++
-                    if (cellsCopy[i + cols - 1]?.active) neighbors++
-                    /* -1, +1, +cols, +cols+1, +cols-1 */
-                }
-            } else if (i >= cols && i < (size - cols)) {
+            if (i >= cols && i < (size - cols)) {
                 /* middle rows */
 
                 /* first column, -1 not neighbor */
@@ -207,6 +183,30 @@ export default function Home({ rootTheme }) {
                     if (cellsCopy[i - cols + 1]?.active) neighbors++
                     if (cellsCopy[i - cols - 1]?.active) neighbors++
                     /* -1, +1, +cols, +cols+1, +cols-1, -cols, -cols+1, -cols-1 */
+                }
+            } else if (i < cols) {
+                /* first row, -cols not neighbor */
+
+                /* first column, -1 not neighbor */
+                if (i % cols === 0) {
+                    if (cellsCopy[i + 1]?.active) neighbors++
+                    if (cellsCopy[i + cols]?.active) neighbors++
+                    if (cellsCopy[i + cols + 1]?.active) neighbors++
+                    /* +1, +cols, +cols+1 */
+
+                    /* last column, +1 not neighbor */
+                } else if ((i + 1) % cols === 0) {
+                    if (cellsCopy[i - 1]?.active) neighbors++
+                    if (cellsCopy[i + cols]?.active) neighbors++
+                    if (cellsCopy[i + cols - 1]?.active) neighbors++
+                    /* -1, +cols, +cols-1 */
+                } else {
+                    if (cellsCopy[i - 1]?.active) neighbors++
+                    if (cellsCopy[i + 1]?.active) neighbors++
+                    if (cellsCopy[i + cols]?.active) neighbors++
+                    if (cellsCopy[i + cols + 1]?.active) neighbors++
+                    if (cellsCopy[i + cols - 1]?.active) neighbors++
+                    /* -1, +1, +cols, +cols+1, +cols-1 */
                 }
             } else if (i >= (size - cols)) {
                 /* last row, +cols not neighbor */
