@@ -386,7 +386,6 @@ export default function Home({ rootTheme }) {
                                             </svg>
                                         </button>
                                     }
-
                                     <button title="Previous generation" onClick={() => {
                                         dispatch({ type: "GAME_UNDO" })
                                     }}>
