@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { setThemeReducer, setColorReducer, setGridReducer } from "../store/actions/theme.action";
 import { setModal } from "../store/actions/modal.action";
@@ -146,7 +146,7 @@ export default function Home({ rootTheme }) {
         dispatch(setCells(array))
     }
 
-    const calcGen = () => {
+    const calcGen = useCallback(() => {
         const cellsCopy = [...cells]
         if (!cellsCopy.some(cell => cell.active)) return
 
@@ -259,7 +259,7 @@ export default function Home({ rootTheme }) {
         })
 
         dispatch(setCells(newCells))
-    }
+    }, [cells, cols, rows, dispatch])
 
     useEffect(() => {
         rootTheme.current.classList.toggle("light-theme", !darkTheme)
