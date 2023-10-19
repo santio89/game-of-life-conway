@@ -136,11 +136,9 @@ export default function Home({ rootTheme }) {
         let array = []
 
         for (let i = 1; i <= size; i++) {
-            const isActive = Math.round(Math.random() * 2);
-
             array.push({
                 id: uuidv4(),
-                active: isActive === 0 ? true : false,
+                active: Math.random() >= .5 ? true : false,
             })
         }
         dispatch(setCells(array))
