@@ -153,8 +153,9 @@ export default function Home({ rootTheme }) {
             let neighbors = 0;
             /* neighbors can potentially be -1, +1, -cols, -cols-1, -cols+1, +cols, +cols-1, +cols-1 */
 
-            /* first row, -cols not neighbor */
             if (i < cols) {
+                /* first row, -cols not neighbor */
+
                 /* first column, -1 not neighbor */
                 if (i % cols === 0) {
                     if (cellsCopy[i + 1]?.active) neighbors++
@@ -176,10 +177,9 @@ export default function Home({ rootTheme }) {
                     if (cellsCopy[i + cols - 1]?.active) neighbors++
                     /* -1, +1, +cols, +cols+1, +cols-1 */
                 }
-            }
+            } else if (i >= cols && i < (size - cols)) {
+                /* middle rows */
 
-            /* middle rows */
-            if (i >= cols && i < (size - cols)) {
                 /* first column, -1 not neighbor */
                 if (i % cols === 0) {
                     if (cellsCopy[i + 1]?.active) neighbors++
@@ -208,10 +208,9 @@ export default function Home({ rootTheme }) {
                     if (cellsCopy[i - cols - 1]?.active) neighbors++
                     /* -1, +1, +cols, +cols+1, +cols-1, -cols, -cols+1, -cols-1 */
                 }
-            }
+            } else if (i >= (size - cols)) {
+                /* last row, +cols not neighbor */
 
-            /* last row, +cols not neighbor */
-            if (i >= (size - cols)) {
                 /* first column, -1 not neighbor */
                 if (i % cols === 0) {
                     if (cellsCopy[i + 1]?.active) neighbors++

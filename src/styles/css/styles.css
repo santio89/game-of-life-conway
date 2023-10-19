@@ -261,6 +261,7 @@ body,
   outline: 1px solid transparent;
   transition: box-shadow 125ms ease, outline-color 125ms ease;
   overflow: hidden;
+  transition: grid-template-columns 500ms, grid-template-rows 500ms;
 }
 .game-grid.bound {
   outline: 1px solid var(--main-white);
