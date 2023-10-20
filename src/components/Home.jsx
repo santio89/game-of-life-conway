@@ -297,7 +297,7 @@ export default function Home({ rootTheme }) {
     }, [lang])
 
     useEffect(() => {
-        document.title = currentLang.siteTitle;
+        document.title = currentLang?.siteTitle;
     }, [currentLang])
 
     useEffect(() => {
@@ -320,33 +320,33 @@ export default function Home({ rootTheme }) {
             <div className="home__buttons">
                 <div className="home__buttons__box">
                     <nav>
-                        <Link className="mainHeader__site" to={"/"}><h1>{currentLang.gameLife}</h1></Link>
+                        <Link className="mainHeader__site" to={"/"}><h1>{currentLang?.gameLife}</h1></Link>
                     </nav>
-                    <button title={currentLang.info} className={`${modalActive && "active"}`} onClick={() => toggleModal()}>
+                    <button title={currentLang?.info} className={`${modalActive && "active"}`} onClick={() => toggleModal()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
                         </svg>
                     </button>
                 </div>
                 <div className="home__buttons__box">
-                    <button title={currentLang.run} className={`${playing && "active"}`} onClick={() => startGame()}>
+                    <button title={currentLang?.run} className={`${playing && "active"}`} onClick={() => startGame()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-play-fill" viewBox="0 0 16 16">
                             <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                         </svg>
                     </button>
-                    <button title={currentLang.pause} className={`${!playing && "active"}`} onClick={() => stopGame()}>
+                    <button title={currentLang?.pause} className={`${!playing && "active"}`} onClick={() => stopGame()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-pause-fill" viewBox="0 0 16 16">
                             <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
                         </svg>
                     </button>
-                    <button title={currentLang.randomize} onClick={() => calcRandomGen()}>
+                    <button title={currentLang?.randomize} onClick={() => calcRandomGen()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                             <path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
                             <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
                         </svg>
                     </button>
                     <div className="home__buttons__settings">
-                        <button title={currentLang.settings} className={`${settingsOpen && "active"}`} onClick={() => setSettingsOpen(settingsOpen => !settingsOpen)}>
+                        <button title={currentLang?.settings} className={`${settingsOpen && "active"}`} onClick={() => setSettingsOpen(settingsOpen => !settingsOpen)}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-gear-fill" viewBox="0 0 16 16">
                                 <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
                             </svg>
@@ -355,59 +355,59 @@ export default function Home({ rootTheme }) {
                             settingsOpen &&
                             <div className={`home__buttons__settings__opts ${settingsOpen && "active"}`}>
                                 <div className="home__buttons__settings__theme">
-                                    <button title={currentLang.themeColor} onClick={() => updateCellColor()}>
+                                    <button title={currentLang?.themeColor} onClick={() => updateCellColor()}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-rainbow" viewBox="0 0 16 16">
                                             <path d="M8 4.5a7 7 0 0 0-7 7 .5.5 0 0 1-1 0 8 8 0 1 1 16 0 .5.5 0 0 1-1 0 7 7 0 0 0-7-7zm0 2a5 5 0 0 0-5 5 .5.5 0 0 1-1 0 6 6 0 1 1 12 0 .5.5 0 0 1-1 0 5 5 0 0 0-5-5zm0 2a3 3 0 0 0-3 3 .5.5 0 0 1-1 0 4 4 0 1 1 8 0 .5.5 0 0 1-1 0 3 3 0 0 0-3-3zm0 2a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 4 0 .5.5 0 0 1-1 0 1 1 0 0 0-1-1z" />
                                         </svg>
                                     </button>
                                     {
-                                        <button className={!darkTheme && "active"} title={currentLang.lightTheme} onClick={() => toggleDarkTheme()}>
+                                        <button className={!darkTheme && "active"} title={currentLang?.lightTheme} onClick={() => toggleDarkTheme()}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="bi bi-brightness-high-fill" viewBox="0 0 16 16">
                                                 <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
                                             </svg>
                                         </button>
                                     }
                                 </div>
-                                <div className="boundRange" title={currentLang.universeBound}>
-                                    <label htmlFor="boundRange">{currentLang.bound}</label>
+                                <div className="boundRange" title={currentLang?.universeBound}>
+                                    <label htmlFor="boundRange">{currentLang?.bound}</label>
                                     <input onChange={(e) => {
                                         dispatch(setBound(e.target.value));
                                     }} value={boundRange} id="boundRange" type="range" min="40" max="100" />
                                 </div>
-                                <div className="sizeRange" title={currentLang.cellSize}>
-                                    <label htmlFor="sizeRange">{currentLang.size}</label>
+                                <div className="sizeRange" title={currentLang?.cellSize}>
+                                    <label htmlFor="sizeRange">{currentLang?.size}</label>
                                     <input onChange={(e) => {
                                         dispatch(setSize(e.target.value));
                                     }} value={sizeRange} id="sizeRange" type="range" min="24" max="96" />
                                 </div>
-                                <div className="speedRange" title={currentLang.speedRange}>
-                                    <label htmlFor="speedRange">{currentLang.speed}</label>
+                                <div className="speedRange" title={currentLang?.speedRange}>
+                                    <label htmlFor="speedRange">{currentLang?.speed}</label>
                                     <input onChange={(e) => dispatch(setSpeed(e.target.value))} value={speedRange} id="speedRange" type="range" min="0" max="1984" /* |1984-2000|=16ms(60fps) */ />
                                 </div>
                                 <div className="genBtns">
                                     {
-                                        <button title={currentLang.toggleGrid} onClick={() => { gridMode ? dispatch(setGridReducer(false)) : dispatch(setGridReducer(true)) }} className={`${gridMode && "active"}`}>
+                                        <button title={currentLang?.toggleGrid} onClick={() => { gridMode ? dispatch(setGridReducer(false)) : dispatch(setGridReducer(true)) }} className={`${gridMode && "active"}`}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-grid-3x3" viewBox="0 0 16 16">
                                                 <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13zM1.5 1a.5.5 0 0 0-.5.5V5h4V1H1.5zM5 6H1v4h4V6zm1 4h4V6H6v4zm-1 1H1v3.5a.5.5 0 0 0 .5.5H5v-4zm1 0v4h4v-4H6zm5 0v4h3.5a.5.5 0 0 0 .5-.5V11h-4zm0-1h4V6h-4v4zm0-5h4V1.5a.5.5 0 0 0-.5-.5H11v4zm-1 0V1H6v4h4z" />
                                             </svg>
                                         </button>
                                     }
-                                    <button title={currentLang.prevGen} onClick={() => {
+                                    <button title={currentLang?.prevGen} onClick={() => {
                                         dispatch({ type: "GAME_UNDO" })
                                     }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
                                             <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                                         </svg>
                                     </button>
-                                    <button title={currentLang.nextGen} onClick={calcGen}>
+                                    <button title={currentLang?.nextGen} onClick={calcGen}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
                                             <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                                         </svg>
                                     </button>
                                 </div>
                                 <div className="clearBtns">
-                                    <button title={currentLang.resetSettings} onClick={resetSettings}>{currentLang.reset}</button>
-                                    <button title={currentLang.clearCells} onClick={fillArray}>{currentLang.clear}</button>
+                                    <button title={currentLang?.resetSettings} onClick={resetSettings}>{currentLang?.reset}</button>
+                                    <button title={currentLang?.clearCells} onClick={fillArray}>{currentLang?.clear}</button>
                                 </div>
                             </div>
                         }

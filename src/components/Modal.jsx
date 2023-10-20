@@ -95,7 +95,7 @@ export default function Modal() {
                                 El juego avanza automáticamente sin intervención del jugador (juego de cero jugadores), y el estado inicial de la cuadrícula determina su evolución. El Juego de la Vida muestra una amplia variedad de patrones, incluyendo patrones estacionarios, oscilantes y móviles.
                                 <br />
                                 <br />
-                                <Link to={currentLang.wikiLink} target="_blank" rel="noopener noreferrer">{currentLang.readMore}</Link>
+                                <Link to={currentLang?.wikiLink} target="_blank" rel="noopener noreferrer">{currentLang?.readMore}</Link>
                             </p>
                             :
                             <p>
@@ -114,7 +114,7 @@ export default function Modal() {
                                 The game progresses automatically without player input (zero-player game), and the initial state of the grid determines its evolution. The Game of Life showcases a wide variety of patterns, including stationary, oscillating, and moving patterns.
                                 <br />
                                 <br />
-                                <Link to={currentLang.wikiLink} target="_blank" rel="noopener noreferrer">{currentLang.readMore}</Link>
+                                <Link to={currentLang?.wikiLink} target="_blank" rel="noopener noreferrer">{currentLang?.readMore}</Link>
                             </p>
                     }
                     <div className="modal__buttonWrapper">
