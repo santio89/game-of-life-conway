@@ -1,5 +1,6 @@
 const langList = {
     eng: {
+        siteTitle: "Game of Life | Cellular Automaton",
         gameLife: "Game of Life",
         info: "Info",
         run: "Run simulation",
@@ -26,6 +27,7 @@ const langList = {
         wikiLink: "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
     },
     esp: {
+        siteTitle: "Juego de la Vida | Autómata Celular",
         gameLife: "Juego de la Vida",
         info: "Info",
         run: "Correr simulación",

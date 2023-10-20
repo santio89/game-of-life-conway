@@ -297,6 +297,10 @@ export default function Home({ rootTheme }) {
     }, [lang])
 
     useEffect(() => {
+        document.title = currentLang.siteTitle;
+    }, [currentLang])
+
+    useEffect(() => {
         fillArray()
         const adjustGrid = () => {
             setWindowWidth(window.innerWidth * (boundRange / 100))
