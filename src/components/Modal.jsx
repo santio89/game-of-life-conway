@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { setModal } from '../store/actions/modal.action';
-import { setInfoReducer } from '../store/actions/theme.action';
+import { setInfoReducer, setLangReducer } from '../store/actions/theme.action';
 import { Link } from 'react-router-dom';
+import langList from '../constants/lang';
 
 export default function Modal() {
     const dispatch = useDispatch()
     const modalActive = useSelector(state => state.modal.active)
     const gameInfo = useSelector(state => state.theme.gameInfo)
     const modal = useRef()
-    const [textLang, setTextLang] = useState("eng")
+    const lang = useSelector(state => state.theme.lang)
+    const [currentLang, setCurrentLang] = useState(langList[lang])
 
 
     useEffect(() => {
@@ -57,6 +59,10 @@ export default function Modal() {
         }
     }, [modalActive])
 
+    useEffect(() => {
+        setCurrentLang(langList[lang])
+    }, [lang])
+
     return (
         <dialog ref={modal} className="modalWrapper">
             <div className="modal">
@@ -65,14 +71,14 @@ export default function Modal() {
                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
                     </svg>
                     <div className="modal__buttonWrapper__lang">
-                        <button className={`modal__lang ${textLang === "eng" && "active"}`} onClick={() => { setTextLang("eng") }}>ENG</button>
+                        <button className={`modal__lang ${lang === "eng" && "active"}`} onClick={() => { dispatch(setLangReducer(("eng"))) }}>ENG</button>
                         /
-                        <button className={`modal__lang ${textLang === "esp" && "active"}`} onClick={() => { setTextLang("esp") }}>ESP</button>
+                        <button className={`modal__lang ${lang === "esp" && "active"}`} onClick={() => { dispatch(setLangReducer(("esp"))) }}>ESP</button>
                     </div>
                 </div>
                 <div className="modal__body">
                     {
-                        textLang === "esp" ?
+                        lang === "esp" ?
                             <p>
                                 El Juego de la Vida de Conway es un autómata celular creado por John Horton Conway en 1970. El universo del Juego de la Vida es una cuadrícula infinita donde cada célula puede estar viva o muerta. El juego evoluciona en generaciones basadas en cuatro reglas simples:
                                 <br />
@@ -89,7 +95,7 @@ export default function Modal() {
                                 El juego avanza automáticamente sin intervención del jugador (juego de cero jugadores), y el estado inicial de la cuadrícula determina su evolución. El Juego de la Vida muestra una amplia variedad de patrones, incluyendo patrones estacionarios, oscilantes y móviles.
                                 <br />
                                 <br />
-                                <Link to="https://es.wikipedia.org/wiki/Juego_de_la_vida" target="_blank" rel="noopener noreferrer">Leer más...</Link>
+                                <Link to={currentLang.wikiLink} target="_blank" rel="noopener noreferrer">{currentLang.readMore}</Link>
                             </p>
                             :
                             <p>
@@ -108,11 +114,11 @@ export default function Modal() {
                                 The game progresses automatically without player input (zero-player game), and the initial state of the grid determines its evolution. The Game of Life showcases a wide variety of patterns, including stationary, oscillating, and moving patterns.
                                 <br />
                                 <br />
-                                <Link to="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank" rel="noopener noreferrer">Read more...</Link>
+                                <Link to={currentLang.wikiLink} target="_blank" rel="noopener noreferrer">{currentLang.readMore}</Link>
                             </p>
                     }
                     <div className="modal__buttonWrapper">
-                        <button className='modal__close' onClick={() => { dispatch(setModal(false)) }}>{textLang === "esp" ? "Cerrar" : "Close"}</button>
+                        <button className='modal__close' onClick={() => { dispatch(setModal(false)) }}>{lang === "esp" ? "Cerrar" : "Close"}</button>
                     </div>
                 </div>
             </div>

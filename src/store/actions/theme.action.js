@@ -37,3 +37,13 @@ export const setInfoReducer = (gameInfo) => {
         })
     }
 }
+
+export const setLangReducer = (lang) => {
+
+    return async dispatch => {
+        dispatch({
+            type: "SET_LANG",
+            lang
+        })
+    }
+}

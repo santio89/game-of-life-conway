@@ -2,7 +2,8 @@ const initialState = {
     darkTheme: true,
     colorTheme: "rgb(70, 171, 226)",
     gridMode: false,
-    gameInfo: true
+    gameInfo: true,
+    lang: "eng"
 }
 
 const ThemeReducer = (state = initialState, action) => {
@@ -15,6 +16,8 @@ const ThemeReducer = (state = initialState, action) => {
             return { ...state, gridMode: action.gridMode }
         case 'SET_INFO':
             return { ...state, gameInfo: action.gameInfo }
+        case 'SET_LANG':
+            return { ...state, lang: action.lang }
         default:
             return state
     }
