@@ -12,7 +12,7 @@ import langList from "../constants/lang";
 export default function Home({ rootTheme }) {
     const dispatch = useDispatch()
     const lang = useSelector(state => state.theme.lang)
-    const [currentLang, setCurrentLang] = useState(langList[lang] || langList["eng"])
+    const [currentLang, setCurrentLang] = useState(lang?langList[lang]:langList["eng"])
     const gameInfo = useSelector(state => state.theme.gameInfo)
     const modalActive = useSelector(state => state.modal.active)
     const [cellsFilled, setCellsFilled] = useState(false)
