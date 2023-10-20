@@ -14,7 +14,7 @@ export default function Home({ rootTheme }) {
     const dispatch = useDispatch()
     const gameInfo = useSelector(state => state.theme.gameInfo)
     const lang = useSelector(state => state.theme.lang)
-    const [currentLang, setCurrentLang] = useState(langList[lang])
+    const [currentLang, setCurrentLang] = useState(langList[lang] || "eng")
     const modalActive = useSelector(state => state.modal.active)
     const [cellsFilled, setCellsFilled] = useState(false)
     const cells = useSelector(state => state.game.present.cells)
