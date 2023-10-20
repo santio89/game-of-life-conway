@@ -4,7 +4,6 @@ import { setThemeReducer, setColorReducer, setGridReducer } from "../store/actio
 import { setModal } from "../store/actions/modal.action";
 import { setBound, setSize, setSpeed } from "../store/actions/gameSettings.action";
 import { setCells } from "../store/actions/game.action";
-import { v4 as uuidv4 } from 'uuid';
 import Cell from "./Cell";
 import { Link } from "react-router-dom";
 import langList from "../constants/lang";
@@ -103,7 +102,7 @@ export default function Home({ rootTheme }) {
 
         for (let i = 1; i <= size; i++) {
             array.push({
-                id: uuidv4(),
+                id: window.crypto.randomUUID(),
                 active: false,
             })
         }
@@ -119,7 +118,7 @@ export default function Home({ rootTheme }) {
 
         for (let i = 1; i <= size; i++) {
             array.push({
-                id: uuidv4(),
+                id: window.crypto.randomUUID(),
                 active: false,
             })
         }
@@ -140,7 +139,7 @@ export default function Home({ rootTheme }) {
 
         for (let i = 1; i <= size; i++) {
             array.push({
-                id: uuidv4(),
+                id: window.crypto.randomUUID(),
                 active: Math.random() >= .5 ? true : false,
             })
         }
