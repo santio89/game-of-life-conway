@@ -47,3 +47,13 @@ export const setLangReducer = (lang) => {
         })
     }
 }
+
+export const setShapeReducer = (shape) => {
+
+    return async dispatch => {
+        dispatch({
+            type: "SET_SHAPE",
+            shape
+        })
+    }
+}

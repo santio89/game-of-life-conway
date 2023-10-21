@@ -3,7 +3,8 @@ const initialState = {
     colorTheme: "rgb(70, 171, 226)",
     gridMode: false,
     gameInfo: true,
-    lang: "eng"
+    lang: "eng",
+    shape: "square"
 }
 
 const ThemeReducer = (state = initialState, action) => {
@@ -18,6 +19,8 @@ const ThemeReducer = (state = initialState, action) => {
             return { ...state, gameInfo: action.gameInfo }
         case 'SET_LANG':
             return { ...state, lang: action.lang }
+        case 'SET_SHAPE':
+            return { ...state, shape: action.shape }
         default:
             return state
     }

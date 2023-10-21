@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { setThemeReducer, setColorReducer, setGridReducer } from "../store/actions/theme.action";
+import { setThemeReducer, setColorReducer, setGridReducer, setShapeReducer } from "../store/actions/theme.action";
 import { setModal } from "../store/actions/modal.action";
 import { setBound, setSize, setSpeed } from "../store/actions/gameSettings.action";
 import { setCells } from "../store/actions/game.action";
@@ -21,6 +21,7 @@ export default function Home({ rootTheme }) {
     const darkTheme = useSelector(state => state.theme.darkTheme)
     const colorTheme = useSelector(state => state.theme.colorTheme)
     const gridMode = useSelector(state => state.theme.gridMode)
+    const cellShape = useSelector(state => state.theme.shape)
 
     const boundRange = useSelector(state => state.gameSettings.bound)
     const sizeRange = useSelector(state => state.gameSettings.size)
@@ -43,6 +44,10 @@ export default function Home({ rootTheme }) {
 
     const toggleModal = () => {
         modalActive ? dispatch(setModal(false)) : dispatch(setModal(true))
+    }
+
+    const setShape = (shape) => {
+        dispatch(setShapeReducer(shape))
     }
 
     const startGame = () => {
@@ -78,10 +83,12 @@ export default function Home({ rootTheme }) {
         stopGame()
         setCellFillMode(true)
     }
+
     const cellFillEnd = () => {
         wasPlaying && startGame()
         setCellFillMode(false)
     }
+
     const cellFillMove = (index) => {
         if (cellFillMode) {
             toggleActive(index)
@@ -354,18 +361,28 @@ export default function Home({ rootTheme }) {
                             settingsOpen &&
                             <div className={`home__buttons__settings__opts ${settingsOpen && "active"}`}>
                                 <div className="home__buttons__settings__theme">
+                                    <button className={darkTheme ? "" : "active"} title={currentLang?.lightTheme} onClick={() => toggleDarkTheme()}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" className="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+                                            <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                                        </svg>
+                                    </button>
                                     <button title={currentLang?.themeColor} onClick={() => updateCellColor()} className="active">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-rainbow" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-rainbow" viewBox="0 0 16 16">
                                             <path d="M8 4.5a7 7 0 0 0-7 7 .5.5 0 0 1-1 0 8 8 0 1 1 16 0 .5.5 0 0 1-1 0 7 7 0 0 0-7-7zm0 2a5 5 0 0 0-5 5 .5.5 0 0 1-1 0 6 6 0 1 1 12 0 .5.5 0 0 1-1 0 5 5 0 0 0-5-5zm0 2a3 3 0 0 0-3 3 .5.5 0 0 1-1 0 4 4 0 1 1 8 0 .5.5 0 0 1-1 0 3 3 0 0 0-3-3zm0 2a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 4 0 .5.5 0 0 1-1 0 1 1 0 0 0-1-1z" />
                                         </svg>
                                     </button>
-                                    {
-                                        <button className={darkTheme ? "" : "active"} title={currentLang?.lightTheme} onClick={() => toggleDarkTheme()}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="bi bi-brightness-high-fill" viewBox="0 0 16 16">
-                                                <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                                    <div className="shapeContainer">
+                                        <button className={cellShape === "square" && "active"} onClick={() => setShape("square")}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" className="bi bi-square-fill" viewBox="0 0 16 16">
+                                                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
                                             </svg>
                                         </button>
-                                    }
+                                        <button className={cellShape === "circle" && "active"} onClick={() => setShape("circle")}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" className="bi bi-circle-fill" viewBox="0 0 16 16">
+                                                <circle cx="8" cy="8" r="8" />
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className="boundRange" title={currentLang?.universeBound}>
                                     <label htmlFor="boundRange">{currentLang?.bound}</label>
@@ -424,7 +441,7 @@ export default function Home({ rootTheme }) {
                     }
                 }}>
                     {cellsFilled && cells?.map((cell, index) => {
-                        return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} gridMode={gridMode} lastTouch={lastTouch} />
+                        return <Cell key={cell.id} index={index} toggleActive={toggleActive} active={cell.active} cellFillMove={cellFillMove} gridMode={gridMode} lastTouch={lastTouch} cellShape={cellShape} />
                     })}
                 </div>
             </div>
