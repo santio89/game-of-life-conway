@@ -407,6 +407,13 @@ body,
     flex-direction: column;
     gap: 1rem;
 
+    h2 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: var(--main-color)
+    }
+
     a {
       color: var(--main-color);
       text-decoration: none;

@@ -79,47 +79,56 @@ export default function Modal() {
                 <div className="modal__body">
                     {
                         lang === "esp" ?
-                            <p>
-                                El Juego de la Vida de Conway es un autómata celular creado por John Horton Conway en 1970. El universo del Juego de la Vida es una cuadrícula infinita donde cada célula puede estar viva o muerta. El juego evoluciona en generaciones basadas en cuatro reglas simples:
-                                <br />
-                                <br />
-                                - Cualquier célula viva con menos de dos vecinos vivos muere (subpoblación).
-                                <br />
-                                - Cualquier célula viva con dos o tres vecinos vivos sobrevive a la siguiente generación (supervivencia).
-                                <br />
-                                - Cualquier célula viva con más de tres vecinos vivos muere (sobrepoblación).
-                                <br />
-                                - Cualquier célula muerta con exactamente tres vecinos vivos se convierte en una célula viva (reproducción).
-                                <br />
-                                <br />
-                                El juego avanza automáticamente sin intervención del jugador (juego de cero jugadores), y el estado inicial de la cuadrícula determina su evolución. El Juego de la Vida muestra una amplia variedad de patrones, incluyendo patrones estacionarios, oscilantes y móviles.
-                                <br />
-                                <br />
-                                <Link to={currentLang?.wikiLink} target="_blank" rel="noopener noreferrer">{currentLang?.readMore}</Link>
-                            </p>
+                            <>
+                                <h2>Juego de la Vida</h2>
+                                <p>
+                                    El Juego de la Vida de Conway es un autómata celular creado por John Horton Conway en 1970. El universo del Juego de la Vida es una cuadrícula infinita donde cada célula puede estar viva o muerta. El juego evoluciona en generaciones basadas en cuatro reglas simples:
+                                    <br />
+                                    <br />
+                                    - Cualquier célula viva con menos de dos vecinos vivos muere (subpoblación).
+                                    <br />
+                                    - Cualquier célula viva con dos o tres vecinos vivos sobrevive a la siguiente generación (supervivencia).
+                                    <br />
+                                    - Cualquier célula viva con más de tres vecinos vivos muere (sobrepoblación).
+                                    <br />
+                                    - Cualquier célula muerta con exactamente tres vecinos vivos se convierte en una célula viva (reproducción).
+                                    <br />
+                                    <br />
+                                    El juego avanza automáticamente sin intervención del jugador (juego de cero jugadores), y el estado inicial de la cuadrícula determina su evolución. El Juego de la Vida muestra una amplia variedad de patrones, incluyendo patrones estacionarios, oscilantes y móviles.
+                                    <br />
+                                    <br />
+                                    <Link to="https://es.wikipedia.org/wiki/Juego_de_la_vida" target="_blank" rel="noopener noreferrer">Leer más...</Link>
+                                </p>
+                                <div className="modal__buttonWrapper">
+                                    <button className='modal__close' onClick={() => { dispatch(setModal(false)) }}>Cerrar</button>
+                                </div>
+                            </>
                             :
-                            <p>
-                                Conway's Game of Life is a cellular automaton game created by John Horton Conway in 1970. The universe of the Game of Life is an infinite grid where each cell can be alive or dead. The game evolves in generations based on four simple rules:
-                                <br />
-                                <br />
-                                - Any live cell with fewer than two live neighbors dies (underpopulation).
-                                <br />
-                                - Any live cell with two or three live neighbors survives to the next generation (survival).
-                                <br />
-                                - Any live cell with more than three live neighbors dies (overpopulation).
-                                <br />
-                                - Any dead cell with exactly three live neighbors becomes a live cell (reproduction).
-                                <br />
-                                <br />
-                                The game progresses automatically without player input (zero-player game), and the initial state of the grid determines its evolution. The Game of Life showcases a wide variety of patterns, including stationary, oscillating, and moving patterns.
-                                <br />
-                                <br />
-                                <Link to={currentLang?.wikiLink} target="_blank" rel="noopener noreferrer">{currentLang?.readMore}</Link>
-                            </p>
+                            <>
+                                <h2>Game of Life</h2>
+                                <p>
+                                    Conway's Game of Life is a cellular automaton game created by John Horton Conway in 1970. The universe of the Game of Life is an infinite grid where each cell can be alive or dead. The game evolves in generations based on four simple rules:
+                                    <br />
+                                    <br />
+                                    - Any live cell with fewer than two live neighbors dies (underpopulation).
+                                    <br />
+                                    - Any live cell with two or three live neighbors survives to the next generation (survival).
+                                    <br />
+                                    - Any live cell with more than three live neighbors dies (overpopulation).
+                                    <br />
+                                    - Any dead cell with exactly three live neighbors becomes a live cell (reproduction).
+                                    <br />
+                                    <br />
+                                    The game progresses automatically without player input (zero-player game), and the initial state of the grid determines its evolution. The Game of Life showcases a wide variety of patterns, including stationary, oscillating, and moving patterns.
+                                    <br />
+                                    <br />
+                                    <Link to="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank" rel="noopener noreferrer">Read more...</Link>
+                                </p>
+                                <div className="modal__buttonWrapper">
+                                    <button className='modal__close' onClick={() => { dispatch(setModal(false)) }}>Close</button>
+                                </div>
+                            </>
                     }
-                    <div className="modal__buttonWrapper">
-                        <button className='modal__close' onClick={() => { dispatch(setModal(false)) }}>{lang === "esp" ? "Cerrar" : "Close"}</button>
-                    </div>
                 </div>
             </div>
         </dialog>

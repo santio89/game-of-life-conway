@@ -22,8 +22,6 @@ const langList = {
         reset: "Reset",
         clearCells: "Clear cells",
         clear: "Clear",
-        readMore: "Read more...",
-        wikiLink: "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
     },
     esp: {
         siteTitle: "Juego de la Vida | Autómata Celular",
@@ -48,8 +46,6 @@ const langList = {
         reset: "Rest.",
         clearCells: "Vaciar celdas",
         clear: "Vaciar",
-        readMore: "Leer más...",
-        wikiLink: "https://es.wikipedia.org/wiki/Juego_de_la_vida"
     }
 }
 

@@ -374,6 +374,12 @@ body,
   flex-direction: column;
   gap: 1rem;
 }
+.modal__body h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--main-color);
+}
 .modal__body a {
   color: var(--main-color);
   text-decoration: none;
