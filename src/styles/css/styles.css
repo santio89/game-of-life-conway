@@ -379,6 +379,7 @@ body,
   font-weight: bold;
   text-transform: uppercase;
   color: var(--main-color);
+  text-shadow: 1px 1px 0 rgb(30, 30, 30);
 }
 .modal__body a {
   color: var(--main-color);
