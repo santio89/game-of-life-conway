@@ -31,6 +31,8 @@ export default function Home({ rootTheme }) {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight * (boundRange / 100))
     const [cols, setCols] = useState(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
     const [rows, setRows] = useState(Math.floor((window.innerHeight * (boundRange / 100) - 48 - 4) / sizeRange))
+    const [gridCols, setGridCols] = useState(cols)
+    const [gridRows, setGridRows] = useState(rows)
     const [playing, setPlaying] = useState(false)
     const [wasPlaying, setWasPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
@@ -133,12 +135,7 @@ export default function Home({ rootTheme }) {
                 cellsCopy.forEach(cell => {
                     if (cell.row === i && cell.col === j) {
                         found = 1;
-                        array.push({
-                            id: window.crypto.randomUUID(),
-                            row: i,
-                            col: j,
-                            active: cell.active,
-                        })
+                        array.push(cell)
                     }
                 })
 
@@ -152,6 +149,8 @@ export default function Home({ rootTheme }) {
         }
 
         dispatch(setCells(array))
+        setGridRows(rows)
+        setGridCols(cols)
     }, [cells, cols, rows, dispatch])
 
     const calcRandomGen = useCallback(() => {
@@ -302,12 +301,18 @@ export default function Home({ rootTheme }) {
     }, [playing, cells])
 
     useEffect(() => {
-        setCols(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
-        setRows(Math.floor((window.innerHeight * (boundRange / 100) - 48 - 4) / sizeRange))
+        /* debounce re-size */
+        const debounce = setTimeout(() => {
+            setCols(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
+            setRows(Math.floor((window.innerHeight * (boundRange / 100) - 48 - 4) / sizeRange))
+        }, 250)
+
+        return () => clearTimeout(debounce)
     }, [sizeRange, boundRange, windowWidth, windowHeight])
 
     useEffect(() => {
         cells && reFillArray()
+        dispatch({ type: "GAME_CLEAR_HISTORY" })
     }, [cols, rows])
 
     useEffect(() => {
@@ -444,7 +449,13 @@ export default function Home({ rootTheme }) {
                 </div>
             </div>
             <div className="game-grid-wrapper">
-                <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{ gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`, gridAutoRows: `${sizeRange}px`, gridAutoColumns: `${sizeRange}px`, width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`, height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}` }} onPointerDown={cellFillStart} onPointerUp={cellFillEnd} onTouchMove={(e) => {
+                <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{
+                    gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`,
+                    gridAutoRows: `${sizeRange}px`,
+                    gridAutoColumns: `${sizeRange}px`,
+                    width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`,
+                    height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}`
+                }} onPointerDown={cellFillStart} onPointerUp={cellFillEnd} onTouchMove={(e) => {
                     const touch = e.touches[0];
                     const cell = document.elementFromPoint(touch.clientX, touch.clientY);
                     if (cell) {
