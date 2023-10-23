@@ -271,6 +271,7 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: rotateX(180deg)
 }
 
 .game-grid {
