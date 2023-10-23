@@ -1,7 +1,7 @@
 const initialState = {
     darkTheme: true,
     colorTheme: "rgb(70, 171, 226)",
-    gridMode: false,
+    gridMode: true,
     gameInfo: true,
     lang: "eng",
     shape: "square"

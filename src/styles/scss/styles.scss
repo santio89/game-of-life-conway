@@ -287,7 +287,6 @@ body,
   user-select: none;
   cursor: crosshair;
   outline: 1px solid transparent;
-  transition: box-shadow 125ms ease, outline-color 125ms ease;
   overflow: hidden;
 
   &.bound {
