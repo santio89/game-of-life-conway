@@ -104,14 +104,17 @@ export default function Home({ rootTheme }) {
     const fillArray = useCallback(() => {
         if (cellsFilled && !cells.some(cell => cell.active)) return
 
-        const size = cols * rows
         let array = []
 
-        for (let i = 1; i <= size; i++) {
-            array.push({
-                id: window.crypto.randomUUID(),
-                active: false,
-            })
+        for (let i = 1; i <= rows; i++) {
+            for (let j = 1; j <= cols; j++) {
+                array.push({
+                    id: window.crypto.randomUUID(),
+                    row: i,
+                    col: j,
+                    active: false,
+                })
+            }
         }
 
         dispatch(setCells(array))
@@ -120,35 +123,49 @@ export default function Home({ rootTheme }) {
     }, [cellsFilled, cells, cols, rows, dispatch])
 
     const reFillArray = useCallback(() => {
-        const size = cols * rows
-        let array = [...cells]
+        let array = []
+        let cellsCopy = [...cells]
 
-        for (let i = 1; i <= size; i++) {
-            array.push({
-                id: window.crypto.randomUUID(),
-                active: false,
-            })
-        }
+        for (let i = 1; i <= rows; i++) {
+            for (let j = 1; j <= cols; j++) {
+                let found = 0;
 
-        if (array.length > size) {
-            const diff = array.length - size;
-            array.splice(array.length - diff,
-                diff);
+                cellsCopy.forEach(cell => {
+                    if (cell.row === i && cell.col === j) {
+                        found = 1;
+                        array.push({
+                            id: window.crypto.randomUUID(),
+                            row: i,
+                            col: j,
+                            active: cell.active,
+                        })
+                    }
+                })
+
+                !found && array.push({
+                    id: window.crypto.randomUUID(),
+                    row: i,
+                    col: j,
+                    active: false,
+                })
+            }
         }
 
         dispatch(setCells(array))
-        dispatch({ type: "GAME_CLEAR_HISTORY" })
     }, [cells, cols, rows, dispatch])
 
     const calcRandomGen = useCallback(() => {
-        const size = cols * rows
         let array = []
 
-        for (let i = 1; i <= size; i++) {
-            array.push({
-                id: window.crypto.randomUUID(),
-                active: Math.random() >= .5 ? true : false,
-            })
+        for (let i = 1; i <= rows; i++) {
+            for (let j = 1; j <= cols; j++) {
+                array.push({
+                    id: window.crypto.randomUUID(),
+                    row: i,
+                    col: j,
+                    active: Math.random() >= .5 ? true : false,
+                })
+            }
         }
         dispatch(setCells(array))
     }, [cols, rows, dispatch])
@@ -287,16 +304,11 @@ export default function Home({ rootTheme }) {
     useEffect(() => {
         setCols(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
         setRows(Math.floor((window.innerHeight * (boundRange / 100) - 48 - 4) / sizeRange))
-    }, [sizeRange, windowWidth, windowHeight, boundRange])
+    }, [sizeRange, boundRange, windowWidth, windowHeight])
 
     useEffect(() => {
         cells && reFillArray()
     }, [cols, rows])
-
-    useEffect(() => {
-        fillArray()
-        dispatch({ type: "GAME_CLEAR_HISTORY" })
-    }, [sizeRange, boundRange])
 
     useEffect(() => {
         lang && setCurrentLang(langList[lang])
