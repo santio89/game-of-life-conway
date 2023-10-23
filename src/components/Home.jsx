@@ -31,8 +31,6 @@ export default function Home({ rootTheme }) {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight * (boundRange / 100))
     const [cols, setCols] = useState(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
     const [rows, setRows] = useState(Math.floor((window.innerHeight * (boundRange / 100) - 48 - 4) / sizeRange))
-    const [gridCols, setGridCols] = useState(cols)
-    const [gridRows, setGridRows] = useState(rows)
     const [playing, setPlaying] = useState(false)
     const [wasPlaying, setWasPlaying] = useState(false)
     const [cellFillMode, setCellFillMode] = useState(false)
@@ -149,8 +147,6 @@ export default function Home({ rootTheme }) {
         }
 
         dispatch(setCells(array))
-        setGridRows(rows)
-        setGridCols(cols)
     }, [cells, cols, rows, dispatch])
 
     const calcRandomGen = useCallback(() => {
