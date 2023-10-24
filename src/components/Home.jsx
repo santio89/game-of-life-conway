@@ -451,7 +451,7 @@ export default function Home({ rootTheme }) {
                     gridAutoColumns: `${sizeRange}px`,
                     width: `${boundRange != 100 ? (window.innerWidth * (boundRange / 100)) + "px" : "100%"}`,
                     height: `${boundRange != 100 ? (window.innerHeight * (boundRange / 100) - 48) + "px" : "100%"}`
-                }} onPointerDown={cellFillStart} onPointerUp={cellFillEnd} onTouchMove={(e) => {
+                }} onPointerDown={cellFillStart} onPointerUp={cellFillEnd} onTouchEnd={cellFillEnd} onTouchMove={(e) => {
                     const touch = e.touches[0];
                     const cell = document.elementFromPoint(touch.clientX, touch.clientY);
                     if (cell) {
