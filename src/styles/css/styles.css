@@ -382,8 +382,9 @@ body,
   color: var(--main-color);
   text-decoration: none;
 }
-.modal__body a:focus-visible {
-  outline: 1px dotted var(--main-color);
+.modal__body a:hover, .modal__body a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 .modal__buttonWrapper {
   display: flex;

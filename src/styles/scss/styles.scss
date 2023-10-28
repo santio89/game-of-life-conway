@@ -416,8 +416,10 @@ body,
       color: var(--main-color);
       text-decoration: none;
 
+      &:hover,
       &:focus-visible {
-        outline: 1px dotted var(--main-color)
+        text-decoration: underline;
+        text-underline-offset: 4px;
       }
     }
   }
