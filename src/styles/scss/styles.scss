@@ -415,11 +415,14 @@ body,
     a {
       color: var(--main-color);
       text-decoration: none;
+      transition: color 125ms;
 
       &:hover,
       &:focus-visible {
         text-decoration: underline;
         text-underline-offset: 4px;
+        outline: none;
+        color: rgb(240, 240, 240)
       }
     }
   }

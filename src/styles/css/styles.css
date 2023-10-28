@@ -381,10 +381,13 @@ body,
 .modal__body a {
   color: var(--main-color);
   text-decoration: none;
+  transition: color 125ms;
 }
 .modal__body a:hover, .modal__body a:focus-visible {
   text-decoration: underline;
   text-underline-offset: 4px;
+  outline: none;
+  color: rgb(240, 240, 240);
 }
 .modal__buttonWrapper {
   display: flex;
