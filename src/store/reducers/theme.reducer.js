@@ -5,7 +5,7 @@ const initialState = {
     gameInfo: true,
     lang: "eng",
     shape: "square",
-    stats: false,
+    stats: true,
 }
 
 const ThemeReducer = (state = initialState, action) => {
