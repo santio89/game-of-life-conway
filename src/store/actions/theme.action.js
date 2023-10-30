@@ -57,3 +57,13 @@ export const setShapeReducer = (shape) => {
         })
     }
 }
+
+export const setStatsReducer = (stats) => {
+
+    return async dispatch => {
+        dispatch({
+            type: "SET_STATS",
+            stats
+        })
+    }
+}

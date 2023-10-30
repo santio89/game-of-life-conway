@@ -4,7 +4,8 @@ const initialState = {
     gridMode: true,
     gameInfo: true,
     lang: "eng",
-    shape: "square"
+    shape: "square",
+    stats: false,
 }
 
 const ThemeReducer = (state = initialState, action) => {
@@ -21,6 +22,8 @@ const ThemeReducer = (state = initialState, action) => {
             return { ...state, lang: action.lang }
         case 'SET_SHAPE':
             return { ...state, shape: action.shape }
+        case 'SET_STATS':
+            return { ...state, stats: action.stats }
         default:
             return state
     }

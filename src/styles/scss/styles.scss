@@ -3,6 +3,7 @@
   --main-black: rgb(30, 30, 30);
   --main-white: rgb(240, 240, 240);
   --main-gray: rgb(180, 180, 180);
+  --main-gray-op: rgba(180, 180, 180, .9);
   --main-color: rgb(70, 171, 226);
   --main-color-dark: var(--main-black);
   --main-color-light: var(--main-white);
@@ -125,6 +126,19 @@ body,
   flex: 1;
   z-index: 1;
 
+  .gen-stats{
+    position: fixed;
+    /* bottom: 56px;
+    right: 24px; */
+    bottom: 0;
+    right: 0;
+    color: var(--main-white);
+    background: var(--main-gray-op);
+    padding: .25em;
+    border: 2px solid var(--main-white);
+    pointer-events: none;
+  }
+
   &__buttons {
     display: flex;
     justify-content: space-between;
@@ -235,6 +249,8 @@ body,
       gap: .5rem;
 
       input {
+        width: 60px;
+        min-width: 60px;
         max-width: 60px;
         accent-color: var(--main-color-light);
         cursor: pointer;
@@ -242,6 +258,46 @@ body,
         &:focus-visible {
           outline: 1px dotted var(--main-color)
         }
+      }
+    }
+
+    .genStats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--main-color-light);
+      gap: .5rem;
+
+      span {
+        width: 60px;
+        min-width: 60px;
+        max-width: 60px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+      }
+
+      input {
+        height: 16px;
+        width: 16px;
+        appearance: none;
+        accent-color: var(--main-color-light);
+        background: var(--main-color-light);
+        border-radius: 2px;
+        border: 1px solid transparent;
+        cursor: pointer;
+
+        &:checked {
+          appearance: auto;
+        }
+
+        &:focus-visible {
+          outline: 1px dotted var(--main-color)
+        }
+      }
+
+      &:hover input {
+        border: 1px solid var(--main-gray);
       }
     }
 

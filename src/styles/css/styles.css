@@ -3,6 +3,7 @@
   --main-black: rgb(30, 30, 30);
   --main-white: rgb(240, 240, 240);
   --main-gray: rgb(180, 180, 180);
+  --main-gray-op: rgba(180, 180, 180, .9);
   --main-color: rgb(70, 171, 226);
   --main-color-dark: var(--main-black);
   --main-color-light: var(--main-white);
@@ -118,6 +119,18 @@ body,
   flex: 1;
   z-index: 1;
 }
+.home .gen-stats {
+  position: fixed;
+  /* bottom: 56px;
+  right: 24px; */
+  bottom: 0;
+  right: 0;
+  color: var(--main-white);
+  background: var(--main-gray-op);
+  padding: 0.25em;
+  border: 2px solid var(--main-white);
+  pointer-events: none;
+}
 .home__buttons {
   display: flex;
   justify-content: space-between;
@@ -219,6 +232,8 @@ body,
 .home__buttons .speedRange input,
 .home__buttons .sizeRange input,
 .home__buttons .boundRange input {
+  width: 60px;
+  min-width: 60px;
   max-width: 60px;
   accent-color: var(--main-color-light);
   cursor: pointer;
@@ -227,6 +242,40 @@ body,
 .home__buttons .sizeRange input:focus-visible,
 .home__buttons .boundRange input:focus-visible {
   outline: 1px dotted var(--main-color);
+}
+.home__buttons .genStats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--main-color-light);
+  gap: 0.5rem;
+}
+.home__buttons .genStats span {
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.home__buttons .genStats input {
+  height: 16px;
+  width: 16px;
+  appearance: none;
+  accent-color: var(--main-color-light);
+  background: var(--main-color-light);
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.home__buttons .genStats input:checked {
+  appearance: auto;
+}
+.home__buttons .genStats input:focus-visible {
+  outline: 1px dotted var(--main-color);
+}
+.home__buttons .genStats:hover input {
+  border: 1px solid var(--main-gray);
 }
 .home__buttons .clearBtns,
 .home__buttons .genBtns {

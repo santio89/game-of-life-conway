@@ -22,6 +22,9 @@ const langList = {
         reset: "Reset",
         clearCells: "Clear cells",
         clear: "Clear",
+        squareShape: "Square shape",
+        circleShape: "Circle shape",
+        showStats: "Show stats"
     },
     esp: {
         siteTitle: "Juego de la Vida | Autómata Celular",
@@ -46,6 +49,9 @@ const langList = {
         reset: "Rest.",
         clearCells: "Vaciar celdas",
         clear: "Vaciar",
+        squareShape: "Forma de cuadrado",
+        circleShape: "Forma de círculo",
+        showStats: "Mostrar estadísticas"
     }
 }
 

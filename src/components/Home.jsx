@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { setThemeReducer, setColorReducer, setGridReducer, setShapeReducer } from "../store/actions/theme.action";
+import { setThemeReducer, setColorReducer, setGridReducer, setShapeReducer, setStatsReducer } from "../store/actions/theme.action";
 import { setModal } from "../store/actions/modal.action";
 import { setBound, setSize, setSpeed } from "../store/actions/gameSettings.action";
 import { setCells } from "../store/actions/game.action";
@@ -22,6 +22,7 @@ export default function Home({ rootTheme }) {
     const colorTheme = useSelector(state => state.theme.colorTheme)
     const gridMode = useSelector(state => state.theme.gridMode)
     const cellShape = useSelector(state => state.theme.shape)
+    const genStats = useSelector(state => state.theme.stats)
 
     const boundRange = useSelector(state => state.gameSettings.bound)
     const sizeRange = useSelector(state => state.gameSettings.size)
@@ -385,12 +386,12 @@ export default function Home({ rootTheme }) {
                                         </svg>
                                     </button>
                                     <div className="shapeContainer">
-                                        <button className={cellShape === "square" && "active"} onClick={() => setShape("square")}>
+                                        <button title={currentLang?.squareShape} className={cellShape === "square" && "active"} onClick={() => setShape("square")}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" className="bi bi-square-fill" viewBox="0 0 16 16">
                                                 <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
                                             </svg>
                                         </button>
-                                        <button className={cellShape === "circle" && "active"} onClick={() => setShape("circle")}>
+                                        <button title={currentLang?.circleShape} className={cellShape === "circle" && "active"} onClick={() => setShape("circle")}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" className="bi bi-circle-fill" viewBox="0 0 16 16">
                                                 <circle cx="8" cy="8" r="8" />
                                             </svg>
@@ -412,6 +413,12 @@ export default function Home({ rootTheme }) {
                                 <div className="speedRange" title={currentLang?.speedRange}>
                                     <label htmlFor="speedRange">{currentLang?.speed}</label>
                                     <input onChange={(e) => dispatch(setSpeed(e.target.value))} value={speedRange} id="speedRange" type="range" min="0" max="1984" /* |1984-2000|=16ms(60fps) */ />
+                                </div>
+                                <div className="genStats" title={currentLang?.showStats}>
+                                    <label htmlFor="genStats">Stats</label>
+                                    <span>
+                                        <input onChange={() => dispatch(setStatsReducer(!genStats))} checked={genStats} id="genStats" type="checkbox" />
+                                    </span>
                                 </div>
                                 <div className="genBtns">
                                     {
@@ -444,6 +451,12 @@ export default function Home({ rootTheme }) {
                     </div>
                 </div>
             </div>
+            {genStats &&
+                <div className="gen-stats">
+                    <p>Gen: 172394</p>
+                    <p>Pop: 98765</p>
+                </div>
+            }
             <div className="game-grid-wrapper">
                 <div aria-label="Cells grid" className={`game-grid ${boundRange != 100 && "bound "}`} style={{
                     gridTemplateColumns: `repeat(${cols}, ${sizeRange}px)`, gridTemplateRows: `repeat(${rows}, ${sizeRange}px)`,
