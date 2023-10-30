@@ -28,6 +28,8 @@ export default function Home({ rootTheme }) {
     const sizeRange = useSelector(state => state.gameSettings.size)
     const speedRange = useSelector(state => state.gameSettings.speed)
 
+    const [pop, setPop] = useState(0)
+
     const [windowWidth, setWindowWidth] = useState(window.innerWidth * (boundRange / 100))
     const [windowHeight, setWindowHeight] = useState(window.innerHeight * (boundRange / 100))
     const [cols, setCols] = useState(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
@@ -63,6 +65,15 @@ export default function Home({ rootTheme }) {
         dispatch(setSpeed(1000))
         dispatch(setSize(60))
         dispatch(setBound(100))
+    }
+
+    const countActive = () => {
+        let active = 0;
+        cells.forEach((cell) => {
+            cell.active && active++
+        })
+
+        return active
     }
 
     const toggleActive = (index) => {
@@ -298,6 +309,14 @@ export default function Home({ rootTheme }) {
     }, [playing, cells])
 
     useEffect(() => {
+        genStats && setPop(countActive())
+    }, [cells])
+
+    useEffect(() => {
+        genStats && setPop(countActive())
+    }, [genStats])
+
+    useEffect(() => {
         /* debounce re-size */
         const debounce = setTimeout(() => {
             setCols(Math.floor((window.innerWidth * (boundRange / 100) - 4) / sizeRange))
@@ -414,8 +433,8 @@ export default function Home({ rootTheme }) {
                                     <label htmlFor="speedRange">{currentLang?.speed}</label>
                                     <input onChange={(e) => dispatch(setSpeed(e.target.value))} value={speedRange} id="speedRange" type="range" min="0" max="1984" /* |1984-2000|=16ms(60fps) */ />
                                 </div>
-                                <div className="genStats" title={currentLang?.showStats}>
-                                    <label htmlFor="genStats">Stats</label>
+                                <div className="genStats" title={currentLang?.showPop}>
+                                    <label htmlFor="genStats">Pop.</label>
                                     <span>
                                         <input onChange={() => dispatch(setStatsReducer(!genStats))} checked={genStats} id="genStats" type="checkbox" />
                                     </span>
@@ -452,9 +471,8 @@ export default function Home({ rootTheme }) {
                 </div>
             </div>
             {genStats &&
-                <div className="gen-stats">
-                    <p>Gen: 172394</p>
-                    <p>Pop: 98765</p>
+                <div className="gen-stats" title={currentLang?.population}>
+                    <p>Pop.: <span>{pop}</span></p>
                 </div>
             }
             <div className="game-grid-wrapper">

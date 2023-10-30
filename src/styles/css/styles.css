@@ -125,11 +125,14 @@ body,
   right: 24px; */
   bottom: 0;
   right: 0;
-  color: var(--main-white);
+  color: var(--main-color-dark);
+  border: 2px solid var(--main-color-dark);
   background: var(--main-gray-op);
   padding: 0.25em;
-  border: 2px solid var(--main-white);
   pointer-events: none;
+}
+.home .gen-stats span {
+  font-weight: bold;
 }
 .home__buttons {
   display: flex;

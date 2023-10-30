@@ -126,17 +126,21 @@ body,
   flex: 1;
   z-index: 1;
 
-  .gen-stats{
+  .gen-stats {
     position: fixed;
     /* bottom: 56px;
     right: 24px; */
     bottom: 0;
     right: 0;
-    color: var(--main-white);
+    color: var(--main-color-dark);
+    border: 2px solid var(--main-color-dark);
     background: var(--main-gray-op);
     padding: .25em;
-    border: 2px solid var(--main-white);
     pointer-events: none;
+
+    span {
+      font-weight: bold;
+    }
   }
 
   &__buttons {

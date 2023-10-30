@@ -24,7 +24,10 @@ const langList = {
         clear: "Clear",
         squareShape: "Square shape",
         circleShape: "Circle shape",
-        showStats: "Show stats"
+        showStats: "Show stats",
+        showPop: "Show population",
+        generation: "Current generation",
+        population: "Current population"
     },
     esp: {
         siteTitle: "Juego de la Vida | Autómata Celular",
@@ -51,7 +54,10 @@ const langList = {
         clear: "Vaciar",
         squareShape: "Forma de cuadrado",
         circleShape: "Forma de círculo",
-        showStats: "Mostrar estadísticas"
+        showStats: "Mostrar estadísticas",
+        showPop: "Mostrar población",
+        generation: "Generación actual",
+        poulation: "Población actual"
     }
 }
 

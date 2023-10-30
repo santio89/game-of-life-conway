@@ -7,3 +7,24 @@ export const setCells = (cells) => {
     })
   }
 }
+/* 
+export const setGen = (gen) => {
+
+  return async dispatch => {
+    dispatch({
+      type: "SET_GEN",
+      gen
+    })
+  }
+}
+
+export const setPop = (pop) => {
+
+  return async dispatch => {
+    dispatch({
+      type: "SET_POP",
+      pop
+    })
+  }
+}
+ */
