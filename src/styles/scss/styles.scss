@@ -286,7 +286,7 @@ body,
         accent-color: var(--main-color-light);
         background: var(--main-color-light);
         border-radius: 2px;
-        border: 1px solid transparent;
+        border: 8px solid transparent;
         cursor: pointer;
 
         &:checked {
@@ -299,7 +299,7 @@ body,
       }
 
       &:hover input {
-        border: 1px solid var(--main-gray);
+        border-color: rgba(240, 240, 240, .5);
       }
     }
 
@@ -377,7 +377,7 @@ body,
 
     &--gridMode {
       opacity: .1;
-      border-color: var(--main-color);
+      border-color: var(--main-white);
     }
 
     &--active {

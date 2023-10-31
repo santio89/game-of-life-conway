@@ -266,7 +266,7 @@ body,
   accent-color: var(--main-color-light);
   background: var(--main-color-light);
   border-radius: 2px;
-  border: 1px solid transparent;
+  border: 8px solid transparent;
   cursor: pointer;
 }
 .home__buttons .genStats input:checked {
@@ -276,7 +276,7 @@ body,
   outline: 1px dotted var(--main-color);
 }
 .home__buttons .genStats:hover input {
-  border: 1px solid var(--main-gray);
+  border-color: rgba(240, 240, 240, 0.5);
 }
 .home__buttons .clearBtns,
 .home__buttons .genBtns {
@@ -347,7 +347,7 @@ body,
 }
 .game-grid__cell--gridMode {
   opacity: 0.1;
-  border-color: var(--main-color);
+  border-color: var(--main-white);
 }
 .game-grid__cell--active {
   opacity: 1;
