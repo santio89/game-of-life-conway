@@ -27,7 +27,8 @@ const langList = {
         showStats: "Show stats",
         showPop: "Show population",
         generation: "Current generation",
-        population: "Current population"
+        population: "Current population",
+        pop: "Pop."
     },
     esp: {
         siteTitle: "Juego de la Vida | Autómata Celular",
@@ -57,7 +58,8 @@ const langList = {
         showStats: "Mostrar estadísticas",
         showPop: "Mostrar población",
         generation: "Generación actual",
-        poulation: "Población actual"
+        poulation: "Población actual",
+        pop: "Pob."
     }
 }
 
