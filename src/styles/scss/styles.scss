@@ -4,6 +4,7 @@
   --main-white: rgb(240, 240, 240);
   --main-gray: rgb(180, 180, 180);
   --main-gray-op: rgba(180, 180, 180, .9);
+  --main-gray-op-dark: rgba(120, 120, 120, .2);
   --main-color: rgb(70, 171, 226);
   --main-color-dark: var(--main-black);
   --main-color-light: var(--main-white);
@@ -365,7 +366,6 @@ body,
     align-items: center;
     background: transparent;
     border: 1px solid transparent;
-    opacity: 0;
 
     &.square {
       border-radius: 0;
@@ -376,14 +376,12 @@ body,
     }
 
     &--gridMode {
-      opacity: .1;
-      border-color: var(--main-white);
+      border-color: var(--main-gray-op-dark);
     }
 
     &--active {
-      opacity: 1;
-      background-color: var(--main-color);
       border-color: var(--main-color-dark);
+      background-color: var(--main-color);
       box-shadow: 0 0 4px 0 var(--main-color);
     }
   }
