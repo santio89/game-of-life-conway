@@ -434,7 +434,7 @@ export default function Home({ rootTheme }) {
                                     <input onChange={(e) => dispatch(setSpeed(e.target.value))} value={speedRange} id="speedRange" type="range" min="0" max="1984" /* |1984-2000|=16ms(60fps) */ />
                                 </div>
                                 <div className="genStats" title={currentLang?.showPop}>
-                                    <label htmlFor="genStats">{currentLang?.pop}:</label>
+                                    <label htmlFor="genStats">{currentLang?.pop}</label>
                                     <span>
                                         <input onChange={() => dispatch(setStatsReducer(!genStats))} checked={genStats} id="genStats" type="checkbox" />
                                     </span>
