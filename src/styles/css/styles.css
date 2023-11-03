@@ -17,6 +17,11 @@
   }
 }
 
+.light-theme {
+  --main-black: rgb(240, 240, 240);
+  --main-white: rgb(30, 30, 30);
+}
+
 *,
 *::before,
 *::after {
@@ -68,11 +73,6 @@ body,
 .root-theme {
   background: var(--main-black);
   /*  transition: background-color 125ms ease; */
-}
-
-.light-theme {
-  --main-black: rgb(240, 240, 240);
-  --main-white: rgb(30, 30, 30);
 }
 
 .mainContainer {

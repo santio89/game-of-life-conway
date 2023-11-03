@@ -1,0 +1,206 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+  z-index: 1;
+
+  .gen-stats {
+    position: fixed;
+    top: 48px;
+    left: 0;
+    color: var(--main-color-dark);
+    border: 2px solid var(--main-color-dark);
+    background: var(--main-gray-op);
+    padding: .25em;
+    pointer-events: none;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(.125rem, .125rem + 2vw, 1rem);
+    height: 48px;
+    width: 100%;
+    background-color: var(--main-color-dark);
+    color: rgb(240, 240, 240);
+    position: relative;
+    padding-inline: clamp(.5rem, .5rem + 2vw, 2rem);
+    transition: 125ms ease;
+    z-index: 2;
+    position: relative;
+    box-shadow: 0 -1rem 2rem 0 var(--main-color-dark);
+    position: relative;
+
+    &__settings {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+
+      &__theme {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-block: .25rem;
+
+        .shapeContainer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: .25rem;
+        }
+      }
+
+      &__opts {
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        flex-direction: column;
+        position: absolute;
+        top: calc(100% - 1px);
+        right: 0;
+        background-color: var(--main-color-dark);
+        padding: .25rem;
+        border-top: none;
+        pointer-events: none;
+        transition: 125ms ease;
+        box-shadow: 0 0 2rem -1rem var(--main-color-dark);
+
+        &.active {
+          pointer-events: auto;
+        }
+      }
+    }
+
+    &__box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(.125rem, .125rem + 2vw, 1rem);
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        outline: none;
+        border: none;
+        color: var(--main-gray);
+        font: inherit;
+        font-weight: bold;
+        font-size: 2em;
+        cursor: pointer;
+        transition: color 125ms ease, filter 125ms ease, scale 125ms ease;
+
+        &:hover,
+        &.active {
+          color: var(--main-color-light);
+          filter: drop-shadow(0 0 2px var(--main-color));
+        }
+
+        &:focus-visible {
+          outline: 1px dotted var(--main-color-light);
+          color: var(--main-color-light);
+          filter: drop-shadow(0 0 2px var(--main-color));
+        }
+
+        &:active {
+          scale: .9;
+          color: var(--main-color-light);
+          filter: drop-shadow(0 0 2px var(--main-color));
+        }
+      }
+    }
+
+    .speedRange,
+    .sizeRange,
+    .boundRange {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--main-color-light);
+      gap: .5rem;
+
+      input {
+        width: 60px;
+        min-width: 60px;
+        max-width: 60px;
+        accent-color: var(--main-color-light);
+        cursor: pointer;
+
+        &:focus-visible {
+          outline: 1px dotted var(--main-color)
+        }
+      }
+    }
+
+    .genStats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--main-color-light);
+      gap: .5rem;
+
+      span {
+        width: 60px;
+        min-width: 60px;
+        max-width: 60px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+      }
+
+      input {
+        height: 16px;
+        width: 16px;
+        appearance: none;
+        accent-color: var(--main-color-light);
+        background: var(--main-color-light);
+        border-radius: 2px;
+        border: 8px solid transparent;
+        cursor: pointer;
+
+        &:checked {
+          appearance: auto;
+        }
+
+        &:focus-visible {
+          outline: 1px dotted var(--main-color)
+        }
+      }
+
+      &:hover input {
+        border-color: rgba(240, 240, 240, .5);
+      }
+    }
+
+    .clearBtns,
+    .genBtns {
+      display: flex;
+      justify-content: space-between;
+      align-self: center;
+      width: 90%;
+
+      button {
+        font: inherit;
+      }
+    }
+
+    .genBtns {
+      aspect-ratio: 1;
+      width: 24px;
+      justify-content: center;
+      gap: 1rem
+    }
+  }
+}
