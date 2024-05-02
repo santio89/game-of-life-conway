@@ -62,8 +62,8 @@ export default function Home({ rootTheme }) {
     }
 
     const resetSettings = () => {
-        dispatch(setSpeed(1000))
-        dispatch(setSize(60))
+        dispatch(setSpeed(1984))
+        dispatch(setSize(24))
         dispatch(setBound(100))
     }
 
