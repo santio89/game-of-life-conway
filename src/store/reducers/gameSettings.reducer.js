@@ -1,7 +1,10 @@
 const initialState = {
+    /* bound 40-100 */
     bound: 100,
-    size: 60,
-    speed: 1000
+    /* size 24-96, mid 60 */
+    size: 24,
+    /* speed 0-1984, mid 1000 */
+    speed: 1984
 }
 
 const GameSettingsReducer = (state = initialState, action) => {
